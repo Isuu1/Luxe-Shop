@@ -1,0 +1,8 @@
+.products-page-container {
+  background: $homeBg;
+  padding: 130px 2vh 2vh 2vh;
+  min-height: 100%;
+  &__products {
+    min-height: 100%;
+  }
+}

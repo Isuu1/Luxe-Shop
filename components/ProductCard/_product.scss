@@ -1,0 +1,82 @@
+.product-card {
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  background: $productCardBg;
+  border-radius: 20px;
+  // box-shadow: 0px 22px 19px -15px rgba(110, 38, 243, 0.164);
+  padding: 0.75rem 0.75rem 0.5rem 0.75rem;
+  position: relative;
+  box-sizing: border-box;
+  // max-width: 50%;
+  &__image {
+    position: relative !important;
+  }
+  &__title {
+    font-size: 1.2rem;
+  }
+  &__reviews {
+    margin-left: auto;
+    gap: 0.2rem !important;
+    &__stars {
+      font-size: 1.2rem;
+    }
+    &__qty {
+      margin-left: 0.25rem;
+      font-weight: 600;
+    }
+  }
+
+  &__price {
+    font-size: 1.2rem;
+    color: $textPrimaryLightColor;
+    align-self: flex-start;
+  }
+  &__buy-now {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0;
+    background: transparent;
+    z-index: 16;
+    margin-left: auto;
+  }
+  &__add-to-wishlist {
+    z-index: 16;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    padding: 0;
+    // box-shadow: 0 0 17px 5px rgba(110, 38, 243, 0.342);
+    border-radius: 14px;
+    color: $textPrimaryDarkColor;
+    & svg {
+      margin: 0.15rem;
+    }
+  }
+}
+
+.swiper {
+  padding: 5vh 0 5vh 0 !important;
+}
+
+.small-card {
+  gap: 0.15rem;
+  & h2 {
+    font-size: 1.1rem;
+  }
+  & h3 {
+    font-size: 1rem;
+  }
+  & p {
+    font-size: 1rem;
+  }
+  &__image {
+    // max-width: 200px !important;
+    // height: 160px !important;
+    // object-fit: contain;
+    // border-radius: 14px;
+  }
+}
