@@ -17,6 +17,7 @@ const WishlistButton = ({ userId, product, itemWishlisted }) => {
   const router = useRouter();
 
   console.log(itemWishlisted);
+  console.log(product);
 
   const handleWishList = (e) => {
     e.preventDefault();

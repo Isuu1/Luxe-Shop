@@ -362,12 +362,22 @@
 .home-container__bestsellers__item {
   flex: 0 0 65%;
 }
+.home-container__products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.3rem;
+}
+
 .products-container--transition {
   max-height: 600px;
 }
 
 .swiper-pagination {
   position: relative !important;
+}
+
+.product__flex-50 {
+  flex: 1 1 50%;
 }
 
 .product-detail-container {
