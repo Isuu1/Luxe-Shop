@@ -8,10 +8,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 });
 const prisma = new PrismaClient();
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
+export const runtime = "nodejs";
+
+export const api = {
+  bodyParser: false,
 };
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
