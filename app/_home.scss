@@ -54,6 +54,9 @@
     }
   }
   &__products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem;
   }
 }
 
@@ -63,4 +66,7 @@
 
 .swiper-pagination {
   position: relative !important;
+}
+.product__flex-50 {
+  flex: 1 1 50%;
 }

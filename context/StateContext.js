@@ -17,6 +17,10 @@ import toast from "react-hot-toast";
 
 const Context = createContext();
 
+// const CategoryContext = createContext();
+
+// export const useCategory = () => useContext(CategoryContext);
+
 export const StateContext = ({ children }) => {
   // User shopping cart
   const [showCart, setShowCart] = useState(false);

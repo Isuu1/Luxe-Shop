@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { headers } from "next/headers";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,6 +8,8 @@ import CategorySelector from "../components/CategorySelector/CategorySelector";
 import Footer from "../components/Footer/Footer";
 import BestsellersFeed from "../components/BestsellersFeed/BestsellersFeed";
 import ProductsFeed from "../components/ProductsFeed/ProductsFeed";
+import ProductFeed from "../components/ProductFeed/ProductFeed";
+import Test from "@/components/Test";
 
 //Functions
 import getProducts, {
@@ -34,11 +36,13 @@ export default async function Index() {
   const wishlistData = await fetchWishlist(session.user.id);
   const wishlist = wishlistData?.wishlist;
 
-  console.log("Main page: ", wishlist);
-
   const matchingProducts = products.filter(
     (product) => product.stars >= 4
   );
+
+  // const Product = React.lazy(() =>
+  //   import("@/components/ProductCard/Product")
+  // ); // Lazy loading Product component
 
   return (
     <div
@@ -73,11 +77,7 @@ export default async function Index() {
         />
       </div>
       <h2 className="home-container__headline">Bestsellers</h2>
-      {/* <BestsellersFeed
-        products={products}
-        userId={session.user.id}
-        wishlist={wishlist}
-      /> */}
+
       <div className="home-container__bestsellers">
         {matchingProducts?.map((product, index) => (
           <div
@@ -88,7 +88,6 @@ export default async function Index() {
               product={product}
               userId={session.user.id}
               wishlist={wishlist}
-              // isInWishlist={isInWishlist(product.id)}
             />
           </div>
         ))}
@@ -105,11 +104,13 @@ export default async function Index() {
         </Link>
       </div>
       <CategorySelector />
-      {/* <ProductsFeed
+
+      <ProductsFeed
         products={products}
         userId={session.user.id}
         wishlist={wishlist}
-      /> */}
+      />
+
       <Footer />
     </div>
   );
