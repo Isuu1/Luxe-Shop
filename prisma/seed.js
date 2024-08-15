@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   const password = await hash("test", 12);
+  const userImage = "/images/user-avatar.jpg";
 
   const user = await prisma.user.upsert({
     where: { email: "test@test.com" },
