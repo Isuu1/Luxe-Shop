@@ -25,7 +25,7 @@ const ProductPageRelatedProducts = ({ products }) => {
               <Product
                 key={item._id}
                 product={item}
-                cardSmall={true}
+                smallCard={true}
               />
             </swiper-slide>
           ))}
