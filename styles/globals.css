@@ -959,7 +959,7 @@
   background: #ffffff;
   box-shadow: 0px 1px 70px -23px rgba(110, 38, 243, 0.164);
   border-radius: 0 12px 12px 0;
-  padding: 0.75rem;
+  padding: 0.5rem;
 }
 .reviews-container__star {
   margin-top: 3px;
@@ -1129,7 +1129,7 @@
 }
 
 .selected-slide {
-  border: 2px solid #db57db;
+  border: 2px solid #6b37d1;
 }
 
 .related {

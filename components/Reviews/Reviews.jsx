@@ -6,35 +6,32 @@ import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 
-const Reviews = ({ stars, ratings, cardSmall }) => {
+const Reviews = ({ stars, ratings }) => {
   const roundedRating = Math.round(stars * 2) / 2;
 
+  // Determine the integer and half-star part
+  const fullStars = Math.floor(roundedRating);
+  const hasHalfStar = roundedRating % 1 !== 0;
+
   const starsElements = Array.from({ length: 5 }, (_, index) => {
-    if (index < roundedRating) {
+    if (index < fullStars) {
+      console.log("Full star to render!");
       return (
         <span key={index} className="reviews-container__star">
-          <FaStar
-            color="#f27012"
-            fontSize={cardSmall ? "1.2rem" : "1.7rem"}
-          />
+          <FaStar color="#f27012" fontSize="1.7rem" />
         </span>
       ); // Render an filled star
-    } else if (
-      index === Math.floor(roundedRating) &&
-      Number.isInteger(roundedRating)
-    ) {
+    } else if (index === fullStars && hasHalfStar) {
+      console.log("Half star to render!");
       return (
         <span key={index} className="reviews-container__star">
-          <FaStarHalfAlt
-            color="#f27012"
-            fontSize={cardSmall ? "1.2rem" : "1.7rem"}
-          />
+          <FaStarHalfAlt color="#f27012" fontSize="1.7rem" />
         </span>
       ); // Render a half-filled star
     } else {
       return (
         <span key={index} className="reviews-container__star">
-          <FaRegStar style={{ fontSize: "1.2rem" }} />
+          <FaRegStar fontSize="1.7rem" color="#f27012" />
         </span>
       ); // Render an empty star
     }
@@ -43,13 +40,7 @@ const Reviews = ({ stars, ratings, cardSmall }) => {
   return (
     <div className="reviews-container">
       {starsElements}
-      <span
-        className={`reviews-container__qty ${
-          cardSmall === true ? "small-card" : ""
-        }`}
-      >
-        {ratings}
-      </span>
+      <span className="reviews-container__qty">{ratings}</span>
     </div>
   );
 };
