@@ -250,6 +250,7 @@
 }
 .product-card__image {
   position: relative !important;
+  border-radius: 12px;
 }
 .product-card__title {
   font-size: 1.2rem;
@@ -270,32 +271,6 @@
   color: #747474;
   align-self: flex-start;
 }
-.product-card__buy-now {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  padding: 0;
-  background: transparent;
-  z-index: 16;
-  margin-left: auto;
-}
-.product-card__add-to-wishlist {
-  z-index: 16;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: transparent;
-  padding: 0;
-  border-radius: 14px;
-  color: #262626;
-}
-.product-card__add-to-wishlist svg {
-  margin: 0.15rem;
-}
-
-.swiper {
-  padding: 5vh 0 5vh 0 !important;
-}
 
 .small-card {
   gap: 0.15rem;
@@ -309,6 +284,7 @@
 .small-card p {
   font-size: 1rem;
 }
+
 .home-container {
   position: relative;
   z-index: 2;
