@@ -1,5 +1,4 @@
 "use client";
-
 import { addToWishList, removeFromWishlist } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React from "react";

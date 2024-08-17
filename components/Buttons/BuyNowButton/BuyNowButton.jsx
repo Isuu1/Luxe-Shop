@@ -14,9 +14,9 @@ const BuyNowButton = ({ smallCard, product }) => {
   };
 
   return (
-    <button className="product-card__buy-now" onClick={buyNow}>
+    <button className="buy-now" onClick={buyNow}>
       <FaBagShopping
-        fontSize={smallCard ? "1.3rem" : "1.7rem"}
+        fontSize={smallCard ? "1.5rem" : "1.8rem"}
         color="#333"
       />
     </button>
