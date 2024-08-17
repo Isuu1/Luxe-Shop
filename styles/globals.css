@@ -376,6 +376,9 @@
 .product-detail-container__details__name {
   margin-top: 2rem;
 }
+.product-detail-container__details__price {
+  color: #6b37d1;
+}
 .product-detail-container__details__desc {
   overflow: hidden;
   transition: all 0.4s;

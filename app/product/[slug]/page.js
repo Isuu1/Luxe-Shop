@@ -72,6 +72,9 @@ export default async function Page({ params }) {
         <h2 className="product-detail-container__details__name">
           {product[0].name}
         </h2>
+        <h2 className="product-detail-container__details__price">
+          £{product[0].price}
+        </h2>
         <AddToCartButton product={product} />
         <div
           className="product-detail-container__details__desc"
