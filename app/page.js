@@ -40,10 +40,6 @@ export default async function Index() {
     (product) => product.stars >= 4
   );
 
-  // const Product = React.lazy(() =>
-  //   import("@/components/ProductCard/Product")
-  // ); // Lazy loading Product component
-
   return (
     <div
       className={`page ${!mobile && "desktop__home-container"}`}
@@ -77,7 +73,6 @@ export default async function Index() {
         />
       </div>
       <h2 className="home-container__headline">Bestsellers</h2>
-
       <div className="home-container__bestsellers">
         {matchingProducts?.map((product, index) => (
           <div
@@ -92,7 +87,6 @@ export default async function Index() {
           </div>
         ))}
       </div>
-
       <div className="flex-center">
         <h2 className="home-container__headline">Products</h2>
         <Link
@@ -104,14 +98,11 @@ export default async function Index() {
         </Link>
       </div>
       <CategorySelector />
-
       <ProductsFeed
         products={products}
         userId={session.user.id}
         wishlist={wishlist}
       />
-
-      <Footer />
     </div>
   );
 }
