@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  addToWishList,
-  handleWishList,
-  isItemInWishList,
-  removeFromWishlist,
-} from "@/lib/utils";
+import { addToWishList, removeFromWishlist } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -15,9 +10,6 @@ import { FaHeart } from "react-icons/fa";
 
 const WishlistButton = ({ userId, product, itemWishlisted }) => {
   const router = useRouter();
-
-  console.log(itemWishlisted);
-  console.log(product);
 
   const handleWishList = (e) => {
     e.preventDefault();
@@ -32,10 +24,7 @@ const WishlistButton = ({ userId, product, itemWishlisted }) => {
   };
 
   return (
-    <button
-      className="product-detail-container__add-to-wishlist"
-      onClick={handleWishList}
-    >
+    <button className="add-to-wishlist" onClick={handleWishList}>
       {itemWishlisted ? (
         <FaHeart fontSize="1.8rem" style={{ fill: "red" }} />
       ) : (
