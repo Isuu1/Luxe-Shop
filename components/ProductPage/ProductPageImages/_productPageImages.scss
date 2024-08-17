@@ -15,8 +15,8 @@
     gap: 0.3rem;
     &__slide {
       width: 30% !important;
+      aspect-ratio: 1/1;
       position: relative !important;
-      position: relative;
       border: 2px solid transparent;
       border-radius: 1rem;
       transition: all 0.3s;
