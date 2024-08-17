@@ -1,0 +1,33 @@
+.product-page__show-specification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.35rem 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 11px;
+  background: #6b37d1;
+  color: #fff;
+  margin: 0.5rem 0;
+}
+.product-page__specification {
+  color: #242424;
+  padding: 0.3rem;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  & p {
+    font-size: 0.95rem;
+  }
+  &--bold {
+    // font-weight: bold;
+  }
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.product-page__specification {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

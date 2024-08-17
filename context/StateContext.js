@@ -192,55 +192,55 @@ export const StateContext = ({ children }) => {
 
   console.log("Wishlist: ", wishlist);
 
-  const addToWishList = async (userId, product) => {
-    try {
-      const response = await fetch("api/wishlist/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId,
-          sanityId: product._id,
-          productName: product.name,
-          productImage: product.image[0].asset._ref,
-          productDescription: product.name,
-          productPrice: product.price,
-          productRatings: product.ratings,
-          productStars: product.stars,
-        }),
-      });
-      const data = await response.json();
-      console.log("Data from state context addToWishlist: ", data);
-      // This is to get refreshed data from GET request // SSR does not re-render component when data changes
-      router.refresh();
-      // setWishlist([...wishlist, data.wishlistItem]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const addToWishList = async (userId, product) => {
+  //   try {
+  //     const response = await fetch("api/wishlist/add", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         userId,
+  //         sanityId: product._id,
+  //         productName: product.name,
+  //         productImage: product.image[0].asset._ref,
+  //         productDescription: product.name,
+  //         productPrice: product.price,
+  //         productRatings: product.ratings,
+  //         productStars: product.stars,
+  //       }),
+  //     });
+  //     const data = await response.json();
+  //     console.log("Data from state context addToWishlist: ", data);
+  //     // This is to get refreshed data from GET request // SSR does not re-render component when data changes
+  //     router.refresh();
+  //     // setWishlist([...wishlist, data.wishlistItem]);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  const removeFromWishlist = async (id) => {
-    try {
-      await fetch(`/api/wishlist/remove/${id}`, {
-        method: "DELETE",
-      });
-      // This is to get refreshed data from GET request // SSR does not re-render component when data changes
-      router.refresh();
-      // setWishlist(wishlist.filter((item) => item.sanityId !== id));
-    } catch (error) {
-      console.error("Error removing from wishlist:", error);
-    }
-  };
+  // const removeFromWishlist = async (id) => {
+  //   try {
+  //     await fetch(`/api/wishlist/remove/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     // This is to get refreshed data from GET request // SSR does not re-render component when data changes
+  //     router.refresh();
+  //     // setWishlist(wishlist.filter((item) => item.sanityId !== id));
+  //   } catch (error) {
+  //     console.error("Error removing from wishlist:", error);
+  //   }
+  // };
 
-  const isInWishlist = (productName) => {
-    const matchingItem = wishlist.some(
-      (item) => item.name === productName
-    );
-    return matchingItem;
-  };
+  // const isInWishlist = (productName) => {
+  //   const matchingItem = wishlist.some(
+  //     (item) => item.name === productName
+  //   );
+  //   return matchingItem;
+  // };
 
   return (
     <Context.Provider
@@ -267,11 +267,11 @@ export const StateContext = ({ children }) => {
         setCategory,
         userModal,
         setUserModal,
-        fetchWishlist,
-        addToWishList,
-        removeFromWishlist,
+        // fetchWishlist,
+        // addToWishList,
+        // removeFromWishlist,
         wishlist,
-        isInWishlist,
+        // isInWishlist,
       }}
     >
       {children}
