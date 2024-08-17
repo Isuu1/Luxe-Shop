@@ -168,8 +168,9 @@
 
 .footer {
   background: transparent;
-  padding: 3vh 0 140px 0;
+  padding: 3rem 0 140px 0;
   text-align: center;
+  font-size: 1rem;
 }
 
 .category-selector {
@@ -356,7 +357,7 @@
 }
 
 .product-detail-container {
-  padding: 80px 1rem 150px 1rem;
+  padding: 80px 1rem 0 1rem;
   background: #fff;
   position: relative;
 }

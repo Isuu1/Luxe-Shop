@@ -16,6 +16,7 @@ import { headers } from "next/headers";
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
 import { isMobileDevice } from "@/lib/utils";
+import Footer from "@/components/Footer/Footer";
 
 export const metadata = {
   title: "Luxe Shop",
@@ -42,6 +43,7 @@ export default async function RootLayout({ children }) {
                   <Navbar user={session.user} />
                   {/* <ShoppingCartIcon /> */}
                   {children}
+                  <Footer />
                 </>
               )
               // ) : (
