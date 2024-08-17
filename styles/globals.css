@@ -363,7 +363,7 @@
 }
 .product-detail-container__wishlist-button {
   bottom: auto !important;
-  top: 0;
+  top: 0.3rem !important;
   right: 0.3rem !important;
   background: #f5f5f5 !important;
   padding: 0.5rem 0.5rem 0.2rem 0.5rem !important;
