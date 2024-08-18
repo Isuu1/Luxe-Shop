@@ -30,9 +30,7 @@ const ShoppingCartIcon = ({ user }) => {
       </AnimatePresence>
       {!showCart && (
         <button
-          className={`shopping-cart-icon ${
-            mobile === false ? "shopping-cart-icon__desktop" : ""
-          }`}
+          className="shopping-cart-icon "
           onClick={() => setShowCart(!showCart)}
         >
           <LuShoppingBasket style={{ fontSize: "1.7rem" }} />

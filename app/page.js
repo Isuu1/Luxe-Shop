@@ -22,6 +22,8 @@ import { urlFor } from "@/lib/client";
 
 //Icons
 import { IoIosArrowForward } from "react-icons/io";
+import { BiSolidSend } from "react-icons/bi";
+
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
 import Product from "@/components/ProductCard/Product";
@@ -41,26 +43,17 @@ export default async function Index() {
   );
 
   return (
-    <div
-      className={`page ${!mobile && "desktop__home-container"}`}
-      id="home-container"
-    >
+    <div className="page" id="home-container">
       <div className="home-container__banner">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-around",
-          }}
-        >
-          <h2 className="home-container__banner__title">
+        <div className="home-container__banner__text">
+          <h2 className="home-container__banner__text__title">
             Headphones on sale!
           </h2>
-          <p className="home-container__banner__desc">
+          <p className="home-container__banner__text__desc">
             Discount 50% for the first transaction
           </p>
-          <button className="home-container__banner__button">
-            Shop now
+          <button className="home-container__banner__text__button">
+            Shop now <BiSolidSend />
           </button>
         </div>
         <Image

@@ -144,3 +144,9 @@ input {
     transform: rotate(360deg);
   }
 }
+
+@media screen and (min-width: "1200px") {
+  .page {
+    padding: 90px 4rem 4rem 4rem;
+  }
+}
