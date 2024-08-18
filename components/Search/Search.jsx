@@ -14,7 +14,7 @@ import {
   searchListAppear,
 } from "../../styles/animations";
 
-const Search = ({ mobile, navbarTopVisible }) => {
+const Search = ({ navbarTopFullWidth }) => {
   Search.displayName = "Search";
 
   const [products, setProducts] = useState([]);
@@ -26,7 +26,7 @@ const Search = ({ mobile, navbarTopVisible }) => {
     data.then((products) => setProducts(products));
   }, []);
 
-  const { searchBar, setSearchBar } = useStateContext();
+  const { searchBarOpen, setSearchBarOpen } = useStateContext();
 
   const [matchingProducts, setMatchingProducts] = useState([]);
 
@@ -36,8 +36,8 @@ const Search = ({ mobile, navbarTopVisible }) => {
   useEffect(() => {
     const input = document.getElementById("search-input");
     const handleWindowClick = (event) => {
-      if (searchBar && !event.target.closest(".search-field")) {
-        setSearchBar(false);
+      if (searchBarOpen && !event.target.closest(".search-field")) {
+        setSearchBarOpen(false);
         setMatchingProducts([]);
         input.value = null;
       }
@@ -46,7 +46,7 @@ const Search = ({ mobile, navbarTopVisible }) => {
     return () => {
       window.removeEventListener("click", handleWindowClick);
     };
-  }, [searchBar]);
+  }, [searchBarOpen]);
 
   //Handling matching products whenever input is changed
   const handleInputChange = (e) => {
@@ -82,12 +82,12 @@ const Search = ({ mobile, navbarTopVisible }) => {
 
   const handleSearchBar = (event) => {
     event.stopPropagation(); // Stop event propagation to prevent immediate closing
-    setSearchBar(true);
+    setSearchBarOpen(true);
   };
 
   const handleListElementClick = () => {
     const input = document.getElementById("search-input");
-    setSearchBar(false);
+    setSearchBarOpen(false);
     setMatchingProducts([]);
     input.value = null;
   };
@@ -100,11 +100,12 @@ const Search = ({ mobile, navbarTopVisible }) => {
   return (
     <>
       <AnimatePresence mode="wait">
-        {searchBar && (
+        {searchBarOpen && (
           <motion.div
-            className={`blur ${
-              mobile === false ? "desktop__blur" : ""
-            }`}
+            // className={`blur ${
+            //   mobile === false ? "desktop__blur" : ""
+            // }`}
+            className="blur"
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -119,7 +120,7 @@ const Search = ({ mobile, navbarTopVisible }) => {
         autoComplete="off"
       >
         <AnimatePresence mode="wait">
-          {searchBar && (
+          {searchBarOpen && (
             <motion.ul
               key="search-bar"
               className="search-field"
@@ -176,14 +177,14 @@ const Search = ({ mobile, navbarTopVisible }) => {
             style={{
               fontSize: "1.7rem",
               transition: "all 0.5s",
-              color: searchBar ? "rgba(70, 7, 133, 1)" : "#333",
+              color: searchBarOpen ? "rgba(70, 7, 133, 1)" : "#333",
             }}
           />
           <input
             id="search-input"
             type="input"
             className={`search-form__label__input-field ${
-              !navbarTopVisible ? "search-input-transition" : ""
+              !navbarTopFullWidth ? "search-input-transition" : ""
             }`}
             onClick={handleSearchBar}
             placeholder="Search"
