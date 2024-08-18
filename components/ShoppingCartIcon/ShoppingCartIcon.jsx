@@ -13,20 +13,18 @@ const ShoppingCartIcon = ({ user }) => {
   const { totalQuantities, showCart, setShowCart } =
     useStateContext();
 
-  useEffect(() => {
-    if (typeof window != "undefined") {
-      const windowWidth = window.innerWidth;
-      setWindowWidth(windowWidth);
-    }
-  }, [windowWidth]);
-  const mobile = windowWidth < 500;
+  // useEffect(() => {
+  //   if (typeof window != "undefined") {
+  //     const windowWidth = window.innerWidth;
+  //     setWindowWidth(windowWidth);
+  //   }
+  // }, [windowWidth]);
+  // const mobile = windowWidth < 500;
 
   return (
     <>
       <AnimatePresence mode="wait">
-        {showCart && (
-          <Cart key={"shopping-cart"} mobile={mobile} user={user} />
-        )}
+        {showCart && <Cart key="shopping-cart" user={user} />}
       </AnimatePresence>
       {!showCart && (
         <button
