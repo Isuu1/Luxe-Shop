@@ -113,7 +113,7 @@ input {
 .page {
   background: $homeBg;
   min-height: 100vh;
-  padding: 90px 1rem 1rem 1rem;
+  padding: 100px 1rem 1rem 1rem;
   position: relative;
   z-index: 2;
 }
@@ -166,6 +166,12 @@ input {
 
 @media screen and (min-width: "1200px") {
   .page {
-    padding: 90px 4rem 4rem 4rem;
+    padding: 90px 6rem 6rem 6rem;
+  }
+}
+
+@media screen and (min-width: "1500px") {
+  .page {
+    padding: 100px 9rem 9rem 9rem;
   }
 }

@@ -49,7 +49,7 @@ export default async function Page({ params }) {
   const itemWishlisted = isItemInWishList(wishlist, product[0]);
 
   return (
-    <section className="product-detail-container">
+    <section className="page product-detail-container">
       <BackButton>{findCategory}</BackButton>
       <div className="product-detail-container__wrapper">
         <ProductPageImages product={product}>
