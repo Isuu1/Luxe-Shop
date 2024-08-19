@@ -546,7 +546,7 @@
   font-size: 0.95rem;
 }
 .product-detail-container__details__desc p {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
 }
 .product-detail-container__details__add-to-cart-wrapper {
   display: flex;
@@ -1383,14 +1383,16 @@
 
 .product-page__specification {
   color: #242424;
+  line-height: 2.1rem;
   padding: 0.3rem;
   overflow: auto;
 }
 .product-page__specification::-webkit-scrollbar {
   display: none;
 }
-.product-page__specification p {
-  font-size: 0.95rem;
+.product-page__specification p,
+.product-page__specification li {
+  font-size: 1.05rem;
 }
 /* Hide scrollbar for IE, Edge and Firefox */
 .product-page__specification {

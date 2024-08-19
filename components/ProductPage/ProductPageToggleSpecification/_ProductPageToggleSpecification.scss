@@ -13,13 +13,15 @@
 }
 .product-page__specification {
   color: #242424;
+  line-height: 2.1rem;
   padding: 0.3rem;
   overflow: auto;
   &::-webkit-scrollbar {
     display: none;
   }
-  & p {
-    font-size: 0.95rem;
+  & p,
+  li {
+    font-size: 1.05rem;
   }
   &--bold {
     // font-weight: bold;

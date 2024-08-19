@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-
 import useEmblaCarousel from "embla-carousel-react";
 
 const EmblaCarouselContainer = ({ children }) => {
-  const [emblaRef] = useEmblaCarousel();
+  const [emblaRef] = useEmblaCarousel({ dragFree: true });
 
   return (
     <div className="embla" ref={emblaRef}>
