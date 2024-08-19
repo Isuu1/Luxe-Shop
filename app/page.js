@@ -6,7 +6,7 @@ import Image from "next/image";
 //Components
 import CategorySelector from "../components/CategorySelector/CategorySelector";
 import Footer from "../components/Footer/Footer";
-import BestsellersFeed from "../components/BestsellersFeed/BestsellersFeed";
+import EmblaCarouselContainer from "../components/EmblaCarouselContainer/EmblaCarouselContainer";
 import ProductsFeed from "../components/ProductsFeed/ProductsFeed";
 import ProductFeed from "../components/ProductFeed/ProductFeed";
 import Test from "@/components/Test";
@@ -67,9 +67,12 @@ export default async function Index() {
         />
       </div>
       <h2 className="home-container__headline">Bestsellers</h2>
-      <BestsellersFeed>
+      <EmblaCarouselContainer>
         {matchingProducts?.map((product, index) => (
-          <div className="embla__slide" key={index}>
+          <div
+            className="embla__slide home-container__bestseller"
+            key={index}
+          >
             <Product
               product={product}
               userId={session.user.id}
@@ -77,7 +80,7 @@ export default async function Index() {
             />
           </div>
         ))}
-      </BestsellersFeed>
+      </EmblaCarouselContainer>
 
       <div className="flex-center">
         <h2 className="home-container__headline">Products</h2>

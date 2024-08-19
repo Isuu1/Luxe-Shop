@@ -3,7 +3,7 @@ import React from "react";
 
 import useEmblaCarousel from "embla-carousel-react";
 
-const Bestsellers = ({ children }) => {
+const EmblaCarouselContainer = ({ children }) => {
   const [emblaRef] = useEmblaCarousel();
 
   return (
@@ -13,4 +13,4 @@ const Bestsellers = ({ children }) => {
   );
 };
 
-export default Bestsellers;
+export default EmblaCarouselContainer;
