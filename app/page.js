@@ -66,12 +66,9 @@ export default async function Index() {
         />
       </div>
       <h2 className="home-container__headline">Bestsellers</h2>
-      <div className="home-container__bestsellers">
+      <BestsellersFeed>
         {matchingProducts?.map((product, index) => (
-          <div
-            className="home-container__bestsellers__item"
-            key={index}
-          >
+          <div className="embla__slide" key={index}>
             <Product
               product={product}
               userId={session.user.id}
@@ -79,7 +76,8 @@ export default async function Index() {
             />
           </div>
         ))}
-      </div>
+      </BestsellersFeed>
+
       <div className="flex-center">
         <h2 className="home-container__headline">Products</h2>
         <Link

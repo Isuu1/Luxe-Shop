@@ -58,15 +58,15 @@
     }
   }
 
-  &__bestsellers {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 0.5rem;
-    overflow: hidden;
-    &__item {
-      flex: 0 0 65%;
-    }
-  }
+  // &__bestsellers {
+  //   display: flex;
+  //   flex-wrap: nowrap;
+  //   gap: 0.5rem;
+  //   overflow: hidden;
+  //   &__item {
+  //     flex: 0 0 65%;
+  //   }
+  // }
   &__products {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

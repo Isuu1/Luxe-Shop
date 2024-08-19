@@ -31,6 +31,22 @@
   width: 100%;
 }
 
+.embla {
+  overflow: hidden;
+  --slide-spacing: 1rem;
+  --slide-size: 60%;
+}
+
+.embla__container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.embla__slide {
+  flex: 0 0 40%;
+  min-width: 0;
+}
+
 .cart-container {
   z-index: 99;
   background: #fff;
@@ -408,15 +424,6 @@
   height: auto !important;
   max-width: 450px;
   aspect-ratio: 1/1;
-}
-.home-container__bestsellers {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0.5rem;
-  overflow: hidden;
-}
-.home-container__bestsellers__item {
-  flex: 0 0 65%;
 }
 .home-container__products {
   display: grid;

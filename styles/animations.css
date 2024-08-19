@@ -28,4 +28,20 @@
 
 .navbar-full-width {
   width: 100%;
+}
+
+.embla {
+  overflow: hidden;
+  --slide-spacing: 1rem;
+  --slide-size: 60%;
+}
+
+.embla__container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.embla__slide {
+  flex: 0 0 40%;
+  min-width: 0;
 }/*# sourceMappingURL=animations.css.map */
