@@ -106,6 +106,10 @@ input {
   font-weight: bold;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .page {
   background: $homeBg;
   min-height: 100vh;
@@ -119,11 +123,6 @@ input {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-//Swiper
-.bestsellers-swiper {
-  margin-top: 200px;
 }
 
 .sanity-container {
