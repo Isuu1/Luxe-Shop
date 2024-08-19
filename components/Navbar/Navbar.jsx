@@ -123,7 +123,7 @@ const Navbar = ({ user }) => {
           <ShoppingCartIcon user={user} />
         </div>
       </div>
-      {showNavbarBottom && (
+      {showNavbarBottom && windowWidth < 768 && (
         <div className="navbar-bottom">
           <Link href="/user">
             <button className="navbar-bottom__icon">
