@@ -3,11 +3,7 @@ import React from "react";
 
 import Product from "../../ProductCard/Product";
 
-// import function to register Swiper custom elements
-import { register } from "swiper/element/bundle";
 import EmblaCarouselContainer from "@/components/EmblaCarouselContainer/EmblaCarouselContainer";
-// register Swiper custom elements
-register();
 
 const ProductPageRelatedProducts = ({ products }) => {
   return (

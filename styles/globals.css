@@ -456,7 +456,7 @@
   aspect-ratio: 1/1;
 }
 .home-container__bestseller {
-  flex: 0 0 40%;
+  flex: 0 0 60%;
 }
 .home-container__products {
   display: grid;
@@ -493,6 +493,9 @@
   }
 }
 @media screen and (min-width: 768px) {
+  .home-container__bestseller {
+    flex: 0 0 50%;
+  }
   .home-container__products {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.3rem;
@@ -505,6 +508,11 @@
   .home-container__products {
     grid-template-columns: repeat(4, 1fr);
     gap: 0.3rem;
+  }
+}
+@media screen and (min-width: 1350px) {
+  .home-container__bestseller {
+    flex: 0 0 29%;
   }
 }
 .product-detail-container {
