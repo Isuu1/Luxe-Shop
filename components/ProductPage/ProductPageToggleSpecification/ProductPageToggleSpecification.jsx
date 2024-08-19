@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+//Sanity library to display rich text fields
 import BlockContent from "@sanity/block-content-to-react";
 
 //Icons
