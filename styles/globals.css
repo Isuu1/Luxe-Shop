@@ -1357,7 +1357,7 @@
 }
 
 .related {
-  margin-top: 1rem;
+  margin: 1.5rem 0;
   padding-bottom: 1rem;
 }
 .related__headline {
@@ -1366,7 +1366,20 @@
 .related__slider {
   margin-top: 1.3rem;
 }
+.related__slider__slide {
+  flex: 0 0 35%;
+}
 
+@media screen and (min-width: 1250px) {
+  .related__slider__slide {
+    flex: 0 0 30% !important;
+  }
+}
+@media screen and (min-width: 1450px) {
+  .related__slider__slide {
+    flex: 0 0 25% !important;
+  }
+}
 .product-page__show-specification {
   display: flex;
   align-items: center;

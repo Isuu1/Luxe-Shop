@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { urlFor } from "../../../lib/client";
 
-const ProductImages = ({ product, children }) => {
+const ProductPageImages = ({ product, children }) => {
   const { image } = product[0];
 
   const [imageIndex, setImageIndex] = useState(0);
@@ -35,4 +35,4 @@ const ProductImages = ({ product, children }) => {
   );
 };
 
-export default ProductImages;
+export default ProductPageImages;
