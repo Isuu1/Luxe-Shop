@@ -45,6 +45,7 @@ export default async function Index() {
   return (
     <div className="page" id="home-container">
       <div className="home-container__banner">
+        <Image src="/images/banner-bg2.svg" fill alt="" />
         <div className="home-container__banner__text">
           <h2 className="home-container__banner__text__title">
             Headphones on sale!

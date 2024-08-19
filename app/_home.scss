@@ -17,6 +17,7 @@
     }
   }
   &__banner {
+    position: relative;
     width: 100%;
     min-height: 200px;
     max-width: 900px;
@@ -24,8 +25,10 @@
     border-radius: 14px;
     padding: 0.75rem;
     display: flex;
-    // margin: auto;
+    overflow: hidden;
     &__text {
+      z-index: 2;
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
