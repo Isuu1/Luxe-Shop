@@ -1,53 +1,27 @@
 import Image from "next/image";
+import Link from "next/link";
+
+//Authentication
 import { options } from "../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa6";
-import { IoIosArrowBack } from "react-icons/io";
-import { FaHeart } from "react-icons/fa";
 
-import { MdAccountBox } from "react-icons/md";
-import { FaUserAlt } from "react-icons/fa";
-
-import { FaArrowRight } from "react-icons/fa";
-
-import { FaSignOutAlt } from "react-icons/fa";
-
-import { MdEditDocument } from "react-icons/md";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-
-import { FaList } from "react-icons/fa";
-
-import { IoIosArrowForward } from "react-icons/io";
-
+//Components
 import BackButton from "../../components/BackButton/BackButton";
 import SignoutButton from "../../components/SignoutButton/SignoutButton";
-import { isMobileDevice } from "@/lib/utils";
-import { headers } from "next/headers";
+
+//Icons
+import { IoIosArrowForward } from "react-icons/io";
+import { MdEditDocument } from "react-icons/md";
+import { FaList } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 export default async function ProfileClient() {
   const session = await getServerSession(options);
 
-  // console.log("User session: ", session);
-
-  const mobile = isMobileDevice(headers());
-
   return (
-    <div
-      className={`page user-page ${!mobile && "desktop__user-page"}`}
-    >
-      {/* <div
-        style={{
-          position: "fixed",
-          top: "0",
-          left: "0",
-          width: "100%",
-          background: "#6b37d1",
-          height: "190px",
-        }}
-      ></div> */}
+    <div className="page user-page">
       <BackButton>Profile</BackButton>
-
       <div className="user-page__header">
         <div style={{ position: "relative" }}>
           <Image
