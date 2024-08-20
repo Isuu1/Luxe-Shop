@@ -15,6 +15,7 @@ import {
 import Menu from "../Menu/Menu";
 import Search from "../Search/Search";
 import ShoppingCartIcon from "../ShoppingCartIcon/ShoppingCartIcon";
+import OpenModalButton from "@/components/Buttons/OpenModalButton/OpenModalButton";
 
 //Icons
 import { TiThMenu } from "react-icons/ti";
@@ -24,16 +25,12 @@ import { FaUser } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
 
 import { HiMiniHome } from "react-icons/hi2";
+import UserModal from "../UserModal/UserModal";
+import Image from "next/image";
 
 const Navbar = ({ user }) => {
-  const {
-    showMenu,
-    setShowMenu,
-    searchBarOpen,
-    userModal,
-    setUserModal,
-    showCart,
-  } = useStateContext();
+  const { showMenu, setShowMenu, searchBarOpen, userModal } =
+    useStateContext();
 
   const [navbarTopFullWidth, setNavbarTopFullWidth] = useState(true);
 
@@ -92,7 +89,7 @@ const Navbar = ({ user }) => {
                 Home
               </Link>
 
-              <Link
+              {/* <Link
                 className={`navbar-top__left__menu__item link link ${
                   pathname === "/user" ? "active" : ""
                 }`}
@@ -100,7 +97,7 @@ const Navbar = ({ user }) => {
               >
                 <FaUser />
                 Account
-              </Link>
+              </Link> */}
 
               <Link
                 className={`navbar-top__left__menu__item link ${
@@ -120,6 +117,9 @@ const Navbar = ({ user }) => {
           }`}
         >
           <Search navbarTopFullWidth={navbarTopFullWidth} />
+          {userModal && <UserModal user={user} />}
+          {windowWidth > 768 && <OpenModalButton user={user} />}
+
           <ShoppingCartIcon user={user} />
         </div>
       </div>

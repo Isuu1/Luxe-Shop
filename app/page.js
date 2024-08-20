@@ -9,7 +9,6 @@ import Footer from "../components/Footer/Footer";
 import EmblaCarouselContainer from "../components/EmblaCarouselContainer/EmblaCarouselContainer";
 import ProductsFeed from "../components/ProductsFeed/ProductsFeed";
 import ProductFeed from "../components/ProductFeed/ProductFeed";
-import Test from "@/components/Test";
 
 //Functions
 import getProducts, {

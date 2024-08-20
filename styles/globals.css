@@ -13,7 +13,7 @@
 }
 
 .navbar-top-right-transition {
-  width: 112px !important;
+  width: 167px !important;
   background: #6b37d1 !important;
   border-radius: 20px;
 }
@@ -1463,6 +1463,19 @@
 
 .embla__slide {
   min-width: 0;
+}
+
+.open-modal {
+  border-radius: 50%;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #f5f5f5;
+  flex-shrink: 0;
+}
+.open-modal__image {
+  position: relative !important;
+  border-radius: 50%;
 }
 
 * {

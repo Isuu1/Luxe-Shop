@@ -33,16 +33,16 @@ export default async function RootLayout({ children }) {
       <body suppressHydrationWarning={true}>
         <Providers>
           <StateContext>
-            {session === null ? (
+            {/* {session === null ? (
               children
-            ) : (
-              <>
-                <Toaster />
-                <Navbar user={session.user} />
-                {children}
-                <Footer />
-              </>
-            )}
+            ) : ( */}
+            <>
+              <Toaster />
+              <Navbar user={session.user} />
+              {children}
+              <Footer />
+            </>
+            {/* )} */}
           </StateContext>
         </Providers>
       </body>
