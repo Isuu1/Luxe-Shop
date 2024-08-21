@@ -117,7 +117,9 @@ const Navbar = ({ user }) => {
           }`}
         >
           <Search navbarTopFullWidth={navbarTopFullWidth} />
-          {userModal && <UserModal user={user} />}
+          <AnimatePresence mode="wait">
+            {userModal && <UserModal user={user} />}
+          </AnimatePresence>
           {windowWidth > 768 && <OpenModalButton user={user} />}
 
           <ShoppingCartIcon user={user} />

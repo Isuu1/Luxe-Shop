@@ -127,14 +127,25 @@ export const searchListAppear = {
   },
 };
 
-export const userModalAppear = {
+export const userModalAnimation = {
   visible: {
     opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
   },
   hidden: {
     opacity: 0,
+    scale: 0,
   },
   exit: {
     opacity: 0,
+    scale: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
   },
 };

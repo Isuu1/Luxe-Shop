@@ -45,6 +45,7 @@
     }
   }
   &__right {
+    position: relative;
     flex: 1 1;
     display: flex;
     gap: 0.5rem;

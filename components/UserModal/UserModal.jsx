@@ -4,68 +4,73 @@ import React, { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
-import { userModalAppear } from "../../styles/animations";
+import { userModalAnimation } from "../../styles/animations";
 import { FaSignOutAlt } from "react-icons/fa";
 import getProducts from "@/lib/utils";
 import { useStateContext } from "@/context/StateContext";
 
+//Icons
+import { IoIosArrowForward } from "react-icons/io";
+import { IoMdArrowDropright } from "react-icons/io";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import { FaUser } from "react-icons/fa";
+import { IoWallet } from "react-icons/io5";
+import { IoSend } from "react-icons/io5";
+import { IoHeart } from "react-icons/io5";
+
+import { MdEditDocument } from "react-icons/md";
+import { FaList } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import Link from "next/link";
+import SignoutButton from "../SignoutButton/SignoutButton";
+
 const UserModal = ({ user }) => {
-  const [wishListActive, setWishListActive] = useState(false);
-
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const data = getProducts();
-    data.then((products) => setProducts(products));
-  }, []);
-
   return (
-    <>
-      {/* {wishListActive && <div className="wishlist-container"></div>} */}
-
-      <motion.div
-        className="user-modal"
-        variants={userModalAppear}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-      >
-        <div className="user-modal__header">
-          <Image
-            className="user-modal__header__avatar-img"
-            src="/images/user-avatar.png"
-            alt=""
-            width={60}
-            height={60}
-          />
-          <h4>
-            Welcome, <br /> {user.name}
-          </h4>
-        </div>
-        <div className="user-modal__account">
-          <h4>Account </h4>
-          <p>
-            Name <br /> {user.name}
-          </p>
-          <p>
-            Email <br /> {user.email}
-          </p>
-        </div>
-        <div className="user-modal__wishlist">
-          <button onClick={() => setWishListActive(true)}>
-            Wishlist
-          </button>
-        </div>
-
-        <button
-          className="user-modal__signout-btn"
-          onClick={() => signOut()}
-        >
-          <FaSignOutAlt style={{ fontSize: "1.3rem" }} />
-          <h4>Sign out</h4>
-        </button>
-      </motion.div>
-    </>
+    <motion.div
+      className="user-modal"
+      variants={userModalAnimation}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      <div className="user-modal__bg"></div>
+      <div className="user-modal__header">
+        <Image
+          className="user-modal__header__avatar-img"
+          src={user.userImage}
+          alt=""
+          width={60}
+          height={60}
+        />
+        <p>{user.name}</p>
+        <em style={{ fontSize: "0.9rem" }}>{user.email}</em>
+      </div>
+      <nav className="user-modal__menu">
+        <Link href="/">
+          <div className="user-modal__menu__item">
+            <FaUser className="user-modal__menu__item__icon" />
+            <p>Edit account</p>
+            <IoIosArrowForward className="user-modal__menu__item__icon" />
+          </div>
+        </Link>
+        <Link href="/user/wishlist">
+          <div className="user-modal__menu__item">
+            <IoHeart className="user-modal__menu__item__icon" />
+            <p>Wishlist</p>
+            <IoIosArrowForward className="user-modal__menu__item__icon" />
+          </div>
+        </Link>
+        <Link href="/user/orders">
+          <div className="user-modal__menu__item">
+            <IoWallet className="user-modal__menu__item__icon" />
+            <p>Orders</p>
+            <IoIosArrowForward className="user-modal__menu__item__icon" />
+          </div>
+        </Link>
+        <SignoutButton />
+      </nav>
+    </motion.div>
   );
 };
 
