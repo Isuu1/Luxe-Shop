@@ -1,35 +1,35 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import { signOut } from "next-auth/react";
-import { AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
+//Animations
 import { motion } from "framer-motion";
 import { userModalAnimation } from "../../styles/animations";
-import { FaSignOutAlt } from "react-icons/fa";
-import getProducts from "@/lib/utils";
+
+//Context
 import { useStateContext } from "@/context/StateContext";
 
 //Icons
 import { IoIosArrowForward } from "react-icons/io";
-import { IoMdArrowDropright } from "react-icons/io";
-import { RiArrowDropRightLine } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 import { IoWallet } from "react-icons/io5";
-import { IoSend } from "react-icons/io5";
 import { IoHeart } from "react-icons/io5";
 
-import { MdEditDocument } from "react-icons/md";
-import { FaList } from "react-icons/fa";
-import { FaUserAlt } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import Link from "next/link";
+//Components
 import SignoutButton from "../SignoutButton/SignoutButton";
 
 const UserModal = ({ user }) => {
   const userModalRef = useRef(null);
 
-  const { userModal, setUserModal } = useStateContext();
-  console.log(userModal);
+  const { setUserModal } = useStateContext();
+
+  const pathname = usePathname();
+
+  const [initialPathname, setInitialPathname] = useState(pathname);
+
+  //Close modal when user clicks outside of it
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -45,7 +45,14 @@ const UserModal = ({ user }) => {
     return () => {
       window.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [userModalRef]);
+  }, [userModalRef, setUserModal]);
+
+  // Close modal when pathname changes, but ignore the initial mount
+  useEffect(() => {
+    if (pathname !== initialPathname) {
+      setUserModal(false); // Close modal on route change
+    }
+  }, [pathname, initialPathname, setUserModal]);
 
   return (
     <motion.div
