@@ -96,6 +96,18 @@
 @media screen and (min-width: "1200px") {
   .navbar-top {
     gap: 4rem;
-    padding: 1rem 4rem !important;
+    padding: 1rem 6rem !important;
+  }
+}
+
+@media screen and (min-width: "1500px") {
+  .navbar-top {
+    padding: 1rem 9rem !important;
+  }
+}
+
+@media screen and (min-width: "1600px") {
+  .navbar-top {
+    padding: 1rem 11rem !important;
   }
 }
