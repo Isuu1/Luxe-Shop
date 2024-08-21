@@ -4,11 +4,14 @@ import React from "react";
 
 const OpenModalButton = ({ user }) => {
   const { userModal, setUserModal } = useStateContext();
+
+  const handleModal = (e) => {
+    e.stopPropagation();
+    setUserModal(!userModal);
+  };
+
   return (
-    <button
-      className="open-modal"
-      onClick={() => setUserModal(!userModal)}
-    >
+    <button className="open-modal" onClick={handleModal}>
       <Image
         className="open-modal__image"
         src={user.userImage}

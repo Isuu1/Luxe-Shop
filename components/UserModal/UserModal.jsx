@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { signOut } from "next-auth/react";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
@@ -26,6 +26,27 @@ import Link from "next/link";
 import SignoutButton from "../SignoutButton/SignoutButton";
 
 const UserModal = ({ user }) => {
+  const userModalRef = useRef(null);
+
+  const { userModal, setUserModal } = useStateContext();
+  console.log(userModal);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        userModalRef.current &&
+        !userModalRef.current.contains(e.target) &&
+        //This checks if the click event target is the button (or any child of it). If so, the modal won't close.
+        !e.target.closest(".open-modal")
+      ) {
+        setUserModal(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [userModalRef]);
+
   return (
     <motion.div
       className="user-modal"
@@ -33,6 +54,7 @@ const UserModal = ({ user }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
+      ref={userModalRef}
     >
       <div className="user-modal__bg"></div>
       <div className="user-modal__header">
