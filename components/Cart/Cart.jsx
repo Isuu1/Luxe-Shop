@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import toast from "react-hot-toast";
-import { useStateContext } from "../../context/StateContext";
+import { useCartContext } from "@/context/CartContext";
 import CartItem from "../CartItem/CartItem";
 import getStripe from "../../lib/getStripe";
 
@@ -15,18 +15,10 @@ import { cartSlide } from "../../styles/animations";
 
 const Cart = ({ user }) => {
   const cartRef = useRef();
-  const {
-    cartItems,
-    totalPrice,
-    totalQuantities,
-    setShowCart,
-    showCart,
-  } = useStateContext();
+  const { cartItems, totalPrice, setShowCart, showCart } =
+    useCartContext();
 
   const userEmail = user.email;
-
-  console.log("Shopping cart user data: ", user);
-  console.log("Shopping cart items: ", JSON.stringify(cartItems));
 
   const handleCheckout = async () => {
     const stripe = await getStripe();

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { LuShoppingBasket } from "react-icons/lu";
 
-import { useStateContext } from "../../context/StateContext";
+import { useCartContext } from "../../context/CartContext";
 import { AnimatePresence } from "framer-motion";
 import Cart from "../Cart/Cart";
 
@@ -10,8 +10,7 @@ const ShoppingCartIcon = ({ user }) => {
   //Check is user using mobile device or desktop to define layout
   const [windowWidth, setWindowWidth] = useState("");
 
-  const { totalQuantities, showCart, setShowCart } =
-    useStateContext();
+  const { totalQuantities, showCart, setShowCart } = useCartContext();
 
   // useEffect(() => {
   //   if (typeof window != "undefined") {
