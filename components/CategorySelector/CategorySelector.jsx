@@ -9,10 +9,57 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaHeadphones } from "react-icons/fa";
 import { MdOutlineSmartphone } from "react-icons/md";
 import { IoMdWatch } from "react-icons/io";
+import { FaSliders } from "react-icons/fa6";
+import { FaLongArrowAltUp } from "react-icons/fa";
+import { FaLongArrowAltDown } from "react-icons/fa";
+
 import { usePathname, useSearchParams } from "next/navigation";
 
 const CategorySelector = () => {
   const { category, setCategory } = useStateContext();
+
+  // const [activeFilters, setActiveFilters] = useState([
+  //   {
+  //     price: {
+  //       sort: "default",
+  //     },
+  //     rating: {
+  //       sort: "default",
+  //     },
+  //   },
+  // ]);
+
+  // const sortingOrder = (currentSorting) => {
+  //   switch (currentSorting) {
+  //     case "default":
+  //       return "ascending";
+  //     case "ascending":
+  //       return "descending";
+  //     case "descending":
+  //       return "default";
+  //     default:
+  //       return "default";
+  //   }
+  // };
+  // const handleFiltersChange = (filter) => {
+  //   setActiveFilters((prevFilters) => {
+  //     const [currentFilters] = prevFilters;
+
+  //     return [
+  //       {
+  //         ...currentFilters,
+
+  //         [filter]: {
+  //           sort: sortingOrder(currentFilters[filter].sort),
+  //         },
+  //       },
+  //     ];
+  //   });
+  // };
+
+  // const [openFiltersModal, setOpenFiltersModal] = useState(false);
+
+  // console.log(activeFilters);
 
   // //Handling navbar top animation
   // const { scrollY } = useScroll();
@@ -34,52 +81,84 @@ const CategorySelector = () => {
   };
 
   return (
-    <div className="category-selector" id="category-selector">
-      <button
-        className={`category-selector__button ${
-          category === "All" ? "selected-cat" : ""
-        }`}
-        onClick={() => handleCategoryChange("All")}
-      >
-        <div className="flex-center">
-          <BiSolidCategoryAlt style={{ fontSize: "1.5rem" }} />
-          All
+    <>
+      <div className="category-selector" id="category-selector">
+        <button
+          className={`category-selector__button ${
+            category === "All" ? "selected-cat" : ""
+          }`}
+          onClick={() => handleCategoryChange("All")}
+        >
+          <div className="flex-center">
+            <BiSolidCategoryAlt style={{ fontSize: "1.5rem" }} />
+            All
+          </div>
+        </button>
+        <button
+          className={`category-selector__button ${
+            category === "Headphones" ? "selected-cat" : ""
+          }`}
+          onClick={() => handleCategoryChange("Headphones")}
+        >
+          <div className="flex-center">
+            <FaHeadphones style={{ fontSize: "1.5rem" }} />
+            Headphones
+          </div>
+        </button>
+        <button
+          className={`category-selector__button ${
+            category === "Smartphones" ? "selected-cat" : ""
+          }`}
+          onClick={() => handleCategoryChange("Smartphones")}
+        >
+          <div className="flex-center">
+            <MdOutlineSmartphone style={{ fontSize: "1.5rem" }} />
+            Smartphones
+          </div>
+        </button>
+        <button
+          className={`category-selector__button ${
+            category === "Smartwatches" ? "selected-cat" : ""
+          }`}
+          onClick={() => handleCategoryChange("Smartwatches")}
+        >
+          <div className="flex-center">
+            <IoMdWatch style={{ fontSize: "1.5rem" }} />
+            Smartwatches
+          </div>
+        </button>
+        {/* <button
+          className={`category-selector__button ${
+            openFiltersModal ? "selected-cat" : ""
+          }`}
+          onClick={() => setOpenFiltersModal(!openFiltersModal)}
+        >
+          <div className="flex-center">
+            <FaSliders style={{ fontSize: "1.5rem" }} />
+            Sort
+          </div>
+        </button> */}
+      </div>
+      {/* {openFiltersModal && (
+        <div className="category-selector">
+          <button
+            className="category-selector__button"
+            onClick={() => handleFiltersChange("price")}
+          >
+            Price <FaLongArrowAltUp />
+            <FaLongArrowAltDown />
+          </button>
+          <button className="category-selector__button">
+            Rating <FaLongArrowAltUp />
+            <FaLongArrowAltDown />
+          </button>
+          <button className="category-selector__button">
+            Reviews <FaLongArrowAltUp />
+            <FaLongArrowAltDown />
+          </button>
         </div>
-      </button>
-      <button
-        className={`category-selector__button ${
-          category === "Headphones" ? "selected-cat" : ""
-        }`}
-        onClick={() => handleCategoryChange("Headphones")}
-      >
-        <div className="flex-center">
-          <FaHeadphones style={{ fontSize: "1.5rem" }} />
-          Headphones
-        </div>
-      </button>
-      <button
-        className={`category-selector__button ${
-          category === "Smartphones" ? "selected-cat" : ""
-        }`}
-        onClick={() => handleCategoryChange("Smartphones")}
-      >
-        <div className="flex-center">
-          <MdOutlineSmartphone style={{ fontSize: "1.5rem" }} />
-          Smartphones
-        </div>
-      </button>
-      <button
-        className={`category-selector__button ${
-          category === "Smartwatches" ? "selected-cat" : ""
-        }`}
-        onClick={() => handleCategoryChange("Smartwatches")}
-      >
-        <div className="flex-center">
-          <IoMdWatch style={{ fontSize: "1.5rem" }} />
-          Smartwatches
-        </div>
-      </button>
-    </div>
+      )} */}
+    </>
   );
 };
 
