@@ -15,14 +15,13 @@ const Reviews = ({ stars, ratings }) => {
 
   const starsElements = Array.from({ length: 5 }, (_, index) => {
     if (index < fullStars) {
-      console.log("Full star to render!");
+      //Full star to render
       return (
         <span key={index} className="reviews-container__star">
           <FaStar color="#f27012" fontSize="1.7rem" />
         </span>
       ); // Render an filled star
     } else if (index === fullStars && hasHalfStar) {
-      console.log("Half star to render!");
       return (
         <span key={index} className="reviews-container__star">
           <FaStarHalfAlt color="#f27012" fontSize="1.7rem" />

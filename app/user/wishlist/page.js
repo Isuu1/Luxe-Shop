@@ -22,7 +22,6 @@ export default async function page() {
 
   const wishlistData = await fetchWishlist(session.user.id);
   const wishlist = wishlistData.wishlist || [];
-  console.log("Wishlist page: ", wishlist);
 
   return (
     <div

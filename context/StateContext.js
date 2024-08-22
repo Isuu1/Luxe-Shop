@@ -190,8 +190,6 @@ export const StateContext = ({ children }) => {
   //   }
   // }, [session.status]);
 
-  console.log("Wishlist: ", wishlist);
-
   // const addToWishList = async (userId, product) => {
   //   try {
   //     const response = await fetch("api/wishlist/add", {

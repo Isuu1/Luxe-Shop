@@ -13,11 +13,8 @@ import { FaStar } from "react-icons/fa";
 import { isItemInWishList } from "@/lib/utils";
 import { urlFor } from "@/lib/client";
 
-//Forwarding ref to first JSX element to make popLayout animation working properly
 const Product = ({ product, smallCard, userId, wishlist }) => {
   const itemWishlisted = isItemInWishList(wishlist, product);
-
-  console.log("product wishlsited: ", itemWishlisted);
 
   return (
     <Link href={`/product/${product.slug.current}`}>
