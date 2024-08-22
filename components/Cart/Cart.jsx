@@ -13,7 +13,7 @@ import { IoSend } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import { cartSlide } from "../../styles/animations";
 
-const Cart = ({ mobile, user }) => {
+const Cart = ({ user }) => {
   const cartRef = useRef();
   const {
     cartItems,
@@ -52,9 +52,7 @@ const Cart = ({ mobile, user }) => {
 
   return (
     <motion.div
-      className={`cart-container ${
-        mobile === false ? "desktop__cart-container" : ""
-      }`}
+      className="cart-container "
       ref={cartRef}
       animate="visible"
       initial="hidden"

@@ -3,33 +3,23 @@ import React from "react";
 
 import Product from "../../ProductCard/Product";
 
-// import function to register Swiper custom elements
-import { register } from "swiper/element/bundle";
-// register Swiper custom elements
-register();
+import EmblaCarouselContainer from "@/components/EmblaCarouselContainer/EmblaCarouselContainer";
 
 const ProductPageRelatedProducts = ({ products }) => {
   return (
     <div className="related">
       <h2 className="related__headline">You may also like</h2>
       <div className="related__slider">
-        <swiper-container
-          slides-per-view="2"
-          autoplay="true"
-          css-mode="true"
-          loop="true"
-          space-between="10"
-        >
+        <EmblaCarouselContainer>
           {products.map((item) => (
-            <swiper-slide key={item._id}>
-              <Product
-                key={item._id}
-                product={item}
-                smallCard={true}
-              />
-            </swiper-slide>
+            <div
+              className="embla_slide related__slider__slide"
+              key={item._id}
+            >
+              <Product product={item} smallCard={true} />
+            </div>
           ))}
-        </swiper-container>
+        </EmblaCarouselContainer>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+//Sanity library to display rich text fields
 import BlockContent from "@sanity/block-content-to-react";
 
 //Icons
@@ -36,7 +37,7 @@ const ProductPageToggleSpecification = ({ product }) => {
             className="product-page__specification"
             exit={{ maxHeight: 0, opacity: 0 }}
             initial={{ opacity: 0, maxHeight: 0 }}
-            animate={{ opacity: 1, maxHeight: "500px" }}
+            animate={{ opacity: 1, maxHeight: "1000px" }}
           >
             <BlockContent blocks={product[0].specification} />
           </motion.div>

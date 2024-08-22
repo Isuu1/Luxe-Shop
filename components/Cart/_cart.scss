@@ -77,3 +77,21 @@
     }
   }
 }
+
+@media screen and (min-width: "650px") {
+  .cart-container {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: "800px") {
+  .cart-container {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: "1100px") {
+  .cart-container {
+    width: 40%;
+  }
+}

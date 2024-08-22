@@ -6,8 +6,8 @@ import { signOut } from "next-auth/react";
 const SignoutButton = () => {
   return (
     <button className="signout-button" onClick={() => signOut()}>
-      <FaSignOutAlt style={{ fontSize: "1.3rem", color: "#fff" }} />
-      <h4>Sign out</h4>
+      <FaSignOutAlt style={{ fontSize: "1.1rem", color: "#000" }} />
+      <p>Sign out</p>
     </button>
   );
 };

@@ -1,53 +1,28 @@
 import Image from "next/image";
+import Link from "next/link";
+
+//Authentication
 import { options } from "../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa6";
-import { IoIosArrowBack } from "react-icons/io";
-import { FaHeart } from "react-icons/fa";
 
-import { MdAccountBox } from "react-icons/md";
-import { FaUserAlt } from "react-icons/fa";
-
-import { FaArrowRight } from "react-icons/fa";
-
-import { FaSignOutAlt } from "react-icons/fa";
-
-import { MdEditDocument } from "react-icons/md";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-
-import { FaList } from "react-icons/fa";
-
-import { IoIosArrowForward } from "react-icons/io";
-
+//Components
 import BackButton from "../../components/BackButton/BackButton";
 import SignoutButton from "../../components/SignoutButton/SignoutButton";
-import { isMobileDevice } from "@/lib/utils";
-import { headers } from "next/headers";
+
+//Icons
+import { IoIosArrowForward } from "react-icons/io";
+import { MdEditDocument } from "react-icons/md";
+import { FaList } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 export default async function ProfileClient() {
   const session = await getServerSession(options);
 
-  // console.log("User session: ", session);
-
-  const mobile = isMobileDevice(headers());
-
   return (
-    <div
-      className={`page user-page ${!mobile && "desktop__user-page"}`}
-    >
-      {/* <div
-        style={{
-          position: "fixed",
-          top: "0",
-          left: "0",
-          width: "100%",
-          background: "#6b37d1",
-          height: "190px",
-        }}
-      ></div> */}
+    <div className="page user-page">
+      <div className="user-page-bg"></div>
       <BackButton>Profile</BackButton>
-
       <div className="user-page__header">
         <div style={{ position: "relative" }}>
           <Image
@@ -63,19 +38,20 @@ export default async function ProfileClient() {
         </div>
 
         <p className="user-page__header__name">{session.user.name}</p>
+        <p>{session.user.email}</p>
       </div>
-      <ul className="user-page__menu">
-        <li className="user-page__menu__item">
+      <nav className="user-page__menu">
+        <div className="user-page__menu__item">
           <Link href="/">
             <FaUserAlt className="icon" />
-            <h4>Account details</h4>
+            <h4>Edit account</h4>
             <IoIosArrowForward
               className="icon"
               style={{ marginLeft: "auto" }}
             />
           </Link>
-        </li>
-        <li className="user-page__menu__item">
+        </div>
+        <div className="user-page__menu__item">
           <Link href="/user/wishlist">
             <FaHeart className="icon" />
             <h4>Wishlist</h4>
@@ -84,8 +60,8 @@ export default async function ProfileClient() {
               style={{ marginLeft: "auto" }}
             />
           </Link>
-        </li>
-        <li className="user-page__menu__item">
+        </div>
+        <div className="user-page__menu__item">
           <Link href="/user/orders">
             <FaList className="icon" />
             <h4>Orders</h4>
@@ -94,9 +70,9 @@ export default async function ProfileClient() {
               style={{ marginLeft: "auto" }}
             />
           </Link>
-        </li>
-      </ul>
-      <SignoutButton />
+        </div>
+        <SignoutButton />
+      </nav>
     </div>
   );
 }

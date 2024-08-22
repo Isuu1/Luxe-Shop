@@ -6,10 +6,9 @@ import Image from "next/image";
 //Components
 import CategorySelector from "../components/CategorySelector/CategorySelector";
 import Footer from "../components/Footer/Footer";
-import BestsellersFeed from "../components/BestsellersFeed/BestsellersFeed";
+import EmblaCarouselContainer from "../components/EmblaCarouselContainer/EmblaCarouselContainer";
 import ProductsFeed from "../components/ProductsFeed/ProductsFeed";
 import ProductFeed from "../components/ProductFeed/ProductFeed";
-import Test from "@/components/Test";
 
 //Functions
 import getProducts, {
@@ -22,6 +21,8 @@ import { urlFor } from "@/lib/client";
 
 //Icons
 import { IoIosArrowForward } from "react-icons/io";
+import { BiSolidSend } from "react-icons/bi";
+
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/options";
 import Product from "@/components/ProductCard/Product";
@@ -41,26 +42,18 @@ export default async function Index() {
   );
 
   return (
-    <div
-      className={`page ${!mobile && "desktop__home-container"}`}
-      id="home-container"
-    >
+    <div className="page" id="home-container">
       <div className="home-container__banner">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-around",
-          }}
-        >
-          <h2 className="home-container__banner__title">
+        <Image src="/images/banner-bg2.svg" fill alt="" />
+        <div className="home-container__banner__text">
+          <h2 className="home-container__banner__text__title">
             Headphones on sale!
           </h2>
-          <p className="home-container__banner__desc">
+          <p className="home-container__banner__text__desc">
             Discount 50% for the first transaction
           </p>
-          <button className="home-container__banner__button">
-            Shop now
+          <button className="home-container__banner__text__button">
+            Shop now <BiSolidSend />
           </button>
         </div>
         <Image
@@ -73,10 +66,10 @@ export default async function Index() {
         />
       </div>
       <h2 className="home-container__headline">Bestsellers</h2>
-      <div className="home-container__bestsellers">
+      <EmblaCarouselContainer>
         {matchingProducts?.map((product, index) => (
           <div
-            className="home-container__bestsellers__item"
+            className="embla__slide home-container__bestseller"
             key={index}
           >
             <Product
@@ -86,7 +79,8 @@ export default async function Index() {
             />
           </div>
         ))}
-      </div>
+      </EmblaCarouselContainer>
+
       <div className="flex-center">
         <h2 className="home-container__headline">Products</h2>
         <Link

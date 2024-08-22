@@ -10,11 +10,15 @@
   backdrop-filter: blur(30px);
 }
 
-.navbar-transition {
-  width: 123px !important;
-  right: 0;
+.navbar-top-right-transition {
+  width: 167px !important;
   background: #6b37d1 !important;
   border-radius: 20px;
+}
+
+.navbar-top-left-transition {
+  background: #ffffff !important;
+  border-radius: 0 20px 20px 0;
 }
 
 .search-input-transition {

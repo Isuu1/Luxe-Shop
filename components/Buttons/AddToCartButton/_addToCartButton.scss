@@ -56,12 +56,18 @@
   }
 }
 
-.test {
-  position: absolute;
-  right: 0;
-  border-left: 50px solid transparent;
-  border-top: 64px solid transparent;
-  border-right: 40px solid #6b37d1;
-  width: 0;
-  height: 0;
+@media screen and (min-width: "950px") {
+  .add-to-cart {
+    position: relative !important;
+    bottom: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    &__price {
+      display: none;
+    }
+    &__add-to-cart {
+      border-radius: 15px;
+      padding: 0.5rem 0.7rem !important;
+    }
+  }
 }

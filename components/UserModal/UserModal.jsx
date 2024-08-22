@@ -1,71 +1,105 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { signOut } from "next-auth/react";
-import { AnimatePresence } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
+//Animations
 import { motion } from "framer-motion";
-import { userModalAppear } from "../../styles/animations";
-import { FaSignOutAlt } from "react-icons/fa";
-import getProducts from "@/lib/utils";
+import { userModalAnimation } from "../../styles/animations";
+
+//Context
 import { useStateContext } from "@/context/StateContext";
 
+//Icons
+import { IoIosArrowForward } from "react-icons/io";
+import { FaUser } from "react-icons/fa";
+import { IoWallet } from "react-icons/io5";
+import { IoHeart } from "react-icons/io5";
+
+//Components
+import SignoutButton from "../SignoutButton/SignoutButton";
+
 const UserModal = ({ user }) => {
-  const [wishListActive, setWishListActive] = useState(false);
+  const userModalRef = useRef(null);
 
-  const [products, setProducts] = useState([]);
+  const { setUserModal } = useStateContext();
 
+  const pathname = usePathname();
+
+  const [initialPathname, setInitialPathname] = useState(pathname);
+
+  //Close modal when user clicks outside of it
   useEffect(() => {
-    const data = getProducts();
-    data.then((products) => setProducts(products));
-  }, []);
+    const handleClickOutside = (e) => {
+      if (
+        userModalRef.current &&
+        !userModalRef.current.contains(e.target) &&
+        //This checks if the click event target is the button (or any child of it). If so, the modal won't close.
+        !e.target.closest(".open-modal")
+      ) {
+        setUserModal(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [userModalRef, setUserModal]);
+
+  // Close modal when pathname changes, but ignore the initial mount
+  useEffect(() => {
+    if (pathname !== initialPathname) {
+      setUserModal(false); // Close modal on route change
+    }
+  }, [pathname, initialPathname, setUserModal]);
 
   return (
-    <>
-      {/* {wishListActive && <div className="wishlist-container"></div>} */}
-
-      <motion.div
-        className="user-modal"
-        variants={userModalAppear}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-      >
-        <div className="user-modal__header">
-          <Image
-            className="user-modal__header__avatar-img"
-            src="/images/user-avatar.png"
-            alt=""
-            width={60}
-            height={60}
-          />
-          <h4>
-            Welcome, <br /> {user.name}
-          </h4>
-        </div>
-        <div className="user-modal__account">
-          <h4>Account </h4>
-          <p>
-            Name <br /> {user.name}
-          </p>
-          <p>
-            Email <br /> {user.email}
-          </p>
-        </div>
-        <div className="user-modal__wishlist">
-          <button onClick={() => setWishListActive(true)}>
-            Wishlist
-          </button>
-        </div>
-
-        <button
-          className="user-modal__signout-btn"
-          onClick={() => signOut()}
-        >
-          <FaSignOutAlt style={{ fontSize: "1.3rem" }} />
-          <h4>Sign out</h4>
-        </button>
-      </motion.div>
-    </>
+    <motion.div
+      className="user-modal"
+      variants={userModalAnimation}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      ref={userModalRef}
+    >
+      <div className="user-modal__bg"></div>
+      <div className="user-modal__header">
+        <Image
+          className="user-modal__header__avatar-img"
+          src={user.userImage}
+          alt=""
+          width={60}
+          height={60}
+        />
+        <p>{user.name}</p>
+        <em style={{ fontSize: "0.9rem" }}>{user.email}</em>
+      </div>
+      <nav className="user-modal__menu">
+        <Link href="/">
+          <div className="user-modal__menu__item">
+            <FaUser className="user-modal__menu__item__icon" />
+            <p>Edit account</p>
+            <IoIosArrowForward className="user-modal__menu__item__icon" />
+          </div>
+        </Link>
+        <Link href="/user/wishlist">
+          <div className="user-modal__menu__item">
+            <IoHeart className="user-modal__menu__item__icon" />
+            <p>Wishlist</p>
+            <IoIosArrowForward className="user-modal__menu__item__icon" />
+          </div>
+        </Link>
+        <Link href="/user/orders">
+          <div className="user-modal__menu__item">
+            <IoWallet className="user-modal__menu__item__icon" />
+            <p>Orders</p>
+            <IoIosArrowForward className="user-modal__menu__item__icon" />
+          </div>
+        </Link>
+        <SignoutButton />
+      </nav>
+    </motion.div>
   );
 };
 

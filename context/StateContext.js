@@ -30,7 +30,7 @@ export const StateContext = ({ children }) => {
   const [qty, setQty] = useState(1);
 
   // Searchbar visibility
-  const [searchBar, setSearchBar] = useState(false);
+  const [searchBarOpen, setSearchBarOpen] = useState(false);
 
   // Current item category
   const [category, setCategory] = useState("All");
@@ -261,8 +261,8 @@ export const StateContext = ({ children }) => {
         addToCart,
         updateCartItemQuantity,
         removeItem,
-        searchBar,
-        setSearchBar,
+        searchBarOpen,
+        setSearchBarOpen,
         category,
         setCategory,
         userModal,
