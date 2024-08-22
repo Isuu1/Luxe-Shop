@@ -42,7 +42,7 @@ export const CartContext = ({ children }) => {
       setLocalStorageItem("totalQty", totalQuantities);
       setLocalStorageItem("totalPrice", totalPrice);
     }
-  }, [cartItems]);
+  }, [cartItems, totalPrice, totalQuantities]);
 
   const addToCart = (product, quantity) => {
     const checkProductInCart = cartItems.find(
@@ -149,6 +149,8 @@ export const CartContext = ({ children }) => {
       return prevQty - 1;
     });
   };
+
+  console.log("Testing cart state context rendering");
 
   return (
     <Context.Provider

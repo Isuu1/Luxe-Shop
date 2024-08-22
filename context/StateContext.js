@@ -1,19 +1,5 @@
 "use client";
-import {
-  fetchWishlist,
-  getLocalStorageItem,
-  setLocalStorageItem,
-} from "@/lib/utils";
-import { useSession } from "next-auth/react";
-import { revalidateTag } from "next/cache";
-import { useRouter } from "next/navigation";
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-} from "react";
-import toast from "react-hot-toast";
+import React, { createContext, useContext, useState } from "react";
 
 const Context = createContext();
 
@@ -29,6 +15,8 @@ export const StateContext = ({ children }) => {
 
   // Menu is used in Menu and Navbar
   const [showMenu, setShowMenu] = useState(false);
+
+  console.log("Testing main state context rendering");
 
   return (
     <Context.Provider
