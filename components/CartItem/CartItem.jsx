@@ -5,7 +5,7 @@ import { urlFor } from "../../lib/client";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
 
-import { useStateContext } from "../../context/StateContext";
+import { useCartContext } from "@/context/CartContext";
 
 //Animations
 import { motion } from "framer-motion";
@@ -13,7 +13,7 @@ import Image from "next/image";
 import { cartProductAnimation } from "../../styles/animations";
 
 const CartItem = ({ item }) => {
-  const { updateCartItemQuantity, removeItem } = useStateContext();
+  const { updateCartItemQuantity, removeItem } = useCartContext();
 
   return (
     <motion.div

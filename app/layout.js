@@ -3,6 +3,7 @@ import "../styles/globals.css";
 
 //Context
 import { StateContext } from "../context/StateContext";
+import { CartContext } from "../context/CartContext";
 
 //Components
 import Navbar from "../components/Navbar/Navbar";
@@ -33,16 +34,18 @@ export default async function RootLayout({ children }) {
       <body suppressHydrationWarning={true}>
         <Providers>
           <StateContext>
-            {/* {session === null ? (
+            <CartContext>
+              {/* {session === null ? (
               children
             ) : ( */}
-            <>
-              <Toaster />
-              <Navbar user={session.user} />
-              {children}
-              <Footer />
-            </>
-            {/* )} */}
+              <>
+                <Toaster />
+                <Navbar user={session.user} />
+                {children}
+                <Footer />
+              </>
+              {/* )} */}
+            </CartContext>
           </StateContext>
         </Providers>
       </body>

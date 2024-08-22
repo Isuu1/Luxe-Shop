@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import { useStateContext } from "../../../context/StateContext";
+import { useCartContext } from "@/context/CartContext";
 
 //Icons
 import { FaBagShopping } from "react-icons/fa6";
 
 const BuyNowButton = ({ smallCard, product }) => {
-  const { addToCart, qty } = useStateContext();
+  const { addToCart, qty } = useCartContext();
 
   const buyNow = (e) => {
     e.preventDefault();
