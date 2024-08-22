@@ -18,7 +18,7 @@
       color: #5329a3;
     }
     &__menu {
-      display: flex;
+      display: none;
       gap: 0.4rem;
       list-style: none;
       font-size: 1.1rem;
@@ -90,6 +90,12 @@
 @media screen and (min-width: "768px") {
   .navbar-top {
     gap: 2rem;
+    &__left__menu {
+      display: flex;
+    }
+  }
+  .navbar-bottom {
+    display: none;
   }
 }
 

@@ -34,9 +34,6 @@ const Navbar = ({ user }) => {
 
   const [navbarTopFullWidth, setNavbarTopFullWidth] = useState(true);
 
-  //Get current window width to display/hide menu
-  const [windowWidth, setWindowWidth] = useState(null);
-
   // Get current path
   const pathname = usePathname();
 
@@ -66,30 +63,24 @@ const Navbar = ({ user }) => {
     }
   });
 
-  //Get current winow width to handle menu show/hide
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-  }, [windowWidth]);
-
   return (
     <>
       <div className="navbar-top">
         <div className="navbar-top__left">
           <h1 className="navbar-top__left__logo">luxe.</h1>
-          {windowWidth > 768 ? (
-            <nav className="navbar-top__left__menu">
-              <Link
-                className={`navbar-top__left__menu__item link ${
-                  pathname === "/" ? "active" : ""
-                }`}
-                href="/"
-              >
-                <GoHomeFill />
-                Home
-              </Link>
 
-              {/* <Link
+          <nav className="navbar-top__left__menu">
+            <Link
+              className={`navbar-top__left__menu__item link ${
+                pathname === "/" ? "active" : ""
+              }`}
+              href="/"
+            >
+              <GoHomeFill />
+              Home
+            </Link>
+
+            {/* <Link
                 className={`navbar-top__left__menu__item link link ${
                   pathname === "/user" ? "active" : ""
                 }`}
@@ -99,17 +90,16 @@ const Navbar = ({ user }) => {
                 Account
               </Link> */}
 
-              <Link
-                className={`navbar-top__left__menu__item link ${
-                  pathname === "/products" ? "active" : ""
-                }`}
-                href="/products"
-              >
-                <BiSolidCategoryAlt />
-                Products
-              </Link>
-            </nav>
-          ) : null}
+            <Link
+              className={`navbar-top__left__menu__item link ${
+                pathname === "/products" ? "active" : ""
+              }`}
+              href="/products"
+            >
+              <BiSolidCategoryAlt />
+              Products
+            </Link>
+          </nav>
         </div>
         <div
           className={`navbar-top__right ${
@@ -120,12 +110,12 @@ const Navbar = ({ user }) => {
           <AnimatePresence mode="wait">
             {userModal && <UserModal user={user} />}
           </AnimatePresence>
-          {windowWidth > 768 && <OpenModalButton user={user} />}
+          <OpenModalButton user={user} />
 
           <ShoppingCartIcon user={user} />
         </div>
       </div>
-      {showNavbarBottom && windowWidth < 768 && (
+      {showNavbarBottom && (
         <div className="navbar-bottom">
           <Link href="/user">
             <button className="navbar-bottom__icon">
