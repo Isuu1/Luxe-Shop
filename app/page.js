@@ -44,7 +44,7 @@ export default async function Index() {
   return (
     <div className="page" id="home-container">
       <div className="home-container__banner">
-        <Image src="/images/banner-bg2.svg" fill alt="" />
+        <Image src="/images/banner-bg2.svg" fill alt="" priority />
         <div className="home-container__banner__text">
           <h2 className="home-container__banner__text__title">
             Headphones on sale!
@@ -63,6 +63,7 @@ export default async function Index() {
           fill
           className="home-container__banner__image"
           alt=""
+          priority
         />
       </div>
       <h2 className="home-container__headline">Bestsellers</h2>
