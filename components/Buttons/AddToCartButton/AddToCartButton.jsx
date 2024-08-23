@@ -6,11 +6,11 @@ import { TbSquareRoundedPlusFilled } from "react-icons/tb";
 import { TbSquareRoundedMinusFilled } from "react-icons/tb";
 import { FaBagShopping } from "react-icons/fa6";
 
-import { useStateContext } from "@/context/StateContext";
+import { useCartContext } from "@/context/CartContext";
 
 const AddToCart = ({ product }) => {
   const { addToCart, increaseQty, decreaseQty, qty, showCart } =
-    useStateContext();
+    useCartContext();
 
   return (
     !showCart && (
