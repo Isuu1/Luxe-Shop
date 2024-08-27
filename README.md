@@ -18,6 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Authentication
 ### Structure 
+```bash
 .
 ├── app
     ├── @modal // Modal for desktop version
@@ -25,7 +26,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
             ├── layout.js 
             ├── page.js
 
-
+```
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
