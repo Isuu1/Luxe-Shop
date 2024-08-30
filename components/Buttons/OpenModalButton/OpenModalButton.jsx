@@ -14,7 +14,7 @@ const OpenModalButton = ({ user }) => {
     <button className="open-modal" onClick={handleModal}>
       <Image
         className="open-modal__image"
-        src={user.userImage}
+        src={`${user ? user.userImage : "/images/user2.png"}`}
         alt=""
         fill
       />

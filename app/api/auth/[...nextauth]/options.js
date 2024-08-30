@@ -1,6 +1,6 @@
-import { NextAuthOptions } from "next-auth";
+import { NextAuth } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
-import CredentialsProvider from "next-auth/providers/credentials";
+import Credentials from "next-auth/providers/credentials";
 import { prisma } from "../../../../lib/prisma";
 import { compare } from "bcrypt";
 
@@ -10,19 +10,10 @@ export const options = {
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
-    CredentialsProvider({
-      name: "Credentials",
+    Credentials({
       credentials: {
-        email: {
-          label: "Email:",
-          type: "email",
-          placeholder: "email",
-        },
-        password: {
-          label: "Password:",
-          type: "text",
-          placeholder: "password",
-        },
+        email: {},
+        password: {},
       },
       async authorize(credentials) {
         if (!credentials.email || !credentials.password) {
@@ -60,7 +51,7 @@ export const options = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/signin",
+    signIn: "/auth",
   },
   callbacks: {
     session: ({ token, session }) => {

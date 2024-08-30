@@ -1,0 +1,21 @@
+.login-button {
+  background: #6b37d1;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 0;
+  &__icon {
+    font-size: 1.2rem;
+  }
+}
+
+// @media screen and (min-width: "768px") {
+//   .login-button {
+//     width: 60%;
+//   }
+// }

@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 //Authentication
-import { options } from "../api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
 
 //Components
 import BackButton from "../../components/BackButton/BackButton";
@@ -15,9 +13,10 @@ import { MdEditDocument } from "react-icons/md";
 import { FaList } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
+import { auth } from "@/auth";
 
 export default async function ProfileClient() {
-  const session = await getServerSession(options);
+  const session = await auth();
 
   return (
     <div className="page user-page">
@@ -37,8 +36,10 @@ export default async function ProfileClient() {
           </button>
         </div>
 
-        <p className="user-page__header__name">{session.user.name}</p>
-        <p>{session.user.email}</p>
+        <p className="user-page__header__name">
+          {session?.user.name}
+        </p>
+        <p>{session?.user.email}</p>
       </div>
       <nav className="user-page__menu">
         <div className="user-page__menu__item">

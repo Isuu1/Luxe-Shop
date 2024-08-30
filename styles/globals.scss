@@ -15,8 +15,12 @@
 @import "../components/Search/Search";
 @import "../app/user/user";
 @import "../app/user/orders/orders";
-@import "../app/api/auth/signin/signin";
+@import "../app/api/auth/signin";
 @import "../components/UserModal/usermodal";
+@import "../components/LoginModalContainer/loginModalContainer";
+@import "../components/LoginForm/loginForm";
+@import "../components/Buttons/LoginButton/loginButton";
+@import "../components/LoginPrompt/loginPrompt";
 @import "../components/DesktopLayout/desktopLayout";
 @import "../components/Reviews/reviews";
 @import "../app/user/wishlist/wishlist";
@@ -111,6 +115,10 @@ input {
 
 .bold {
   font-weight: bold;
+}
+
+.login-modal-open {
+  overflow: hidden;
 }
 
 .page {

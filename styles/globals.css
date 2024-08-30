@@ -843,145 +843,28 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(180deg, rgb(91, 8, 173) 0%, rgb(167, 120, 228) 100%);
+  gap: 1rem;
+  min-height: 50vh;
+  max-width: 100%;
+  background: rgba(255, 255, 255, 0.4117647059);
   padding-bottom: 3rem;
 }
-.login-container__bg-shape {
-  z-index: 3;
-  position: absolute;
-  bottom: -150px;
-  width: 100vw;
-  height: 460px;
-  transform: rotate(350deg);
-  background: #fff;
-}
-.login-container__signup-btn {
-  z-index: 4;
-  position: relative;
-  justify-self: flex-start;
-  align-self: flex-end;
-  margin-top: 1rem;
-  margin-right: 1rem;
-  background: rgba(255, 255, 255, 0.8470588235);
-  color: #333;
-}
-.login-container__image {
-  z-index: 4;
-  position: relative;
-  margin-top: 4rem;
+.login-container__logo {
+  color: #5329a3;
+  font-size: 2.2rem;
+  margin: 1rem 0;
 }
 .login-container__headline {
-  z-index: 4;
-  position: relative;
-  color: #fff;
+  color: #000000;
   margin-bottom: 1rem;
-}
-.login-container__sec-headline {
-  color: #fff;
-}
-.login-container__login-btn, .login-container__github-btn {
-  z-index: 4;
-  position: relative;
-  width: 70%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
-}
-.login-container__login-btn {
-  background: #f27012;
-  color: #fff;
-}
-.login-container__github-btn {
-  background: linear-gradient(110deg, #e9e9e9, #e2e2e2);
-  color: #2b2b2b;
-  margin-top: 2rem;
-}
-.login-container__form-wrapper {
-  z-index: 5;
-  position: fixed;
-  top: 40%;
-  height: auto;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0);
-  border: 1px solid rgba(226, 226, 226, 0.1921568627);
-  border-radius: 14px;
-  width: 70%;
-  padding: 1rem;
-}
-.login-container__form-wrapper__close-btn {
-  background: transparent;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.login-container__form-wrapper__form-title {
-  color: #fff;
-  text-align: center;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-}
-.login-container__form-wrapper__error {
-  background: rgba(255, 255, 255, 0.1294117647);
-  padding: 0.4rem;
-  border-radius: 14px;
-  color: #fff;
-  text-align: center;
-  margin: 0.8rem auto 0.8rem auto;
-}
-.login-container__form-wrapper__form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-.login-container__form-wrapper__form label svg {
-  position: absolute;
-  right: 10px;
-  top: 20px;
-  color: #fff;
-  font-size: 1.2rem;
-}
-.login-container__form-wrapper__form__input {
-  width: 100%;
-  margin: 0.5rem 0 0.5rem 0;
-  border-radius: 14px;
-  padding: 0.6rem;
-  outline: none;
-  border: 1px solid rgba(226, 226, 226, 0.1921568627);
-  background: transparent;
-  position: relative;
-  color: #fff;
-  font-size: 1rem;
-  transition: all 0.2s;
-}
-.login-container__form-wrapper__form__input::-moz-placeholder {
-  color: #fff;
-}
-.login-container__form-wrapper__form__input::placeholder {
-  color: #fff;
-}
-.login-container__form-wrapper__form__input:focus {
-  box-shadow: 0px 0px 10px 1px #fff;
-}
-.login-container__form-wrapper__form__submit-btn {
-  background: #fff;
-  color: #333;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-.login-container__signup {
-  margin: 1rem 0 1rem 0;
-  color: #fff;
 }
 
+@media screen and (min-width: 768px) {
+  .login-container {
+    max-width: 500px;
+    margin: auto;
+  }
+}
 .user-modal {
   position: absolute;
   top: 55px;
@@ -1043,6 +926,166 @@
 .user-modal__menu__item__icon:last-child {
   margin-left: auto;
   font-size: 1.1rem;
+}
+
+.login-modal-background {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
+.login-modal {
+  z-index: 99;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-height: 300px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 15px -8px rgb(95, 95, 95);
+  border-radius: 25px;
+  width: 400px;
+  padding: 1rem;
+  transform-origin: center;
+}
+.login-modal__close-btn {
+  background: transparent;
+  color: #000000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.6rem;
+}
+
+.headline {
+  color: #000000;
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+.login-form__error {
+  background: rgba(255, 255, 255, 0.1294117647);
+  padding: 0.4rem;
+  border-radius: 14px;
+  color: #000000;
+  text-align: center;
+  margin: 0.8rem auto 0.8rem auto;
+}
+.login-form__item {
+  position: relative;
+  width: 100%;
+}
+.login-form__item__icon {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  color: #000000;
+  font-size: 1.2rem;
+}
+.login-form__item__input {
+  width: 100%;
+  margin: 0.5rem 0 0.5rem 0;
+  border-radius: 14px;
+  padding: 0.6rem;
+  outline: none;
+  border: 2px solid rgba(226, 226, 226, 0.1921568627);
+  background: transparent;
+  position: relative;
+  color: #000000;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+.login-form__item__input::-moz-placeholder {
+  color: #000000;
+}
+.login-form__item__input::placeholder {
+  color: #000000;
+}
+.login-form__item__input:focus {
+  border: 2px solid #6b37d1;
+}
+.login-form__forgot-password {
+  margin: 1rem;
+}
+.login-form__providers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+.login-form__providers__github-button {
+  background: linear-gradient(110deg, #e9e9e9, #e2e2e2);
+  color: #000000;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  padding: 0.9rem 0;
+}
+.login-form__providers__github-button__icon {
+  font-size: 1.2rem;
+}
+.login-form__signup {
+  margin: 2rem 0 0.5rem 0;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .login-form__providers__github-button {
+    width: 60%;
+  }
+}
+.login-button {
+  background: #6b37d1;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 0;
+}
+.login-button__icon {
+  font-size: 1.2rem;
+}
+
+.login {
+  z-index: 99;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  max-width: 300px;
+  background: #fff;
+  box-shadow: 0 0 15px -8px rgb(95, 95, 95);
+  padding: 1rem;
+  transform-origin: top;
+  border-radius: 15px;
+}
+.login__slider {
+  margin-top: 0.4rem;
+  height: 10px;
+  background: #333;
+  border-radius: 15px;
+  height: 20px;
 }
 
 .overflow-auto {
@@ -1600,6 +1643,10 @@ input {
 
 .bold {
   font-weight: bold;
+}
+
+.login-modal-open {
+  overflow: hidden;
 }
 
 .page {

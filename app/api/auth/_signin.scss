@@ -1,0 +1,27 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  min-height: 50vh;
+  max-width: 100%;
+  background: #ffffff69;
+  padding-bottom: 3rem;
+  &__logo {
+    color: #5329a3;
+    font-size: 2.2rem;
+    margin: 1rem 0;
+  }
+  &__headline {
+    color: #000000;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width: "768px") {
+  .login-container {
+    max-width: 500px;
+    margin: auto;
+  }
+}

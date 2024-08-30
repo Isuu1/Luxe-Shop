@@ -27,10 +27,19 @@ import { GoHomeFill } from "react-icons/go";
 import { HiMiniHome } from "react-icons/hi2";
 import UserModal from "../UserModal/UserModal";
 import Image from "next/image";
+import LoginModalContainer from "../LoginModalContainer/LoginModalContainer";
+import LoginForm from "@/components/LoginForm/LoginForm";
+import LoginPrompt from "../LoginPrompt/LoginPrompt";
 
 const Navbar = ({ user }) => {
-  const { showMenu, setShowMenu, searchBarOpen, userModal } =
-    useStateContext();
+  const {
+    showMenu,
+    setShowMenu,
+    searchBarOpen,
+    userModal,
+    loginPromptOpen,
+    setLoginPropmptOpen,
+  } = useStateContext();
 
   const [navbarTopFullWidth, setNavbarTopFullWidth] = useState(true);
 
@@ -65,6 +74,9 @@ const Navbar = ({ user }) => {
 
   return (
     <>
+      <AnimatePresence mode="wait">
+        {loginPromptOpen && <LoginPrompt />}
+      </AnimatePresence>
       <div className="navbar-top">
         <div className="navbar-top__left">
           <h1 className="navbar-top__left__logo">luxe.</h1>

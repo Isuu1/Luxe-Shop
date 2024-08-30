@@ -14,7 +14,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/navigation";
 
-function SignupPage() {
+function SigninPage() {
   // State variables for email and password
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -212,4 +212,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default SigninPage;

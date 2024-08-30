@@ -18,7 +18,7 @@ const Cart = ({ user }) => {
   const { cartItems, totalPrice, setShowCart, showCart } =
     useCartContext();
 
-  const userEmail = user.email;
+  const userEmail = user && user.email;
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
@@ -29,7 +29,7 @@ const Cart = ({ user }) => {
       },
       body: JSON.stringify({
         //Passing user email and products to request
-        userEmail: userEmail,
+        userEmail: userEmail && userEmail,
         products: cartItems,
       }),
     });

@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
-import { hash } from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const password = await hash("test", 12);
+  const password = await bcrypt.hash("test", 12);
   const userImage = "/images/user-avatar.jpg";
 
   const user = await prisma.user.upsert({

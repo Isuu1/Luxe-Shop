@@ -64,40 +64,51 @@ const UserModal = ({ user }) => {
       ref={userModalRef}
     >
       <div className="user-modal__bg"></div>
+
       <div className="user-modal__header">
         <Image
           className="user-modal__header__avatar-img"
-          src={user.userImage}
+          src={`${user ? user.userImage : "/images/user2.png"}`}
           alt=""
           width={60}
           height={60}
         />
-        <p>{user.name}</p>
-        <em style={{ fontSize: "0.9rem" }}>{user.email}</em>
+        <p>{user ? user.name : ""}</p>
+        <em style={{ fontSize: "0.9rem" }}>{user && user.email}</em>
       </div>
+
       <nav className="user-modal__menu">
-        <Link href="/">
-          <div className="user-modal__menu__item">
-            <FaUser className="user-modal__menu__item__icon" />
-            <p>Edit account</p>
-            <IoIosArrowForward className="user-modal__menu__item__icon" />
-          </div>
-        </Link>
-        <Link href="/user/wishlist">
-          <div className="user-modal__menu__item">
-            <IoHeart className="user-modal__menu__item__icon" />
-            <p>Wishlist</p>
-            <IoIosArrowForward className="user-modal__menu__item__icon" />
-          </div>
-        </Link>
-        <Link href="/user/orders">
-          <div className="user-modal__menu__item">
-            <IoWallet className="user-modal__menu__item__icon" />
-            <p>Orders</p>
-            <IoIosArrowForward className="user-modal__menu__item__icon" />
-          </div>
-        </Link>
-        <SignoutButton />
+        {user ? (
+          <>
+            <Link href="/">
+              <div className="user-modal__menu__item">
+                <FaUser className="user-modal__menu__item__icon" />
+                <p>Edit account</p>
+                <IoIosArrowForward className="user-modal__menu__item__icon" />
+              </div>
+            </Link>
+            <Link href="/user/wishlist">
+              <div className="user-modal__menu__item">
+                <IoHeart className="user-modal__menu__item__icon" />
+                <p>Wishlist</p>
+                <IoIosArrowForward className="user-modal__menu__item__icon" />
+              </div>
+            </Link>
+            <Link href="/user/orders">
+              <div className="user-modal__menu__item">
+                <IoWallet className="user-modal__menu__item__icon" />
+                <p>Orders</p>
+                <IoIosArrowForward className="user-modal__menu__item__icon" />
+              </div>
+            </Link>
+            <SignoutButton />
+          </>
+        ) : (
+          <p>
+            Please <span className="bold">log in</span> to see this
+            page
+          </p>
+        )}
       </nav>
     </motion.div>
   );

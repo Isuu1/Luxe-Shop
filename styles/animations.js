@@ -149,3 +149,52 @@ export const userModalAnimation = {
     },
   },
 };
+
+export const loginModalAnimation = {
+  visible: {
+    opacity: 1,
+    scale: 1,
+    // Keep modal centered
+    x: "-50%",
+    y: "-50%",
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    // Keep modal centered
+    x: "-50%",
+    y: "-50%",
+  },
+  exit: {
+    opacity: 0,
+    scale: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+};
+
+export const loginModalBackgroundAnimation = {
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+  hidden: {
+    opacity: 0,
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+};

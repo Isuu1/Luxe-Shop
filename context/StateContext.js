@@ -16,6 +16,9 @@ export const StateContext = ({ children }) => {
   // Menu is used in Menu and Navbar
   const [showMenu, setShowMenu] = useState(false);
 
+  //Login Prompt is used on WishlistButton and Product Page
+  const [loginPromptOpen, setLoginPropmptOpen] = useState(false);
+
   console.log("Testing main state context rendering");
 
   return (
@@ -29,6 +32,8 @@ export const StateContext = ({ children }) => {
         setCategory,
         userModal,
         setUserModal,
+        loginPromptOpen,
+        setLoginPropmptOpen,
       }}
     >
       {children}

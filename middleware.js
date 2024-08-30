@@ -1,8 +1,30 @@
-import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 
-export { default } from "next-auth/middleware";
+export default auth((req) => {
+  const isLoggedIn = !!req.auth;
+  console.log("ROUTE", req.nextUrl.pathname);
+  console.log("Is logged in", isLoggedIn);
+  if (!req.auth && req.nextUrl.pathname === "/user") {
+    const newUrl = new URL("/api/auth", req.nextUrl.origin);
+    return Response.redirect(newUrl);
+  }
+});
 
-//Middleware have to expose desktop layout phone image path
 export const config = {
-  matcher: "/((?!api|static|.*\\..*|_next).*)",
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    "/user/:path*",
+  ],
 };
+
+// export default auth((req) => {
+//   const reqUrl = new URL(req.url);
+//   if (!req.auth && reqUrl?.pathname !== "/") {
+//     return NextResponse.redirect(
+//       new URL(
+//         `/auth?callbackUrl=${encodeURIComponent(reqUrl?.pathname)}`,
+//         req.url
+//       )
+//     );
+//   }
+// });

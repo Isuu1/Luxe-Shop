@@ -19,6 +19,7 @@ import getProducts, {
 //Authentication
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
+import { auth } from "@/auth";
 
 //Create params with product category
 export async function generateStaticParams() {
@@ -41,9 +42,11 @@ export default async function Page({ params }) {
     (cat) => cat !== "All"
   );
 
-  const session = await getServerSession(options);
+  const session = await auth();
 
-  const wishlistData = await fetchWishlist(session.user.id);
+  const wishlistData = session
+    ? await fetchWishlist(session?.user.id)
+    : [];
   const wishlist = wishlistData?.wishlist;
 
   const itemWishlisted = isItemInWishList(wishlist, product[0]);
@@ -56,7 +59,7 @@ export default async function Page({ params }) {
           <WishlistButton
             product={product[0]}
             itemWishlisted={itemWishlisted}
-            userId={session.user.id}
+            userId={session?.user.id}
             onProductPage={true}
           />
         </ProductPageImages>
@@ -85,7 +88,7 @@ export default async function Page({ params }) {
             <WishlistButton
               product={product[0]}
               itemWishlisted={itemWishlisted}
-              userId={session.user.id}
+              userId={session?.user.id}
               onProductPage={true}
             />
           </div>

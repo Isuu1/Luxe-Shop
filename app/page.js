@@ -5,16 +5,12 @@ import Image from "next/image";
 
 //Components
 import CategorySelector from "../components/CategorySelector/CategorySelector";
-import Footer from "../components/Footer/Footer";
 import EmblaCarouselContainer from "../components/EmblaCarouselContainer/EmblaCarouselContainer";
 import ProductsFeed from "../components/ProductsFeed/ProductsFeed";
 import ProductFeed from "../components/ProductFeed/ProductFeed";
 
 //Functions
-import getProducts, {
-  // fetchWishlist,
-  isMobileDevice,
-} from "../lib/utils";
+import getProducts, { isMobileDevice } from "../lib/utils";
 import { fetchWishlist } from "../lib/utils";
 
 import { urlFor } from "@/lib/client";
@@ -23,18 +19,20 @@ import { urlFor } from "@/lib/client";
 import { IoIosArrowForward } from "react-icons/io";
 import { BiSolidSend } from "react-icons/bi";
 
-import { getServerSession } from "next-auth";
+import { auth } from "@/auth";
 import { options } from "./api/auth/[...nextauth]/options";
 import Product from "@/components/ProductCard/Product";
 
 export default async function Index() {
   const products = await getProducts();
 
-  const session = await getServerSession(options);
+  const session = await auth();
 
   const mobile = isMobileDevice(headers());
 
-  const wishlistData = await fetchWishlist(session.user.id);
+  const wishlistData = session
+    ? await fetchWishlist(session?.user.id)
+    : [];
   const wishlist = wishlistData?.wishlist;
 
   const matchingProducts = products.filter(
@@ -75,7 +73,7 @@ export default async function Index() {
           >
             <Product
               product={product}
-              userId={session.user.id}
+              userId={session?.user.id}
               wishlist={wishlist}
             />
           </div>
@@ -95,7 +93,7 @@ export default async function Index() {
       <CategorySelector />
       <ProductsFeed
         products={products}
-        userId={session.user.id}
+        userId={session?.user.id}
         wishlist={wishlist}
       />
     </div>

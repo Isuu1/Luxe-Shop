@@ -15,9 +15,9 @@ import { Toaster } from "react-hot-toast";
 import { Providers } from "./providers";
 import { headers } from "next/headers";
 import { getServerSession } from "next-auth";
-import { options } from "./api/auth/[...nextauth]/options";
 import { isMobileDevice } from "@/lib/utils";
 import Footer from "@/components/Footer/Footer";
+import { auth } from "@/auth";
 
 export const metadata = {
   title: "Luxe Shop",
@@ -25,25 +25,24 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const mobile = isMobileDevice(headers());
+  // const session = await getServerSession(authOptions);
+  const session = await auth();
 
-  const session = await getServerSession(options);
+  console.log("Session :", session);
 
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        {/* <Providers> */}
-        <StateContext>
-          <CartContext>
-            <>
+        <Providers>
+          <StateContext>
+            <CartContext>
               <Toaster />
-              {session && <Navbar user={session?.user} />}
+              <Navbar user={session?.user} />
               {children}
               <Footer />
-            </>
-          </CartContext>
-        </StateContext>
-        {/* </Providers> */}
+            </CartContext>
+          </StateContext>
+        </Providers>
       </body>
     </html>
   );
