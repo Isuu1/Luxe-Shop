@@ -1079,6 +1079,7 @@
   padding: 1rem;
   transform-origin: top;
   border-radius: 15px;
+  line-height: 1.8rem;
 }
 .login__slider {
   margin-top: 0.4rem;
@@ -1587,7 +1588,7 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background-color: #5329a3; /* color of the scroll thumb */
-  border-radius: 20px; /* roundness of the scroll thumb */
+  border-radius: 0; /* roundness of the scroll thumb */
   border: 3px solid #5329a3; /* creates padding around scroll thumb */
 }
 

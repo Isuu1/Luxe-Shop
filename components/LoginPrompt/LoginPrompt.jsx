@@ -20,10 +20,6 @@ const LoginPrompt = () => {
 
   // Change width of slider to indicate time left for prompt to stay open
   useEffect(() => {
-    if (initialPathname !== pathname) {
-      setLoginPropmptOpen(false);
-      return;
-    }
     if (sliderWidth > 0) {
       const intervalId = setInterval(() => {
         setSliderWidth((prevCount) => prevCount - 1);
@@ -34,14 +30,14 @@ const LoginPrompt = () => {
       // Cleanup interval on component unmount
       return () => clearInterval(intervalId);
     }
-  }, [intervalTime, sliderWidth]);
+  }, [intervalTime, sliderWidth, setLoginPropmptOpen]);
 
-  // Close modal when user navigates to another page
-  //   useEffect(() => {
-  //     if (pathname !== initialPathname) {
-  //       setLoginPropmptOpen(false);
-  //     }
-  //   }, [pathname, initialPathname, setLoginPropmptOpen]);
+  useEffect(() => {
+    if (initialPathname !== pathname) {
+      setLoginPropmptOpen(false);
+      return;
+    }
+  }, [initialPathname, pathname, setLoginPropmptOpen]);
 
   return (
     <motion.div
