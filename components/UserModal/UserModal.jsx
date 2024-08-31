@@ -105,8 +105,11 @@ const UserModal = ({ user }) => {
           </>
         ) : (
           <p>
-            Please <span className="bold">log in</span> to see this
-            page
+            Please{" "}
+            <span className="bold">
+              <Link href="/user">log in</Link>
+            </span>{" "}
+            to see this page
           </p>
         )}
       </nav>
