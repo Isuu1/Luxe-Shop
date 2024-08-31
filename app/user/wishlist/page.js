@@ -8,6 +8,7 @@ import RemoveFromWishlistButton from "@/components/RemoveFromWishlistButton/Remo
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
+import { auth } from "@/auth";
 
 //Icons
 import { FaStar } from "react-icons/fa";
@@ -18,7 +19,7 @@ import { urlFor } from "@/lib/client";
 export default async function page() {
   const mobile = isMobileDevice(headers());
 
-  const session = await getServerSession(options);
+  const session = await auth();
 
   const wishlistData = await fetchWishlist(session.user.id);
   const wishlist = wishlistData.wishlist || [];
