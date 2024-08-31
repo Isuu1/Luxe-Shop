@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useStateContext } from "@/context/StateContext";
@@ -10,13 +10,31 @@ const LoginPrompt = () => {
   const steps = 100; // Steps from 100 to 0
   const intervalTime = duration / steps; // Time between updates
 
-  const { setLoginPropmptOpen } = useStateContext();
+  const { loginPromptOpen, setLoginPropmptOpen } = useStateContext();
 
   const pathname = usePathname();
 
   const router = useRouter();
 
-  const [initialPathname, setInitialPathname] = useState(pathname);
+  const loginPromptref = useRef(null);
+
+  //Close modal when user clicks outside of it
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        loginPromptref.current &&
+        !loginPromptref.current.contains(e.target) &&
+        //This checks if the click event target is the button (or any child of it). If so, the modal won't close.
+        !e.target.closest(".open-modal")
+      ) {
+        setLoginPropmptOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setLoginPropmptOpen]);
 
   // Change width of slider to indicate time left for prompt to stay open
   useEffect(() => {
@@ -24,20 +42,31 @@ const LoginPrompt = () => {
       const intervalId = setInterval(() => {
         setSliderWidth((prevCount) => prevCount - 1);
       }, intervalTime);
-      setTimeout(() => {
-        setLoginPropmptOpen(false);
-      }, 3000);
+      // setTimeout(() => {
+      //   setLoginPropmptOpen(false);
+      // }, 3000);
       // Cleanup interval on component unmount
       return () => clearInterval(intervalId);
     }
+    if (sliderWidth === 0) {
+      setLoginPropmptOpen(false);
+    }
   }, [intervalTime, sliderWidth, setLoginPropmptOpen]);
 
+  const [initialPathname, setInitialPathname] = useState(pathname);
+
+  // Close prompt on route change
   useEffect(() => {
-    if (initialPathname !== pathname) {
+    if (loginPromptOpen && pathname !== initialPathname) {
       setLoginPropmptOpen(false);
       return;
     }
-  }, [initialPathname, pathname, setLoginPropmptOpen]);
+  }, [
+    pathname,
+    setLoginPropmptOpen,
+    loginPromptOpen,
+    initialPathname,
+  ]);
 
   return (
     <motion.div
@@ -45,6 +74,7 @@ const LoginPrompt = () => {
       animate={{ scale: 1 }}
       initial={{ scale: 0 }}
       exit={{ scale: 0 }}
+      ref={loginPromptref}
     >
       <p>
         <span className="bold">

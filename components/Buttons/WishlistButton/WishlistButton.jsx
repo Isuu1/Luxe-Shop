@@ -21,21 +21,13 @@ const WishlistButton = ({
 }) => {
   const router = useRouter();
 
-  const pathname = usePathname();
-
-  const { loginPromptOpen, setLoginPropmptOpen } = useStateContext();
+  const { setLoginPropmptOpen } = useStateContext();
 
   const handleWishList = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    //Disable modal on mobile devices and redirect to login page instead
-    // if (!userId && window.innerWidth < 768) {
-    //   router.push("/user");
-    //   return;
-    // }
     //Open login modal when user is not logged in
     if (!userId) {
-      // router.push("/user", { scroll: false });
       setLoginPropmptOpen(true);
       return;
     }
