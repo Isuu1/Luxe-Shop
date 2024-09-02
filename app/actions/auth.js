@@ -5,6 +5,8 @@ import { signIn } from "@/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
+import bcrypt from "bcryptjs";
+
 // Prev state checks latest input value before sending form
 export async function signin(prevState, formData) {
   // Validate form fields
@@ -48,27 +50,43 @@ export async function signin(prevState, formData) {
       },
     };
   }
-
-  await signIn("credentials", formData);
-
-  redirect("/");
-  // return {
-  //   errors: null,
-  //   success: true,
-  //   message: "Succesfully logged in",
-  //   redirect: true,
-  // };
+  // Sign user in using provided credentials and redirect to home page after
+  await signIn("credentials", {
+    email: formData.get("email"),
+    password: formData.get("password"),
+    redirect: true,
+    redirectTo: "/",
+  });
 }
 
-export async function signup(formData) {
-  try {
-    const userImage = "/images/user-avatar.jpg";
-    console.log(formData);
+export async function signup(prevState, formData) {
+  const password = formData.get("password");
 
-    const user = await prisma.user.create({
-      data: {
+  const hashedPassword = bcrypt.hashSync(password, 12);
+  console.log(
+    "This is how password looks like before sending it to db: ",
+    hashedPassword
+  );
+  try {
+    console.log(
+      "This is how password looks like before sending it to db: ",
+      hashedPassword
+    );
+    // const user = await prisma.user.create({
+    //   data: {
+    //     email: formData.get("email"),
+    //     hashedPassword,
+    //   },
+    // });
+
+    const user = await prisma.user.upsert({
+      where: { email: formData.get("email") },
+      update: {},
+      create: {
         email: formData.get("email"),
-        password: formData.get("password"),
+        name: "Test User",
+        password: hashedPassword,
+        userImage,
       },
     });
     console.log({ user });

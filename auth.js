@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
-// import { compare } from "bcrypt";
 import bcrypt from "bcryptjs";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -20,19 +19,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!credentials.email || !credentials.password) {
           return null;
         }
-
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email,
           },
         });
-
         if (!user) {
           return null;
         }
-
-        const isPasswordValid =
-          credentials.password === user.password;
+        // const isPasswordValid =
+        //   credentials.password === user.password;
+        const isPasswordValid = bcrypt.compare(
+          credentials.password,
+          user.password
+        );
 
         console.log("Password valid? ", isPasswordValid);
 
@@ -55,6 +55,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: "/auth",
   },
   callbacks: {
+    // async redirect({ url, baseUrl }) {
+    //   // Allows relative callback URLs
+    //   if (url.startsWith("/")) return `${baseUrl}${url}`;
+    //   // Allows callback URLs on the same origin
+    //   else if (new URL(url).origin === baseUrl) return url;
+    //   return baseUrl;
+    // },
     session: ({ token, session }) => {
       session.user.id = token.id;
       // console.log("Session Callback: ", token, session);

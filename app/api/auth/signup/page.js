@@ -1,6 +1,14 @@
 import { signup } from "@/lib/actions/auth";
 
+import bcrypt from "bcrypt";
+
 export default function signUp() {
+  const hashedPassword = bcrypt.hashSync(
+    "Testing",
+    bcrypt.genSaltSync(10)
+  );
+  console.log("Hashed pass: ", hashedPassword);
+
   return (
     <>
       <h2 className="headline">Register</h2>

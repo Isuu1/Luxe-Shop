@@ -1,5 +1,5 @@
 "use client";
-import React, { useActionState } from "react";
+import React, { useActionState, useEffect, useState } from "react";
 import { signin } from "@/app/actions/auth";
 import { useFormState, useFormStatus } from "react-dom";
 import LoginButton from "@/components/Buttons/LoginButton/LoginButton";
@@ -10,16 +10,14 @@ import { IoSend } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { useSession } from "next-auth/react";
 
 export default function LoginForm() {
   const [state, formAction] = useFormState(signin, {
     errors: null,
   });
-
-  const formstatus = useFormStatus();
-
-  console.log("Form state: ", state);
-  console.log("Form status? ", formstatus);
 
   return (
     <>
@@ -33,7 +31,7 @@ export default function LoginForm() {
             id="email"
           />
         </label>
-        {state.errors?.email && (
+        {state?.errors?.email && (
           <p style={{ color: "red" }}>{state.errors.email}</p>
         )}
         <label className="login-form__item">
@@ -46,7 +44,7 @@ export default function LoginForm() {
             type="password"
           />
         </label>
-        {state.errors?.password && (
+        {state?.errors?.password && (
           <p style={{ color: "red" }}>{state.errors.password}</p>
         )}
         <p className="login-form__forgot-password bold">

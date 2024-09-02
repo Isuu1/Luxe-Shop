@@ -11,6 +11,7 @@ const LoginButton = () => {
       className="login-button"
       type="submit"
       aria-disabled={status.pending}
+      disabled={status.pending}
     >
       {status.pending ? "Submitting" : "Log in"}
 
