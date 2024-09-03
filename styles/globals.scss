@@ -1,43 +1,47 @@
 @import "./variables";
 @import "./mixins";
 @import "./animations";
+
+// Components
 @import "../components/Cart/cart";
 @import "../components/CartItem/cartItem";
 @import "../components/Footer/footer";
 @import "../components/CategorySelector/categorySelector";
 @import "../components/Navbar/navbar";
+@import "../components/Menu/menu";
+@import "../components/Search/Search";
 @import "../components/ProductCard/product";
+@import "../components/UserModal/usermodal";
+@import "../components/LoginForm/loginForm";
+@import "../components/LoginPrompt/loginPrompt";
+@import "../components/Reviews/reviews";
+@import "../components/ProductPage/ProductPageImages/productPageImages";
+@import "../components/ProductPage/ProductPageRelatedProducts/productPageRelatedProducts";
+@import "../components/ProductPage/ProductPageToggleSpecification/ProductPageToggleSpecification";
+@import "../components/EmblaCarouselContainer/emblaCarouselContainer";
+
+// Buttons
+@import "../components/Buttons/OpenModalButton/openModalButton";
+@import "../components/Buttons/LoginButton/loginButton";
+@import "../components/Buttons/WishlistButton/wishListButton";
+@import "../components/Buttons/BuyNowButton/buyNowButton";
+@import "../components/Buttons/AddToCartButton/addToCartButton";
+@import "../components/Buttons/BackButton/backbutton";
+@import "../components/Buttons/SignoutButton/SignoutButton";
+@import "../components/Buttons/ShoppingCartButton/shoppingCartButton";
+
+// Pages
 @import "../app/home";
 @import "../app/product/[slug]/productDetails";
 @import "../app/success/success";
 @import "../app/products/products";
-@import "../components/Menu/menu";
-@import "../components/Search/Search";
 @import "../app/user/user";
 @import "../app/user/orders/orders";
 @import "../app/auth/signin";
-@import "../components/UserModal/usermodal";
-@import "../components/LoginModalContainer/loginModalContainer";
-@import "../components/LoginForm/loginForm";
-@import "../components/Buttons/LoginButton/loginButton";
-@import "../components/LoginPrompt/loginPrompt";
-@import "../components/DesktopLayout/desktopLayout";
-@import "../components/Reviews/reviews";
 @import "../app/user/wishlist/wishlist";
-@import "../components/Buttons/WishlistButton/wishListButton";
-@import "../components/Buttons/BuyNowButton/buyNowButton";
-@import "../components/Buttons/AddToCartButton/addToCartButton";
-@import "../components/BackButton/backbutton";
-@import "../components/ProductPage/ProductPageImages/productPageImages";
-@import "../components/ProductPage/ProductPageRelatedProducts/productPageRelatedProducts";
-@import "../components/ProductPage/ProductPageToggleSpecification/ProductPageToggleSpecification";
-@import "../components/ShoppingCartIcon/shoppingCartIcon";
-@import "../components/SignoutButton/SignoutButton";
-@import "../components/EmblaCarouselContainer/emblaCarouselContainer";
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
-//Buttons
-@import "../components/Buttons/OpenModalButton/openModalButton";
+//Fonts
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 * {
   margin: 0;

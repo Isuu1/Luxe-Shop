@@ -14,7 +14,7 @@ import { useStateContext } from "../../context/StateContext";
 import Link from "next/link";
 
 import Image from "next/image";
-import SignoutButton from "../SignoutButton/SignoutButton";
+import SignoutButton from "../Buttons/SignoutButton/SignoutButton";
 
 const Menu = ({ user }) => {
   //Check is user using mobile device or desktop to define layout

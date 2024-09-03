@@ -18,7 +18,7 @@ import { IoWallet } from "react-icons/io5";
 import { IoHeart } from "react-icons/io5";
 
 //Components
-import SignoutButton from "../SignoutButton/SignoutButton";
+import SignoutButton from "../Buttons/SignoutButton/SignoutButton";
 
 const UserModal = ({ user }) => {
   const userModalRef = useRef(null);

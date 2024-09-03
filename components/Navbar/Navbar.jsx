@@ -14,7 +14,7 @@ import {
 //Components
 import Menu from "../Menu/Menu";
 import Search from "../Search/Search";
-import ShoppingCartIcon from "../ShoppingCartIcon/ShoppingCartIcon";
+import ShoppingCartButton from "@/components/Buttons/ShoppingCartButton/ShoppingCartButton";
 import OpenModalButton from "@/components/Buttons/OpenModalButton/OpenModalButton";
 
 //Icons
@@ -124,7 +124,7 @@ const Navbar = ({ user }) => {
           </AnimatePresence>
           <OpenModalButton user={user} />
 
-          <ShoppingCartIcon user={user} />
+          <ShoppingCartButton user={user} />
         </div>
       </div>
       {showNavbarBottom && (

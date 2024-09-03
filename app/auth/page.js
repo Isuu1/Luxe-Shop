@@ -13,7 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { redirect } from "next/dist/server/api-utils";
 
 import LoginForm from "@/components/LoginForm/LoginForm";
-import BackButton from "@/components/BackButton/BackButton";
+import BackButton from "@/components/Buttons/BackButton/BackButton";
 
 function SigninPage() {
   const handleSubmit = async (e) => {
