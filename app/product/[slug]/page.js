@@ -5,7 +5,7 @@ import ProductPageImages from "@/components/ProductPage/ProductPageImages/Produc
 import ProductPageToggleSpecification from "../../../components/ProductPage/ProductPageToggleSpecification/ProductPageToggleSpecification";
 import ProductPageRelatedProducts from "../../../components/ProductPage/ProductPageRelatedProducts/ProductPageRelatedProducts";
 import Reviews from "../../../components/Reviews/Reviews";
-import BackButton from "@/components/BackButton/BackButton";
+import BackButton from "@/components/Buttons/BackButton/BackButton";
 import AddToCartButton from "@/components/Buttons/AddToCartButton/AddToCartButton";
 import WishlistButton from "@/components/Buttons/WishlistButton/WishlistButton";
 
