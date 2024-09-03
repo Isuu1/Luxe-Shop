@@ -5,7 +5,7 @@ export default auth((req) => {
   console.log("ROUTE", req.nextUrl.pathname);
   console.log("Is logged in", isLoggedIn);
   if (!req.auth && req.nextUrl.pathname === "/user") {
-    const newUrl = new URL("/api/auth", req.nextUrl.origin);
+    const newUrl = new URL("/auth", req.nextUrl.origin);
     return Response.redirect(newUrl);
   }
 });

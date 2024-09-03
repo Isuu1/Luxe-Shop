@@ -62,8 +62,8 @@ function SigninPage() {
         height={300}
       /> */}
 
-        <h1 className="login-container__headline">Welcome to Luxe</h1>
-        <p className="login-container__sec-headline">
+        <h1 className="login-container__logo">luxe.</h1>
+        <p className="login-container__headline">
           Please log in to continue
         </p>
         <LoginForm />
