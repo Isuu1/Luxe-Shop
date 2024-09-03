@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { useCartContext } from "@/context/CartContext";
 import CartItem from "../CartItem/CartItem";
@@ -17,6 +17,25 @@ const Cart = ({ user }) => {
   const cartRef = useRef();
   const { cartItems, totalPrice, setShowCart, showCart } =
     useCartContext();
+
+  // Close cart when user click anywhere else
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        cartRef.current &&
+        !cartRef.current.contains(e.target) &&
+        //This checks if the click event target is the button (or any child of it). If so, the modal won't close.
+        !e.target.closest(".cart-container")
+      ) {
+        setShowCart(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setShowCart]);
 
   const userEmail = user && user.email;
 
@@ -44,7 +63,7 @@ const Cart = ({ user }) => {
 
   return (
     <motion.div
-      className="cart-container "
+      className="cart-container"
       ref={cartRef}
       animate="visible"
       initial="hidden"
