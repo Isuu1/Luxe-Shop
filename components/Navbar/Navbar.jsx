@@ -26,9 +26,7 @@ import { GoHomeFill } from "react-icons/go";
 
 import { HiMiniHome } from "react-icons/hi2";
 import UserModal from "../UserModal/UserModal";
-import Image from "next/image";
-import LoginModalContainer from "../LoginModalContainer/LoginModalContainer";
-import LoginForm from "@/components/LoginForm/LoginForm";
+
 import LoginPrompt from "../LoginPrompt/LoginPrompt";
 
 const Navbar = ({ user }) => {

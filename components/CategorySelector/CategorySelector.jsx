@@ -16,73 +16,42 @@ import { FaLongArrowAltDown } from "react-icons/fa";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const CategorySelector = () => {
-  const { category, setCategory } = useStateContext();
-
-  // const [activeFilters, setActiveFilters] = useState([
-  //   {
-  //     price: {
-  //       sort: "default",
-  //     },
-  //     rating: {
-  //       sort: "default",
-  //     },
-  //   },
-  // ]);
-
-  // const sortingOrder = (currentSorting) => {
-  //   switch (currentSorting) {
-  //     case "default":
-  //       return "ascending";
-  //     case "ascending":
-  //       return "descending";
-  //     case "descending":
-  //       return "default";
-  //     default:
-  //       return "default";
-  //   }
-  // };
-  // const handleFiltersChange = (filter) => {
-  //   setActiveFilters((prevFilters) => {
-  //     const [currentFilters] = prevFilters;
-
-  //     return [
-  //       {
-  //         ...currentFilters,
-
-  //         [filter]: {
-  //           sort: sortingOrder(currentFilters[filter].sort),
-  //         },
-  //       },
-  //     ];
-  //   });
-  // };
-
-  // const [openFiltersModal, setOpenFiltersModal] = useState(false);
-
-  // console.log(activeFilters);
-
-  // //Handling navbar top animation
-  // const { scrollY } = useScroll();
-  // // mobile === false && { container: ref }
-  // useMotionValueEvent(scrollY, "change", (latest) => {
-  //   const navbarTop = document.getElementById("category-selector");
-  //   console.log(latest);
-
-  //   if (latest >= 100) {
-  //     navbarTop.classList.add("category-bar-transition");
-  //   }
-  //   // else {
-  //   //   navbarTop.classList.remove(" ");
-  //   // }
-  // });
+  const { category, setCategory, sortingOptions, setSortingOptions } =
+    useStateContext();
 
   const handleCategoryChange = (category) => {
     setCategory(category);
   };
 
+  const handleSorting = (e) => {
+    setSortingOptions(e.target.value);
+  };
+
   return (
     <>
       <div className="category-selector" id="category-selector">
+        <label>
+          <FaSliders style={{ fontSize: "1.3rem" }} />
+
+          <select
+            className="category-selector__sort"
+            onChange={handleSorting}
+          >
+            <option value="Relevance">Relevance</option>
+            <option value="PriceLowToHigh">
+              Price - low to high
+            </option>
+            <option value="PriceHighToLow">
+              Price - high to low
+            </option>
+            <option value="RatingLowToHigh">
+              Rating - low to high
+            </option>
+            <option value="RatingHighToLow">
+              Rating - high to low
+            </option>
+          </select>
+        </label>
         <button
           className={`category-selector__button ${
             category === "All" ? "selected-cat" : ""
@@ -90,7 +59,7 @@ const CategorySelector = () => {
           onClick={() => handleCategoryChange("All")}
         >
           <div className="flex-center">
-            <BiSolidCategoryAlt style={{ fontSize: "1.5rem" }} />
+            <BiSolidCategoryAlt style={{ fontSize: "1.3rem" }} />
             All
           </div>
         </button>
@@ -101,7 +70,7 @@ const CategorySelector = () => {
           onClick={() => handleCategoryChange("Headphones")}
         >
           <div className="flex-center">
-            <FaHeadphones style={{ fontSize: "1.5rem" }} />
+            <FaHeadphones style={{ fontSize: "1.3rem" }} />
             Headphones
           </div>
         </button>
@@ -112,7 +81,7 @@ const CategorySelector = () => {
           onClick={() => handleCategoryChange("Smartphones")}
         >
           <div className="flex-center">
-            <MdOutlineSmartphone style={{ fontSize: "1.5rem" }} />
+            <MdOutlineSmartphone style={{ fontSize: "1.3rem" }} />
             Smartphones
           </div>
         </button>
@@ -123,41 +92,11 @@ const CategorySelector = () => {
           onClick={() => handleCategoryChange("Smartwatches")}
         >
           <div className="flex-center">
-            <IoMdWatch style={{ fontSize: "1.5rem" }} />
+            <IoMdWatch style={{ fontSize: "1.3rem" }} />
             Smartwatches
           </div>
         </button>
-        {/* <button
-          className={`category-selector__button ${
-            openFiltersModal ? "selected-cat" : ""
-          }`}
-          onClick={() => setOpenFiltersModal(!openFiltersModal)}
-        >
-          <div className="flex-center">
-            <FaSliders style={{ fontSize: "1.5rem" }} />
-            Sort
-          </div>
-        </button> */}
       </div>
-      {/* {openFiltersModal && (
-        <div className="category-selector">
-          <button
-            className="category-selector__button"
-            onClick={() => handleFiltersChange("price")}
-          >
-            Price <FaLongArrowAltUp />
-            <FaLongArrowAltDown />
-          </button>
-          <button className="category-selector__button">
-            Rating <FaLongArrowAltUp />
-            <FaLongArrowAltDown />
-          </button>
-          <button className="category-selector__button">
-            Reviews <FaLongArrowAltUp />
-            <FaLongArrowAltDown />
-          </button>
-        </div>
-      )} */}
     </>
   );
 };

@@ -19,7 +19,19 @@ export const StateContext = ({ children }) => {
   //Login Prompt is used on WishlistButton and Product Page
   const [loginPromptOpen, setLoginPropmptOpen] = useState(false);
 
+  //Sorting options for products page
+  const [sortingOptions, setSortingOptions] = useState("Relevance");
+
   console.log("Testing main state context rendering");
+
+  const [currentMaxPrice, setCurrentMaxPrice] = useState(10000);
+
+  const [currentMinPrice, setCurrentMinPrice] = useState(0);
+
+  // All ratings visible by default
+  const [selectedRating, setSelectedRating] = useState([
+    5, 4, 3, 2, 1,
+  ]);
 
   return (
     <Context.Provider
@@ -34,6 +46,14 @@ export const StateContext = ({ children }) => {
         setUserModal,
         loginPromptOpen,
         setLoginPropmptOpen,
+        sortingOptions,
+        setSortingOptions,
+        currentMaxPrice,
+        setCurrentMaxPrice,
+        currentMinPrice,
+        setCurrentMinPrice,
+        selectedRating,
+        setSelectedRating,
       }}
     >
       {children}

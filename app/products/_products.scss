@@ -1,5 +1,14 @@
 .products-page-container {
   background: $homeBg;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  &__inner-wrapper {
+    display: grid;
+    grid-template-columns: auto 3fr;
+    gap: 1rem;
+  }
+
   &__products {
     min-height: 100%;
   }

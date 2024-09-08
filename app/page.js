@@ -7,7 +7,6 @@ import Image from "next/image";
 import CategorySelector from "../components/CategorySelector/CategorySelector";
 import EmblaCarouselContainer from "../components/EmblaCarouselContainer/EmblaCarouselContainer";
 import ProductsFeed from "../components/ProductsFeed/ProductsFeed";
-import ProductFeed from "../components/ProductFeed/ProductFeed";
 
 //Functions
 import getProducts, { isMobileDevice } from "../lib/utils";
