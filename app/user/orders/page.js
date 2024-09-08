@@ -1,12 +1,10 @@
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { PrismaClient } from "@prisma/client";
-import UserOrders from "../../../components/UserOrders/UserOrders";
-import Link from "next/link";
 
 //Icons
 import { MdArrowBackIos } from "react-icons/md";
-import BackButton from "@/components/BackButton/BackButton";
+import BackButton from "@/components/Buttons/BackButton/BackButton";
 import Image from "next/image";
 import { urlFor } from "@/lib/client";
 

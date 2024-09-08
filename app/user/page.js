@@ -4,8 +4,8 @@ import Link from "next/link";
 //Authentication
 
 //Components
-import BackButton from "../../components/BackButton/BackButton";
-import SignoutButton from "../../components/SignoutButton/SignoutButton";
+import BackButton from "../../components/Buttons/BackButton/BackButton";
+import SignoutButton from "../../components/Buttons/SignoutButton/SignoutButton";
 
 //Icons
 import { IoIosArrowForward } from "react-icons/io";
