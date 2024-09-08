@@ -17,6 +17,7 @@
 }
 
 .filters-container {
+  z-index: 99;
   max-height: 500px;
   min-width: 200px;
   max-width: 290px;
@@ -25,6 +26,14 @@
   border-radius: 20px;
   padding: 1rem;
   line-height: 2rem;
+  &__open-filters-button {
+    background: #6b37d1;
+    border-radius: 11px;
+    margin-bottom: 0.3rem;
+    & p {
+      color: #ffffff !important;
+    }
+  }
   &__title {
     font-size: 1.3rem;
   }
@@ -99,5 +108,19 @@
     align-items: center;
     background: #6b37d1;
     color: #ffffff;
+  }
+}
+
+@media screen and (max-width: "768px") {
+  .filters-container {
+    z-index: 99;
+    // position: absolute;
+    // left: -1rem;
+    // top: 10%;
+    min-width: 0;
+    padding: 0 1rem 1rem 0;
+    background: #fff;
+    // background: #6b37d1;
+    // color: #ffffff;
   }
 }
