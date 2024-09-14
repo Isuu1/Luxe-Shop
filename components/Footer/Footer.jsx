@@ -21,28 +21,28 @@ const Footer = () => {
         </div>
         <div className="footer__inner-wrapper__socials">
           <h2>Socials</h2>
-          <div style={{ display: "flex", gap: "0.4rem" }}>
+          <div className="footer__inner-wrapper__socials__icons">
             <Image
-              className="footer__inner-wrapper__socials__icon"
-              src="images/instagram-icon.svg"
+              className="footer__inner-wrapper__socials__icons__icon"
+              src="/images/instagram-icon.svg"
               fill
               alt=""
             />
             <Image
-              className="footer__inner-wrapper__socials__icon"
-              src="images/x-icon.svg"
+              className="footer__inner-wrapper__socials__icons__icon"
+              src="/images/x-icon.svg"
               fill
               alt=""
             />
             <Image
-              className="footer__inner-wrapper__socials__icon"
-              src="images/facebook-icon.svg"
+              className="footer__inner-wrapper__socials__icons__icon"
+              src="/images/facebook-icon.svg"
               fill
               alt=""
             />
             <Image
-              className="footer__inner-wrapper__socials__icon"
-              src="images/linkedin-icon.svg"
+              className="footer__inner-wrapper__socials__icons__icon"
+              src="/images/linkedin-icon.svg"
               fill
               alt=""
             />

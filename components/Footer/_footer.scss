@@ -25,10 +25,22 @@
       align-items: center;
       flex-direction: column;
       gap: 0.4rem;
-      &__icon {
-        position: relative !important;
-        width: 35px !important;
-        height: auto !important;
+      &__icons {
+        display: flex;
+        gap: 0.4rem;
+        &__icon {
+          cursor: pointer;
+          padding: 0.4rem;
+          background: #6b37d1;
+          position: relative !important;
+          width: 45px !important;
+          height: auto !important;
+          border-radius: 14px;
+          transition: all 0.2s;
+          &:hover {
+            background: #fff;
+          }
+        }
       }
     }
   }

@@ -218,10 +218,22 @@
   flex-direction: column;
   gap: 0.4rem;
 }
-.footer__inner-wrapper__socials__icon {
+.footer__inner-wrapper__socials__icons {
+  display: flex;
+  gap: 0.4rem;
+}
+.footer__inner-wrapper__socials__icons__icon {
+  cursor: pointer;
+  padding: 0.4rem;
+  background: #6b37d1;
   position: relative !important;
-  width: 35px !important;
+  width: 45px !important;
   height: auto !important;
+  border-radius: 14px;
+  transition: all 0.2s;
+}
+.footer__inner-wrapper__socials__icons__icon:hover {
+  background: #fff;
 }
 .footer__copyright {
   text-align: center;
