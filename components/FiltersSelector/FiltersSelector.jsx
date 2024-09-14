@@ -17,9 +17,11 @@ const FiltersSelector = ({ highestPrice, lowestPrice }) => {
     setCurrentMinPrice,
   } = useStateContext();
 
-  const [showFilters, setShowFilters] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const [windowWidth, setWindowWidth] = useState(null);
+  const [showFilters, setShowFilters] = useState(
+    windowWidth < 768 ? false : true
+  );
 
   //After component is rendered set prices to avoid undefined values
   useEffect(() => {
