@@ -17,11 +17,9 @@ const FiltersSelector = ({ highestPrice, lowestPrice }) => {
     setCurrentMinPrice,
   } = useStateContext();
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(768);
 
-  const [showFilters, setShowFilters] = useState(
-    windowWidth < 768 ? false : true
-  );
+  const [showFilters, setShowFilters] = useState(false);
 
   //After component is rendered set prices to avoid undefined values
   useEffect(() => {
@@ -49,7 +47,10 @@ const FiltersSelector = ({ highestPrice, lowestPrice }) => {
   //Update window with state while window width is changed
   useEffect(() => {
     const handleWindowWidth = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleWindowWidth);
+    if (window) {
+      window.addEventListener("resize", handleWindowWidth);
+    }
+
     return () =>
       window.removeEventListener("resize", handleWindowWidth);
   }, [windowWidth]);
@@ -70,18 +71,6 @@ const FiltersSelector = ({ highestPrice, lowestPrice }) => {
   const handleFilters = () => {
     setShowFilters(!showFilters);
   };
-
-  // useEffect(() => {
-  //   const filtersContainer = document.querySelector(
-  //     ".filters-container"
-  //   );
-  //   console.log(filtersContainer);
-  //   if (showFilters && mobileDevice) {
-  //     filtersContainer.classList.add("position-absolute");
-  //   } else {
-  //     filtersContainer.classList.remove("position-absolute");
-  //   }
-  // }, [showFilters, mobileDevice]);
 
   return (
     <div className="filters-container">
