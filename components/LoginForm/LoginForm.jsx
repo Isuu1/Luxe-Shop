@@ -1,18 +1,18 @@
 "use client";
-import React, { useActionState, useEffect, useState } from "react";
+import React from "react";
+import { useFormState } from "react-dom";
+import Link from "next/link";
+
+//Utils
 import { signin } from "@/app/actions/auth";
-import { useFormState, useFormStatus } from "react-dom";
+
+//Components
 import LoginButton from "@/components/Buttons/LoginButton/LoginButton";
 
 //Icons
 import { FaGithub } from "react-icons/fa";
-import { IoSend } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-
-import { useSession } from "next-auth/react";
 
 export default function LoginForm() {
   const [state, formAction] = useFormState(signin, {
@@ -65,7 +65,7 @@ export default function LoginForm() {
       <p className="login-form__signup">
         Dont have an account?{" "}
         <strong>
-          <Link href="/api/auth/signup">Sign in</Link>
+          <Link href="/auth/signup">Sign up</Link>
         </strong>
       </p>
     </>

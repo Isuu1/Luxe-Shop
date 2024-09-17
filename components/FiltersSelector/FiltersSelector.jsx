@@ -8,6 +8,7 @@ import "rc-slider/assets/index.css";
 
 //Components
 import FiltersRatingSelector from "@/components/FiltersRatingSelector/FiltersRatingSelector";
+import { type } from "os";
 
 const FiltersSelector = ({ highestPrice, lowestPrice }) => {
   const {
@@ -17,9 +18,13 @@ const FiltersSelector = ({ highestPrice, lowestPrice }) => {
     setCurrentMinPrice,
   } = useStateContext();
 
-  const [windowWidth, setWindowWidth] = useState(768);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
 
-  const [showFilters, setShowFilters] = useState(false);
+  const mobileDevice = windowWidth <= 768;
+
+  const [showFilters, setShowFilters] = useState(!mobileDevice);
 
   //After component is rendered set prices to avoid undefined values
   useEffect(() => {
@@ -54,8 +59,6 @@ const FiltersSelector = ({ highestPrice, lowestPrice }) => {
     return () =>
       window.removeEventListener("resize", handleWindowWidth);
   }, [windowWidth]);
-
-  const mobileDevice = windowWidth < 768;
 
   useEffect(() => {
     if (!mobileDevice) {
