@@ -9,9 +9,7 @@ import React, {
 import Product from "../ProductCard/Product";
 import { useStateContext } from "@/context/StateContext";
 import { motion } from "framer-motion";
-import Products from "@/components/Products/Products";
 import { usePathname, useRouter } from "next/navigation";
-import AnimatedProduct from "@/components/AnimatedProduct/AnimateProduct";
 import { productAnimation } from "@/styles/animations";
 import LoginPrompt from "../LoginPrompt/LoginPrompt";
 
