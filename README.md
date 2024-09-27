@@ -5,6 +5,10 @@
 ### Idea
 Idea of this project was to create lightweight and easy to use ecommerce platform.
 
+### MVP's 
+#### Milestone 1
+##### Implement user authentication ✅
+
 ## Getting Started
 
 First, run the development server:
