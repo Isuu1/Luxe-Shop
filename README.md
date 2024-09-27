@@ -14,6 +14,8 @@ pnpm dev
 bun dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 ## Description 
 
 ### Idea
@@ -25,7 +27,6 @@ Idea of this project was to create lightweight and easy to use ecommerce platfor
 
 Implement user authentication ✅
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Authentication
 
