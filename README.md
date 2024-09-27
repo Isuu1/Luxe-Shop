@@ -27,10 +27,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
             ├── auth
                 ├── [...nextauth]
                     ├── route.js // Auth route handler
-        ├── auth
-            ├── page.js // Sign in page
-            ├── signup
-                ├── page.js // Sign up page
+    ├── auth
+        ├── page.js // Sign in page
+        ├── signup
+            ├── page.js // Sign up page
 
 ```
 ## Learn More
