@@ -21,10 +21,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ```bash
 .
 ├── app
-    ├── @modal // Modal for desktop version
-        ├── (.)auth // Intercepting main auth route into modal so it's rendering on top of main layout.js 
-            ├── layout.js 
-            ├── page.js
+    ├── auth.js // Main auth handlers
+    ├── middleware.js // Restrict access to user account when not logged in
+        ├── api 
+            ├── auth
+                ├── [...nextauth]
+                    ├── route.js // Auth route handler
+        ├── auth
+            ├── page.js // Sign in page
+            ├── signup
+                ├── page.js // Sign up page
 
 ```
 ## Learn More
