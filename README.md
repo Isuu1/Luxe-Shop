@@ -1,4 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Luxe shop
+
+## Description 
+
+### Idea
+Idea of this project was to create lightweight and easy to use ecommerce platform.
 
 ## Getting Started
 
