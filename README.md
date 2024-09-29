@@ -25,8 +25,15 @@ Idea of this project was to create lightweight and easy to use ecommerce platfor
 ### MVP's 
 #### Milestone 1
 
-Implement user authentication ✅
+- Implement user authentication ✅
+- Shopping cart (context in separate file) ✅
+- Products listing ✅
+- Single product page ✅
 
+## Tech stack
+
+- Frontend: [NextJS, Embla Carousel]
+- Backend: [Sanity (CMS), NextJS, Stripe]
 
 ## Authentication
 
