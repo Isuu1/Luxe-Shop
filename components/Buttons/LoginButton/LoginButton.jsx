@@ -2,6 +2,7 @@
 import React from "react";
 import { useFormStatus } from "react-dom";
 import { IoSend } from "react-icons/io5";
+import "./loginButton.scss";
 
 const LoginButton = () => {
   const status = useFormStatus();

@@ -1,6 +1,7 @@
 import { useStateContext } from "@/context/StateContext";
 import Image from "next/image";
 import React from "react";
+import "./openModalButton.scss";
 
 const OpenModalButton = ({ user }) => {
   const { userModal, setUserModal } = useStateContext();

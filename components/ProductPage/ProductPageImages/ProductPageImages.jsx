@@ -3,8 +3,15 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { urlFor } from "../../../lib/client";
 import { AnimatePresence } from "framer-motion";
-import LoginPrompt from "@/components/LoginPrompt/LoginPrompt";
+
+//Context
 import { useStateContext } from "@/context/StateContext";
+
+//Components
+import LoginPrompt from "@/components/LoginPrompt/LoginPrompt";
+
+//Styles
+import "./productPageImages.scss";
 
 const ProductPageImages = ({ product, children }) => {
   const { image } = product[0];

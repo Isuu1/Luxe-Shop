@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-//Authentication
-
 //Components
 import BackButton from "../../components/Buttons/BackButton/BackButton";
 import SignoutButton from "../../components/Buttons/SignoutButton/SignoutButton";
@@ -13,7 +11,12 @@ import { MdEditDocument } from "react-icons/md";
 import { FaList } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
+
+//Authentication
 import { auth } from "@/auth";
+
+//Styles
+import "./user.scss";
 
 export default async function ProfileClient() {
   const session = await auth();

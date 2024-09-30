@@ -1,17 +1,20 @@
 "use client";
 import { AnimatePresence } from "framer-motion";
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import Product from "../ProductCard/Product";
-import { useStateContext } from "@/context/StateContext";
+import React from "react";
 import { motion } from "framer-motion";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+
+//Animations
 import { productAnimation } from "@/styles/animations";
-import LoginPrompt from "../LoginPrompt/LoginPrompt";
+
+//Context
+import { useStateContext } from "@/context/StateContext";
+
+//Components
+import Product from "../ProductCard/Product";
+
+//Styles
+import "./productsFeed.scss";
 
 const ProductsFeed = ({ products, userId, wishlist }) => {
   const {
@@ -20,69 +23,9 @@ const ProductsFeed = ({ products, userId, wishlist }) => {
     currentMaxPrice,
     currentMinPrice,
     selectedRating,
-    setSelectedRating,
   } = useStateContext();
 
   const pathname = usePathname();
-
-  const [filteredAndSortedProducts, setFilteredAndSortedProducts] =
-    useState([]);
-
-  // useEffect(() => {
-  //   // Filter products by category
-  //   let filteredProducts = products.filter(
-  //     (product) =>
-  //       product.category.includes(category) || category === "All"
-  //   );
-
-  //   // Filter products by price range
-  //   filteredProducts = filteredProducts.filter(
-  //     (product) =>
-  //       product.price >= currentMinPrice &&
-  //       product.price <= currentMaxPrice
-  //   );
-
-  //   // Filter products by rating
-  //   filteredProducts = filteredProducts.filter((product) =>
-  //     selectedRating.length > 0
-  //       ? selectedRating.includes(Math.floor(product.stars))
-  //       : true
-  //   );
-
-  //   // Sort products based on sortingOptions
-  //   switch (sortingOptions) {
-  //     case "Price - low to high":
-  //       filteredProducts.sort((a, b) => a.price - b.price);
-  //       break;
-  //     case "Price - high to low":
-  //       filteredProducts.sort((a, b) => b.price - a.price);
-  //       break;
-  //     case "Rating - low to high":
-  //       filteredProducts.sort((a, b) => a.stars - b.stars);
-  //       break;
-  //     case "Rating - high to low":
-  //       filteredProducts.sort((a, b) => b.stars - a.stars);
-  //       break;
-  //     default:
-  //       // Default sorting: relevance or as is
-  //       break;
-  //   }
-
-  //   // Update the state with filtered and sorted products
-  //   setFilteredAndSortedProducts(filteredProducts);
-  // }, [
-  //   products,
-  //   category,
-  //   currentMinPrice,
-  //   currentMaxPrice,
-  //   selectedRating,
-  //   sortingOptions,
-  // ]);
-
-  // console.log(
-  //   "filteredAndSortedProducts: ",
-  //   filteredAndSortedProducts
-  // );
 
   //Sort products by category
   const matchingCategory = products.filter((product) =>

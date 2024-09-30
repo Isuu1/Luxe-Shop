@@ -8,6 +8,9 @@ import { IoPerson } from "react-icons/io5";
 import { FaListCheck } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 
+//Styles
+import "./menu.scss";
+
 import { motion } from "framer-motion";
 import { cartSlide, menuSlide } from "../../styles/animations";
 import { useStateContext } from "../../context/StateContext";
@@ -63,12 +66,12 @@ const Menu = ({ user }) => {
           <Image
             className="menu-container__avatar__bg__profile-image"
             alt=""
-            src={user.userImage}
+            src={user?.userImage}
             fill
           />
 
           <h3 className="menu-container__avatar__bg__login-data">
-            {user.name}
+            {user?.name}
           </h3>
         </div>
       </div>

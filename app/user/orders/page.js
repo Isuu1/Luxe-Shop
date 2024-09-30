@@ -1,16 +1,17 @@
-import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/options";
 import { PrismaClient } from "@prisma/client";
 
-//Icons
-import { MdArrowBackIos } from "react-icons/md";
+//Components
 import BackButton from "@/components/Buttons/BackButton/BackButton";
-import Image from "next/image";
-import { urlFor } from "@/lib/client";
+
+//Authentication
+import { auth } from "@/auth";
+
+//Styles
+import "./orders.scss";
 
 export default async function ProfileClient() {
   const prisma = new PrismaClient();
-  const session = await getServerSession(options);
+  const session = await auth();
 
   const userId = session.user.id;
 

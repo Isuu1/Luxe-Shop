@@ -1,15 +1,19 @@
 import React from "react";
 import { urlFor } from "../../lib/client";
+import Image from "next/image";
+
+//Styles
+import "./cartItem.scss";
 
 //Icons
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
 
+//Context
 import { useCartContext } from "@/context/CartContext";
 
 //Animations
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { cartProductAnimation } from "../../styles/animations";
 
 const CartItem = ({ item }) => {

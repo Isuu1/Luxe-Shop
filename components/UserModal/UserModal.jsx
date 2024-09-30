@@ -17,6 +17,9 @@ import { FaUser } from "react-icons/fa";
 import { IoWallet } from "react-icons/io5";
 import { IoHeart } from "react-icons/io5";
 
+//Styles
+import "./usermodal.scss";
+
 //Components
 import SignoutButton from "../Buttons/SignoutButton/SignoutButton";
 

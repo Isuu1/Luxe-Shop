@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import "./addToCartButton.scss";
 
 //Icons
 import { TbSquareRoundedPlusFilled } from "react-icons/tb";

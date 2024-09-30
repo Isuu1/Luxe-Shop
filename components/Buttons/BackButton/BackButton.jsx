@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import "./backButton.scss";
 
 const BackButton = ({ children }) => {
   const router = useRouter();

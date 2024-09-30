@@ -1,0 +1,18 @@
+.products-page-container {
+  background: #ffffff;
+  margin-top: 1rem;
+}
+.products-page-container__inner-wrapper {
+  position: relative;
+}
+.products-page-container__products {
+  min-height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .products-page-container__inner-wrapper {
+    display: grid;
+    grid-template-columns: auto 3fr;
+    gap: 1rem;
+  }
+}/*# sourceMappingURL=products.css.map */

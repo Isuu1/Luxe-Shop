@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+//Context
 import { useStateContext } from "../../context/StateContext";
 
 //Animations
@@ -11,23 +13,23 @@ import {
   useScroll,
 } from "framer-motion";
 
+//Styles
+import "./navbar.scss";
+
 //Components
 import Menu from "../Menu/Menu";
 import Search from "../Search/Search";
 import ShoppingCartButton from "@/components/Buttons/ShoppingCartButton/ShoppingCartButton";
 import OpenModalButton from "@/components/Buttons/OpenModalButton/OpenModalButton";
+import UserModal from "../UserModal/UserModal";
+import LoginPrompt from "../LoginPrompt/LoginPrompt";
 
 //Icons
 import { TiThMenu } from "react-icons/ti";
 import { BiSolidCategoryAlt } from "react-icons/bi";
-
 import { FaUser } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
-
 import { HiMiniHome } from "react-icons/hi2";
-import UserModal from "../UserModal/UserModal";
-
-import LoginPrompt from "../LoginPrompt/LoginPrompt";
 
 const Navbar = ({ user }) => {
   const {
@@ -36,7 +38,6 @@ const Navbar = ({ user }) => {
     searchBarOpen,
     userModal,
     loginPromptOpen,
-    setLoginPropmptOpen,
   } = useStateContext();
 
   const [navbarTopFullWidth, setNavbarTopFullWidth] = useState(true);
@@ -89,17 +90,6 @@ const Navbar = ({ user }) => {
               <GoHomeFill />
               Home
             </Link>
-
-            {/* <Link
-                className={`navbar-top__left__menu__item link link ${
-                  pathname === "/user" ? "active" : ""
-                }`}
-                href="/user"
-              >
-                <FaUser />
-                Account
-              </Link> */}
-
             <Link
               className={`navbar-top__left__menu__item link ${
                 pathname === "/products" ? "active" : ""

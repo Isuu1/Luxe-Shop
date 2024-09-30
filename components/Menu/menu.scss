@@ -1,0 +1,51 @@
+@import "../../styles/variables.scss";
+
+.menu-container {
+  position: fixed;
+  z-index: 99;
+  bottom: 80px;
+  right: 0;
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  &__avatar {
+    width: 100%;
+    // align-self: flex-end;
+    &__bg {
+      border-radius: 12px 0 0 0;
+      background: $menuAvatarBg;
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      // clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+      &__profile-image {
+        position: relative !important;
+        height: 70px !important;
+        width: auto !important;
+        border-radius: 12px;
+        margin: 0.4rem;
+      }
+      &__login-data {
+        color: $menuAvatarTextColor;
+      }
+    }
+  }
+  &__nav {
+    background: #fff;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border-radius: 0 0 0 12px;
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #333;
+    }
+  }
+}

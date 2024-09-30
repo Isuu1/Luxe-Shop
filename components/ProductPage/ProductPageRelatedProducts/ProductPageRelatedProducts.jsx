@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 
-import Product from "../../ProductCard/Product";
+//Styles
+import "./productPageRelatedProducts.scss";
 
+//Components
+import Product from "../../ProductCard/Product";
 import EmblaCarouselContainer from "@/components/EmblaCarouselContainer/EmblaCarouselContainer";
 
 const ProductPageRelatedProducts = ({ products }) => {

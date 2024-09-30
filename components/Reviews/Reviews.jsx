@@ -1,10 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 //Icons
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
+
+//Styles
+import "./reviews.scss";
 
 const Reviews = ({ stars, ratings }) => {
   const roundedRating = Math.round(stars * 2) / 2;

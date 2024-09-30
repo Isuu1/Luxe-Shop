@@ -3,6 +3,9 @@ import React from "react";
 import { useFormState } from "react-dom";
 import Link from "next/link";
 
+//Styles
+import "./loginForm.scss";
+
 //Utils
 import { signin } from "@/app/actions/auth";
 

@@ -1,8 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 
+//Context
 import { useStateContext } from "../../context/StateContext";
+
+//Styles
+import "./success.scss";
 
 const Succsess = () => {
   const { setCartItems, setTotalPrice, setTotalQuantities } =
@@ -13,7 +17,7 @@ const Succsess = () => {
     setCartItems([]);
     setTotalPrice(0);
     setTotalQuantities(0);
-  }, []);
+  });
 
   return (
     <div className="success-page">

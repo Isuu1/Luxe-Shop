@@ -1,14 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
-import { useStateContext } from "@/context/StateContext";
-
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
+//Context
+import { useStateContext } from "@/context/StateContext";
+
+//Styles
+import "./filtersSelector.scss";
+
 //Components
 import FiltersRatingSelector from "@/components/FiltersRatingSelector/FiltersRatingSelector";
-import { type } from "os";
 
 const FiltersSelector = ({ highestPrice, lowestPrice }) => {
   const {

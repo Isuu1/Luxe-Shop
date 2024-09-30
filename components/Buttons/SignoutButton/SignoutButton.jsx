@@ -2,6 +2,7 @@
 import React from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import { signOut } from "next-auth/react";
+import "./signoutButton.scss";
 
 const SignoutButton = () => {
   return (

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useCartContext } from "@/context/CartContext";
+import "./buyNowButton.scss";
 
 //Icons
 import { FaBagShopping } from "react-icons/fa6";

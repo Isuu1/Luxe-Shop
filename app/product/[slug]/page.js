@@ -9,7 +9,7 @@ import BackButton from "@/components/Buttons/BackButton/BackButton";
 import AddToCartButton from "@/components/Buttons/AddToCartButton/AddToCartButton";
 import WishlistButton from "@/components/Buttons/WishlistButton/WishlistButton";
 
-//Utils
+//Functions
 import getProducts, {
   fetchWishlist,
   getProduct,
@@ -17,9 +17,10 @@ import getProducts, {
 } from "../../../lib/utils";
 
 //Authentication
-import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/options";
 import { auth } from "@/auth";
+
+//Styles
+import "./productDetails.scss";
 
 //Create params with product category
 export async function generateStaticParams() {

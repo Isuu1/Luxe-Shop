@@ -1,7 +1,10 @@
 "use client";
-
-import { useStateContext } from "@/context/StateContext";
 import React from "react";
+
+//Context
+import { useStateContext } from "@/context/StateContext";
+
+//Icons
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 

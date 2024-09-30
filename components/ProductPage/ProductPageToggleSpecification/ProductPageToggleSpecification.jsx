@@ -10,6 +10,9 @@ import { TbArrowBigUpLinesFilled } from "react-icons/tb";
 //Animations
 import { AnimatePresence, motion } from "framer-motion";
 
+//Styles
+import "./productPageToggleSpecification.scss";
+
 const ProductPageToggleSpecification = ({ product }) => {
   const [fullSpecificationOpen, setFullSpecificationOpen] =
     useState(false);

@@ -1,9 +1,11 @@
-import Image from "next/image";
 import React from "react";
 
 //Components
 import LoginForm from "@/components/LoginForm/LoginForm";
 import BackButton from "@/components/Buttons/BackButton/BackButton";
+
+//Styles
+import "./signin.scss";
 
 function SigninPage() {
   return (

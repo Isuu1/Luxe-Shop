@@ -1,0 +1,19 @@
+.reviews-container {
+  position: absolute;
+  top: 60%;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  box-shadow: 0px 1px 70px -23px rgba(110, 38, 243, 0.164);
+  border-radius: 0 12px 12px 0;
+  padding: 0.5rem;
+}
+.reviews-container__star {
+  margin-top: 3px;
+}
+.reviews-container__qty {
+  color: #2e2e2e;
+  margin-left: 0.25rem;
+  font-weight: 600;
+}/*# sourceMappingURL=reviews.css.map */

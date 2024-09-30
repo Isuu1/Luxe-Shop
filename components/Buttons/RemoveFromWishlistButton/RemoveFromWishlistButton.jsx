@@ -5,6 +5,7 @@ import { IoHeartDislike } from "react-icons/io5";
 
 import { removeFromWishlist } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import "./removeFromWishlistButton.scss";
 
 const RemoveFromWishlistButton = ({ itemId }) => {
   // const { removeFromWishlist } = useStateContext();

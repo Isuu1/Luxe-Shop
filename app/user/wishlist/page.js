@@ -1,20 +1,23 @@
 import React from "react";
-import { FaArrowLeft } from "react-icons/fa6";
-import Link from "next/link";
 import { headers } from "next/headers";
+import Image from "next/image";
+
+//Functions
 import { fetchWishlist, isMobileDevice } from "@/lib/utils";
+
+//Components
 import BackButton from "@/components/Buttons/BackButton/BackButton";
 import RemoveFromWishlistButton from "@/components/Buttons/RemoveFromWishlistButton/RemoveFromWishlistButton";
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
-import Image from "next/image";
+
+//Authentication
 import { auth } from "@/auth";
 
 //Icons
 import { FaStar } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { IoHeartDislike } from "react-icons/io5";
 import { urlFor } from "@/lib/client";
+
+//Styles
+import "./wishlist.scss";
 
 export default async function page() {
   const mobile = isMobileDevice(headers());

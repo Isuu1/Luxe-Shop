@@ -1,13 +1,19 @@
 import React from "react";
+
+//Functions
 import getProducts, { fetchWishlist } from "../../lib/utils";
 
-import CategorySelector from "../../components/CategorySelector/CategorySelector";
-
-import ProductsFeed from "@/components/ProductsFeed/ProductsFeed";
+//Authentication
 import { auth } from "@/auth";
-import BackButton from "@/components/Buttons/BackButton/BackButton";
 
+//Components
 import FiltersSelector from "@/components/FiltersSelector/FiltersSelector";
+import BackButton from "@/components/Buttons/BackButton/BackButton";
+import CategorySelector from "../../components/CategorySelector/CategorySelector";
+import ProductsFeed from "@/components/ProductsFeed/ProductsFeed";
+
+//Styles
+import "./products.scss";
 
 export default async function Page() {
   const products = await getProducts();

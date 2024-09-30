@@ -1,8 +1,11 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
+
+//Styles
+import "./categorySelector.scss";
+
+//Context
 import { useStateContext } from "../../context/StateContext";
-import { useMotionValueEvent, useScroll } from "framer-motion";
-import { useRouter } from "next/navigation";
 
 //Icons
 import { BiSolidCategoryAlt } from "react-icons/bi";
@@ -10,10 +13,6 @@ import { FaHeadphones } from "react-icons/fa";
 import { MdOutlineSmartphone } from "react-icons/md";
 import { IoMdWatch } from "react-icons/io";
 import { FaSliders } from "react-icons/fa6";
-import { FaLongArrowAltUp } from "react-icons/fa";
-import { FaLongArrowAltDown } from "react-icons/fa";
-
-import { usePathname, useSearchParams } from "next/navigation";
 
 const CategorySelector = () => {
   const { category, setCategory, sortingOptions, setSortingOptions } =

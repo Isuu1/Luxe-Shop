@@ -13,6 +13,9 @@ import { FaStar } from "react-icons/fa";
 import { isItemInWishList } from "@/lib/utils";
 import { urlFor } from "@/lib/client";
 
+//Styles
+import "./product.scss";
+
 const Product = ({ product, smallCard, userId, wishlist }) => {
   const itemWishlisted = isItemInWishList(wishlist, product);
 

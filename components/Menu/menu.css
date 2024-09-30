@@ -1,0 +1,47 @@
+.menu-container {
+  position: fixed;
+  z-index: 99;
+  bottom: 80px;
+  right: 0;
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.menu-container__avatar {
+  width: 100%;
+}
+.menu-container__avatar__bg {
+  border-radius: 12px 0 0 0;
+  background: #6b37d1;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+.menu-container__avatar__bg__profile-image {
+  position: relative !important;
+  height: 70px !important;
+  width: auto !important;
+  border-radius: 12px;
+  margin: 0.4rem;
+}
+.menu-container__avatar__bg__login-data {
+  color: #fff;
+}
+.menu-container__nav {
+  background: #fff;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border-radius: 0 0 0 12px;
+}
+.menu-container__nav__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+}/*# sourceMappingURL=menu.css.map */

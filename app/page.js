@@ -1,5 +1,4 @@
-import React, { Suspense } from "react";
-import { headers } from "next/headers";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -7,27 +6,26 @@ import Image from "next/image";
 import CategorySelector from "../components/CategorySelector/CategorySelector";
 import EmblaCarouselContainer from "../components/EmblaCarouselContainer/EmblaCarouselContainer";
 import ProductsFeed from "../components/ProductsFeed/ProductsFeed";
+import Product from "@/components/ProductCard/Product";
 
 //Functions
-import getProducts, { isMobileDevice } from "../lib/utils";
-import { fetchWishlist } from "../lib/utils";
-
+import getProducts, { fetchWishlist } from "../lib/utils";
 import { urlFor } from "@/lib/client";
+
+//Authentication
+import { auth } from "@/auth";
 
 //Icons
 import { IoIosArrowForward } from "react-icons/io";
 import { BiSolidSend } from "react-icons/bi";
 
-import { auth } from "@/auth";
-import { options } from "./api/auth/[...nextauth]/options";
-import Product from "@/components/ProductCard/Product";
+//Styles
+import "./home.scss";
 
 export default async function Index() {
   const products = await getProducts();
 
   const session = await auth();
-
-  const mobile = isMobileDevice(headers());
 
   const wishlistData = session
     ? await fetchWishlist(session?.user.id)

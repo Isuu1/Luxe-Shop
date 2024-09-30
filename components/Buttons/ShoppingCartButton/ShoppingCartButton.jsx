@@ -5,6 +5,7 @@ import { LuShoppingBasket } from "react-icons/lu";
 import { useCartContext } from "@/context/CartContext";
 import { AnimatePresence } from "framer-motion";
 import Cart from "@/components/Cart/Cart";
+import "./shoppingCartButton.scss";
 
 const ShoppingCartIcon = ({ user }) => {
   //Check is user using mobile device or desktop to define layout

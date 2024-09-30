@@ -1,6 +1,9 @@
 import Image from "next/image";
 import React from "react";
 
+//Styles
+import "./footer.scss";
+
 const Footer = () => {
   return (
     <div className="footer">

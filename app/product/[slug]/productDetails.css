@@ -1,0 +1,91 @@
+.product-detail-container__wrapper {
+  margin-top: 1rem;
+}
+.product-detail-container__wishlist-button {
+  bottom: auto !important;
+  top: 0.3rem !important;
+  right: 0.3rem !important;
+  background: #f5f5f5 !important;
+  padding: 0.5rem 0.5rem 0.2rem 0.5rem !important;
+}
+.product-detail-container__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.product-detail-container__details__name {
+  margin-top: 2rem;
+}
+.product-detail-container__details__price {
+  color: #6b37d1;
+}
+.product-detail-container__details__reviews-wrapper div {
+  position: relative !important;
+  top: 0 !important;
+  padding: 0 !important;
+}
+.product-detail-container__details__desc {
+  overflow: hidden;
+  transition: all 0.4s;
+  position: relative;
+  line-height: 1.8rem;
+  font-size: 0.95rem;
+}
+.product-detail-container__details__desc p {
+  font-size: 1.1rem;
+}
+.product-detail-container__details__add-to-cart-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+.product-detail-container__details__add-to-cart-wrapper .add-to-wishlist {
+  position: relative;
+  bottom: auto !important;
+  top: auto !important;
+  right: auto !important;
+}
+
+.swiper-wrapper {
+  flex-direction: row !important;
+}
+
+.btn-not-allowed {
+  cursor: not-allowed;
+  color: #d3d3d3 !important;
+}
+
+.product-desc-reveal {
+  max-height: 200vh;
+}
+
+@media screen and (min-width: 768px) {
+  .product-detail-container {
+    padding: 100px 5rem 0 5rem;
+  }
+}
+@media screen and (max-width: 950px) {
+  .product-detail-container__details__add-to-cart-wrapper .add-to-wishlist {
+    display: none;
+  }
+}
+@media screen and (min-width: 950px) {
+  .product-page-images .add-to-wishlist {
+    display: none;
+  }
+  .product-detail-container__wrapper {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+  }
+  .product-detail-container__details {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  .product-detail-container__details__name {
+    margin-top: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .product-detail-container {
+    padding: 100px 7rem 0 7rem;
+  }
+}/*# sourceMappingURL=productDetails.css.map */

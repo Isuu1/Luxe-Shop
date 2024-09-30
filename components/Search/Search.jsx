@@ -14,12 +14,13 @@ import {
   searchListAppear,
 } from "../../styles/animations";
 
+//Styles
+import "./search.scss";
+
 const Search = ({ navbarTopFullWidth }) => {
   Search.displayName = "Search";
 
   const [products, setProducts] = useState([]);
-
-  // console.log("Is navbar top visible: ", navbarTopVisible);
 
   useEffect(() => {
     const data = getProducts();

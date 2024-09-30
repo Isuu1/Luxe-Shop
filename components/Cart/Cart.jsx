@@ -1,9 +1,16 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
-import { useCartContext } from "@/context/CartContext";
-import CartItem from "../CartItem/CartItem";
 import getStripe from "../../lib/getStripe";
+
+//Context
+import { useCartContext } from "@/context/CartContext";
+
+//Components
+import CartItem from "../CartItem/CartItem";
+
+//Styles
+import "./cart.scss";
 
 //Icons
 import { IoIosClose } from "react-icons/io";
@@ -19,7 +26,6 @@ const Cart = ({ user }) => {
     useCartContext();
 
   // Close cart when user click anywhere else
-
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (

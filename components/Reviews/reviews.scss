@@ -1,0 +1,22 @@
+@import "../../styles/variables.scss";
+
+.reviews-container {
+  position: absolute;
+  top: 60%;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  box-shadow: $shadowLight;
+  border-radius: 0 12px 12px 0;
+  padding: 0.5rem;
+  &__star {
+    // font-size: 1.1rem;
+    margin-top: 3px;
+  }
+  &__qty {
+    color: $productCardTextColor;
+    margin-left: 0.25rem;
+    font-weight: 600;
+  }
+}

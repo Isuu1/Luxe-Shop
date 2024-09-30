@@ -1,8 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { useStateContext } from "@/context/StateContext";
 import { usePathname, useRouter } from "next/navigation";
+
+//Context
+import { useStateContext } from "@/context/StateContext";
+
+//Styles
+import "./loginPrompt.scss";
+
+//Animations
+import { motion } from "framer-motion";
 
 const LoginPrompt = () => {
   const [sliderWidth, setSliderWidth] = useState(100);
@@ -13,8 +20,6 @@ const LoginPrompt = () => {
   const { loginPromptOpen, setLoginPropmptOpen } = useStateContext();
 
   const pathname = usePathname();
-
-  const router = useRouter();
 
   const loginPromptref = useRef(null);
 
@@ -42,9 +47,6 @@ const LoginPrompt = () => {
       const intervalId = setInterval(() => {
         setSliderWidth((prevCount) => prevCount - 1);
       }, intervalTime);
-      // setTimeout(() => {
-      //   setLoginPropmptOpen(false);
-      // }, 3000);
       // Cleanup interval on component unmount
       return () => clearInterval(intervalId);
     }

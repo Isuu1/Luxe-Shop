@@ -1,0 +1,22 @@
+@import "../../styles/variables.scss";
+
+.products-page-container {
+  background: $homeBg;
+  margin-top: 1rem;
+  &__inner-wrapper {
+    position: relative;
+  }
+  &__products {
+    min-height: 100%;
+  }
+}
+
+@media screen and (min-width: "768px") {
+  .products-page-container {
+    &__inner-wrapper {
+      display: grid;
+      grid-template-columns: auto 3fr;
+      gap: 1rem;
+    }
+  }
+}

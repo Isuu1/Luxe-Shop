@@ -13,6 +13,8 @@ import { useStateContext } from "@/context/StateContext";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
+import "./wishlistButton.scss";
+
 const WishlistButton = ({
   product,
   itemWishlisted,

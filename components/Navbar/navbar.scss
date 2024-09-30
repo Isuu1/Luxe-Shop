@@ -1,0 +1,117 @@
+@import "../../styles/variables.scss";
+
+.navbar-top {
+  z-index: 98;
+  background: transparent;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  gap: 1rem;
+  padding: 0.5rem;
+  &__left {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    transition: all 0.3s;
+    &__logo {
+      font-size: 2.2rem;
+      color: #5329a3;
+    }
+    &__menu {
+      display: none;
+      gap: 0.4rem;
+      list-style: none;
+      font-size: 1.1rem;
+      padding: 11px;
+      &__item {
+        transition: all 0.2s;
+        padding: 0.2rem 0.4rem;
+
+        display: flex;
+        align-items: center;
+        gap: 0.1rem;
+        border-radius: 11px;
+        & svg {
+          font-size: 1.2rem;
+        }
+        &:hover {
+          color: #5329a3;
+        }
+      }
+    }
+  }
+  &__right {
+    position: relative;
+    flex: 1 1;
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    margin-left: auto;
+    transition: all 0.3s;
+    padding: 0.5rem;
+  }
+}
+.navbar-bottom {
+  padding: 0.3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: $navbarBottomBg;
+  position: fixed;
+  bottom: 1.1rem;
+  z-index: 97;
+  // width: 100%;
+  //new
+  width: 96%;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 25px;
+  background: #6b37d1;
+  &__icon {
+    padding: 0;
+    background: transparent;
+    & svg {
+      color: #fff !important;
+      font-size: 1.7rem;
+    }
+  }
+}
+
+.menu-item-active {
+  padding: 1rem;
+  // background: #9dd137;
+  background: #5329a3;
+}
+
+@media screen and (min-width: "768px") {
+  .navbar-top {
+    gap: 2rem;
+    &__left__menu {
+      display: flex;
+    }
+  }
+  .navbar-bottom {
+    display: none;
+  }
+}
+
+@media screen and (min-width: "1200px") {
+  .navbar-top {
+    gap: 4rem;
+    padding: 1rem 6rem !important;
+  }
+}
+
+@media screen and (min-width: "1500px") {
+  .navbar-top {
+    padding: 1rem 9rem !important;
+  }
+}
+
+@media screen and (min-width: "1600px") {
+  .navbar-top {
+    padding: 1rem 11rem !important;
+  }
+}
