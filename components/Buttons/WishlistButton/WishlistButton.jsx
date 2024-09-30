@@ -1,19 +1,17 @@
 "use client";
 import { addToWishList, removeFromWishlist } from "@/lib/utils";
-import { redirect, usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 //Icons
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 
-//Components
-import LoginPrompt from "@/components/LoginPrompt/LoginPrompt";
+//Context
 import { useStateContext } from "@/context/StateContext";
-import { AnimatePresence } from "framer-motion";
-import Link from "next/link";
 
-import "./wishlistButton.scss";
+//Styles
+import "./wishListButton.scss";
 
 const WishlistButton = ({
   product,
