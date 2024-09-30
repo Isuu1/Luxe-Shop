@@ -1,0 +1,12 @@
+.success-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, rgb(238, 244, 255) 0%, rgb(245, 247, 251) 28%);
+}
+.success-page__button {
+  background: #6b37d1;
+  color: #fff;
+}/*# sourceMappingURL=success.css.map */
