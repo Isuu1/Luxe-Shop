@@ -1,0 +1,52 @@
+.user-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #303030;
+}
+.user-page__header {
+  position: relative;
+  z-index: 88;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.user-page__header__image {
+  border-radius: 50%;
+  border: 3px solid #f5f5f5;
+}
+.user-page__header__name {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+.user-page__header__edit-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 1.2rem;
+  border-radius: 180px;
+  padding: 0.35rem 0.25rem 0.15rem 0.35rem;
+  background: #6b37d1;
+}
+.user-page__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  line-height: 2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+.user-page__menu__item {
+  padding: 0.3rem 0;
+}
+.user-page__menu__item a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  color: #6e6e6e;
+  font-size: 1.1rem;
+}/*# sourceMappingURL=user.css.map */

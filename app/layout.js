@@ -15,6 +15,15 @@ import { Providers } from "./providers";
 import Footer from "@/components/Footer/Footer";
 import { auth } from "@/auth";
 
+//Fonts
+import { Rubik } from "next/font/google";
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weights: ["300", "400", "500", "700", "900"],
+  styles: ["normal", "italic"],
+});
+
 export const metadata = {
   title: "Luxe Shop",
   description: "Welcome to Luxe Shop",
@@ -24,7 +33,7 @@ export default async function RootLayout({ children }) {
   const session = await auth();
 
   return (
-    <html lang="en">
+    <html lang="en" className={rubik.className}>
       <body suppressHydrationWarning={true}>
         <Providers>
           <SpeedInsights />

@@ -29,6 +29,7 @@
 }
 .product-card__price {
   font-size: 1.2rem;
+  font-weight: 700;
   color: #747474;
   align-self: flex-start;
 }

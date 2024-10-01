@@ -31,11 +31,9 @@
 }
 .search-form__label__input-field::-moz-placeholder {
   color: #000000;
-  font-family: "Open Sans", sans-serif;
 }
 .search-form__label__input-field::placeholder {
   color: #000000;
-  font-family: "Open Sans", sans-serif;
 }
 
 .search-field {
