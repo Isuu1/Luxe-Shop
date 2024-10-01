@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 //Context
 import { StateContext } from "../context/StateContext";
@@ -26,6 +27,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body suppressHydrationWarning={true}>
         <Providers>
+          <SpeedInsights />
           <StateContext>
             <CartContext>
               <Toaster />

@@ -26,6 +26,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^2.4.6",
     "@types/ua-parser-js": "^0.7.39",
+    "@vercel/speed-insights": "^1.0.12",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "bcryptjs-react": "^2.4.6",
