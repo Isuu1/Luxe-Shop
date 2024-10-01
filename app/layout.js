@@ -30,7 +30,16 @@ export default async function RootLayout({ children }) {
           <SpeedInsights />
           <StateContext>
             <CartContext>
-              <Toaster />
+              <Toaster
+                toastOptions={{
+                  className: "",
+                  style: {
+                    padding: "16px",
+                    color: "#000",
+                    fontSize: "1rem",
+                  },
+                }}
+              />
               <Navbar user={session?.user} />
               {children}
               <Footer />
