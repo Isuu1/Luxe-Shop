@@ -76,7 +76,21 @@ export default async function Index() {
           </div>
         ))}
       </EmblaCarouselContainer>
+      <div className="home-container__banner-small">
+        <div>
+          <h2 className="home-container__banner-small__title">
+            20% off on your first order
+          </h2>
+          <p className="home-container__banner-small__desc">
+            End 30 Oct
+          </p>
+        </div>
 
+        <p className="home-container__banner-small__desc">Use code</p>
+        <p className="home-container__banner-small__code">
+          firstorder
+        </p>
+      </div>
       <div className="flex-center">
         <h2 className="home-container__headline">Products</h2>
         <Link
