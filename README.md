@@ -40,7 +40,7 @@ The goal of this project is to create a performant and scalable e-commerce appli
 ### Tech stack
 
 - Frontend: [NextJS, Embla Carousel]
-- Backend: [Sanity (CMS), NextJS, Stripe]
+- Backend: [Sanity (CMS), NextJS, Stripe, NextAuth, Prisma ORM]
 
 ## Features 
 
