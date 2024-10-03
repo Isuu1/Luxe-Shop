@@ -46,7 +46,7 @@ const Navbar = ({ user }) => {
   const pathname = usePathname();
 
   // Hide navbar bottom when user is on product page
-  const showNavbarBottom = !pathname.startsWith("/product");
+  const showNavbarBottom = !pathname.startsWith("/product/");
 
   // Handling navbar top animation
   const { scrollY } = useScroll();

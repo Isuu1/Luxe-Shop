@@ -30,6 +30,11 @@
   width: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  .navbar-top-right-transition {
+    width: 113px !important;
+  }
+}
 * {
   margin: 0;
   padding: 0;

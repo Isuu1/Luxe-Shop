@@ -28,3 +28,9 @@
 .navbar-full-width {
   width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .navbar-top-right-transition {
+    width: 113px !important;
+  }
+}
