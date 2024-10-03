@@ -71,6 +71,11 @@ const Navbar = ({ user }) => {
     }
   });
 
+  const handleMenu = (e) => {
+    e.stopPropagation();
+    setShowMenu(!showMenu);
+  };
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -130,7 +135,7 @@ const Navbar = ({ user }) => {
           </Link>
           <button
             className="navbar-bottom__icon"
-            onClick={() => setShowMenu(!showMenu)}
+            onClick={handleMenu}
           >
             <TiThMenu />
           </button>

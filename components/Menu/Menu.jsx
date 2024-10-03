@@ -1,85 +1,90 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 //Icons
-import { IoPersonCircleOutline } from "react-icons/io5";
-import { FaHome } from "react-icons/fa";
+import { HiHome } from "react-icons/hi";
 import { BiSolidCategory } from "react-icons/bi";
-import { IoPerson } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
+
 import { FaListCheck } from "react-icons/fa6";
-import { FaHeart } from "react-icons/fa";
+import { TiHeartFullOutline } from "react-icons/ti";
 
 //Styles
 import "./menu.scss";
 
+//Animations
 import { motion } from "framer-motion";
-import { cartSlide, menuSlide } from "../../styles/animations";
-import { useStateContext } from "../../context/StateContext";
-import Link from "next/link";
+import { menuSlide } from "../../styles/animations";
 
-import Image from "next/image";
+//Context
+import { useStateContext } from "../../context/StateContext";
+
+//Components
 import SignoutButton from "../Buttons/SignoutButton/SignoutButton";
 
 const Menu = ({ user }) => {
-  //Check is user using mobile device or desktop to define layout
-  const [windowWidth, setWindowWidth] = useState("");
-  useEffect(() => {
-    if (typeof window != "undefined") {
-      const windowWidth = window.innerWidth;
-      setWindowWidth(windowWidth);
-    }
-  }, [windowWidth]);
-  const mobile = windowWidth < 500;
+  const { setShowMenu } = useStateContext();
 
-  const { showMenu, setShowMenu } = useStateContext();
+  const menuRef = useRef(null);
 
   //Close menu if user click outside od menu container
-  window.addEventListener("mouseup", function (e) {
-    const container = document.getElementById("menu-container");
-    if (container) {
-      if (e.target != container && e.target.parentNode != container) {
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        //Don not close menu if user clicks on the icon that opens it
+        !e.target.closest(".navbar-bottom__icon")
+      ) {
+        console.log("Clicked outside, closing menu");
         setShowMenu(false);
       }
-    } else {
-      return;
-    }
-  });
-
-  console.log("User", user);
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef, setShowMenu]);
 
   return (
     <motion.div
-      className={`menu-container ${
-        mobile === false ? "desktop-menu-container" : ""
-      }`}
-      id="menu-container"
+      className="menu-container"
+      ref={menuRef}
       animate="visible"
       initial="hidden"
       exit="exit"
       variants={menuSlide}
     >
       <div className="menu-container__avatar">
-        <div
-          className={`menu-container__avatar__bg ${
-            mobile === false ? "desktop-menu-container__avatar" : ""
-          }`}
-        >
-          <Image
-            className="menu-container__avatar__bg__profile-image"
-            alt=""
-            src={user?.userImage}
-            fill
-          />
-
-          <h3 className="menu-container__avatar__bg__login-data">
-            {user?.name}
-          </h3>
+        <Image
+          className="menu-container__avatar__profile-image"
+          alt=""
+          src={user ? user.userImage : "/images/user2.png"}
+          fill
+        />
+        <div className="menu-container__avatar__credentials">
+          <p className="bold menu-container__avatar__credentials__user-account">
+            {user ? user.email : "Guest"}
+          </p>
+          {!user && (
+            <p className="menu-container__avatar__credentials__login">
+              <span className="bold">
+                <Link href="/user">Log in</Link>
+              </span>{" "}
+              or{" "}
+              <span className="bold">
+                <Link href="/auth/signup">Sign up</Link>
+              </span>
+            </p>
+          )}
         </div>
       </div>
 
       <ul className="menu-container__nav">
         <Link href="/">
           <li className="menu-container__nav__item">
-            <FaHome />
+            <HiHome />
             Home
           </li>
         </Link>
@@ -91,21 +96,19 @@ const Menu = ({ user }) => {
         </Link>
         <Link href="/user">
           <li className="menu-container__nav__item">
-            <IoPerson />
+            <FaUser />
             My account
           </li>
         </Link>
         <li className="menu-container__nav__item">
-          <FaHeart />
+          <TiHeartFullOutline />
           Wishlist
         </li>
         <li className="menu-container__nav__item">
           <FaListCheck />
           Orders
         </li>
-        <li>
-          <SignoutButton />
-        </li>
+        <li>{user && <SignoutButton />}</li>
       </ul>
     </motion.div>
   );
