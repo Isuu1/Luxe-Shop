@@ -198,3 +198,23 @@ export const loginModalBackgroundAnimation = {
     },
   },
 };
+
+export const mobileSearchBarAnimation = {
+  hidden: {
+    y: -100,
+  },
+  visible: {
+    y: 0,
+    transition: {
+      type: "tween",
+      duration: 0.1,
+    },
+  },
+  exit: {
+    y: -100,
+    transition: {
+      type: "tween",
+      duration: 0.1,
+    },
+  },
+};

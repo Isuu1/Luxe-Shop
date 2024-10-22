@@ -11,7 +11,10 @@ import "./mobileSearch.scss";
 
 //Animations
 import { AnimatePresence, motion } from "framer-motion";
-import { searchBlur } from "@/styles/animations";
+import {
+  mobileSearchBarAnimation,
+  searchBlur,
+} from "@/styles/animations";
 
 //Functions
 import getProducts from "@/lib/utils";
@@ -99,26 +102,6 @@ const MobileSearch = () => {
     };
   }, [mobileSearchBarOpen, setMobileSearchBarOpen]);
 
-  const mobileSearchVariants = {
-    hidden: {
-      y: -100,
-    },
-    visible: {
-      y: 0,
-      transition: {
-        type: "tween",
-        duration: 0.1,
-      },
-    },
-    exit: {
-      y: -100,
-      transition: {
-        type: "tween",
-        duration: 0.1,
-      },
-    },
-  };
-
   return (
     <>
       <AnimatePresence mode="wait">
@@ -135,7 +118,7 @@ const MobileSearch = () => {
       <motion.div
         id="mobile-search"
         className="mobile-search"
-        variants={mobileSearchVariants}
+        variants={mobileSearchBarAnimation}
         animate="visible"
         initial="hidden"
         exit="exit"
