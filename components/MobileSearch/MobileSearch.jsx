@@ -45,6 +45,7 @@ const MobileSearch = () => {
   //Close search bar
   const closeSearch = (e) => {
     e.preventDefault();
+    setMatchingProducts([]);
     setMobileSearchBarOpen(false);
   };
 
@@ -83,8 +84,8 @@ const MobileSearch = () => {
         mobileSearchBarOpen &&
         !e.target.closest(".mobile-search")
       ) {
-        setMobileSearchBarOpen(false);
         setMatchingProducts([]);
+        setMobileSearchBarOpen(false);
         input.value = null;
       }
     };
@@ -111,6 +112,10 @@ const MobileSearch = () => {
     },
     exit: {
       y: -100,
+      transition: {
+        type: "tween",
+        duration: 0.1,
+      },
     },
   };
 
@@ -144,6 +149,7 @@ const MobileSearch = () => {
               className="mobile-search__form__input"
               id="mobile-search__form__input"
               onChange={handleInputChange}
+              autoComplete="off"
             />
           </label>
           <button
