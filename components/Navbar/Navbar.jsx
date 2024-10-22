@@ -18,11 +18,13 @@ import "./navbar.scss";
 
 //Components
 import Menu from "../Menu/Menu";
-import Search from "../Search/Search";
+import DesktopSearch from "../DesktopSearch/DesktopSearch";
+import MobileSearch from "../MobileSearch/MobileSearch";
 import ShoppingCartButton from "@/components/Buttons/ShoppingCartButton/ShoppingCartButton";
 import OpenModalButton from "@/components/Buttons/OpenModalButton/OpenModalButton";
 import UserModal from "../UserModal/UserModal";
 import LoginPrompt from "../LoginPrompt/LoginPrompt";
+import SearchBarButton from "../Buttons/SearchBarButton/SearchBarButton";
 
 //Icons
 import { TiThMenu } from "react-icons/ti";
@@ -38,9 +40,30 @@ const Navbar = ({ user }) => {
     searchBarOpen,
     userModal,
     loginPromptOpen,
+    mobileSearchBarOpen,
+    desktopSearchBarOpen,
   } = useStateContext();
 
   const [navbarTopFullWidth, setNavbarTopFullWidth] = useState(true);
+
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    //Set initial window width
+    handleResize();
+
+    //Listen for window resize
+    window.addEventListener("resize", handleResize);
+
+    //Clean up effect
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // Get current path
   const pathname = usePathname();
@@ -48,9 +71,8 @@ const Navbar = ({ user }) => {
   // Hide navbar bottom when user is on product page
   const showNavbarBottom = !pathname.startsWith("/product/");
 
-  // Handling navbar top animation
+  // Handling navbar top animation on scroll
   const { scrollY } = useScroll();
-
   useMotionValueEvent(scrollY, "change", (latest) => {
     const navbarTopRight = document.querySelector(
       ".navbar-top__right"
@@ -71,6 +93,7 @@ const Navbar = ({ user }) => {
     }
   });
 
+  //Open menu on mobile view
   const handleMenu = (e) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
@@ -80,6 +103,9 @@ const Navbar = ({ user }) => {
     <>
       <AnimatePresence mode="wait">
         {loginPromptOpen && <LoginPrompt />}
+      </AnimatePresence>
+      <AnimatePresence mode="wait">
+        {mobileSearchBarOpen && <MobileSearch />}
       </AnimatePresence>
       <div className="navbar-top">
         <div className="navbar-top__left">
@@ -108,15 +134,17 @@ const Navbar = ({ user }) => {
         </div>
         <div
           className={`navbar-top__right ${
-            searchBarOpen ? "navbar-full-width" : ""
+            desktopSearchBarOpen && "navbar-top-right-full-width"
           }`}
         >
-          <Search navbarTopFullWidth={navbarTopFullWidth} />
+          {windowWidth > 768 && (
+            <DesktopSearch navbarTopFullWidth={navbarTopFullWidth} />
+          )}
           <AnimatePresence mode="wait">
             {userModal && <UserModal user={user} />}
           </AnimatePresence>
+          <SearchBarButton />
           <OpenModalButton user={user} />
-
           <ShoppingCartButton user={user} />
         </div>
       </div>

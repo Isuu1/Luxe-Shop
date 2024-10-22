@@ -1,0 +1,100 @@
+.mobile-search {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  z-index: 99;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: #5329a3;
+  padding: 0.5rem;
+  min-height: 70px;
+}
+.mobile-search__form {
+  width: 100%;
+  padding: 0 2rem;
+  position: relative;
+}
+.mobile-search__form__icon {
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  right: 1rem;
+  z-index: 4;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.mobile-search__form__input {
+  background: transparent;
+  border: 0;
+  padding: 0.3rem;
+  width: 100%;
+  color: #fff;
+  outline: none;
+  font-size: 1.1rem;
+}
+.mobile-search__form__input::-moz-placeholder {
+  color: #fff;
+}
+.mobile-search__form__input::placeholder {
+  color: #fff;
+}
+.mobile-search__button {
+  background: transparent;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.mobile-search__results {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 2rem;
+  list-style: none;
+}
+.mobile-search__results li:last-child::after {
+  background: transparent;
+}
+.mobile-search__results li::after {
+  display: block;
+  content: "";
+  margin: auto;
+  width: 90%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+.mobile-search__results__item {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.mobile-search__results__item__thumbnail {
+  position: relative !important;
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 20px;
+  background: #fff;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.mobile-search__results__item__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mobile-search__results__item__details__title {
+  color: #fff;
+}
+.mobile-search__results__item__details__price {
+  color: #fff;
+}
+.mobile-search__results__item__details__wishlist-button {
+  position: relative;
+  margin-left: auto;
+}
+.mobile-search__results__item__details__wishlist-button button {
+  position: relative !important;
+  color: #fff !important;
+}/*# sourceMappingURL=mobileSearch.css.map */

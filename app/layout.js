@@ -9,10 +9,10 @@ import { CartContext } from "../context/CartContext";
 //Components
 import Navbar from "../components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";
+import Footer from "@/components/Footer/Footer";
 
 //Lib
 import { Providers } from "./providers";
-import Footer from "@/components/Footer/Footer";
 import { auth } from "@/auth";
 
 //Fonts
@@ -20,8 +20,8 @@ import { Rubik } from "next/font/google";
 
 const rubik = Rubik({
   subsets: ["latin"],
-  weights: ["300", "400", "500", "700", "900"],
-  styles: ["normal", "italic"],
+  weight: ["300", "400", "500", "700", "900"],
+  style: ["normal", "italic"],
 });
 
 export const metadata = {

@@ -95,7 +95,7 @@ export const searchBlur = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.2,
     },
   },
   hidden: {
@@ -104,7 +104,7 @@ export const searchBlur = {
   exit: {
     opacity: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.2,
     },
   },
 };
@@ -113,7 +113,7 @@ export const searchListAppear = {
   visible: {
     minHeight: "100px",
     paddingTop: "60px",
-    transition: { duration: 0.3 },
+    transition: { duration: 0.2 },
   },
   hidden: {
     minHeight: 0,
@@ -123,7 +123,7 @@ export const searchListAppear = {
     height: "0",
     minHeight: "0",
     paddingTop: 0,
-    transition: { duration: 0.3 },
+    transition: { duration: 0.2 },
   },
 };
 

@@ -1,44 +1,60 @@
 "use client";
-import { AnimatePresence } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+//Icons
 import { RiSearchLine } from "react-icons/ri";
 
-import { motion } from "framer-motion";
+//Functions
 import { urlFor } from "../../lib/client";
-import Link from "next/link";
-import { useStateContext } from "../../context/StateContext";
-import Image from "next/image";
 import getProducts from "../../lib/utils";
+
+//Context
+import { useStateContext } from "../../context/StateContext";
+
+//Animations
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   searchBlur,
   searchListAppear,
 } from "../../styles/animations";
 
 //Styles
-import "./search.scss";
+import "./desktopSearch.scss";
 
 const Search = ({ navbarTopFullWidth }) => {
-  Search.displayName = "Search";
-
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    const data = getProducts();
-    data.then((products) => setProducts(products));
-  }, []);
-
-  const { searchBarOpen, setSearchBarOpen } = useStateContext();
+  const { desktopSearchBarOpen, setDesktopSearchBarOpen } =
+    useStateContext();
 
   const [matchingProducts, setMatchingProducts] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
 
+  //Fetch all products
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await getProducts();
+      setProducts(data);
+    };
+    fetchProducts();
+  }, []);
+
+  console.log("SearchQuery:", searchQuery);
+  console.log("Matching products: ", matchingProducts);
+
   //Close searchbar when user clicks anywhere on the page
   useEffect(() => {
     const input = document.getElementById("search-input");
     const handleWindowClick = (event) => {
-      if (searchBarOpen && !event.target.closest(".search-field")) {
-        setSearchBarOpen(false);
+      if (
+        desktopSearchBarOpen &&
+        !event.target.closest(".search-field")
+      ) {
+        setDesktopSearchBarOpen(false);
         setMatchingProducts([]);
         input.value = null;
       }
@@ -47,16 +63,16 @@ const Search = ({ navbarTopFullWidth }) => {
     return () => {
       window.removeEventListener("click", handleWindowClick);
     };
-  }, [searchBarOpen]);
+  }, [desktopSearchBarOpen, setDesktopSearchBarOpen]);
 
   //Handling matching products whenever input is changed
   const handleInputChange = (e) => {
     const inputValue = e.target.value.toLowerCase();
     setSearchQuery(inputValue);
     const productName = products.filter((product) => {
-      const words = product.name.toLowerCase().split(" ");
-      return words.some((word) => word.startsWith(inputValue));
+      return product.name.toLowerCase().includes(inputValue);
     });
+    console.log("Product name: ", productName);
     setMatchingProducts(productName);
     if (!inputValue) {
       setMatchingProducts([]);
@@ -68,10 +84,14 @@ const Search = ({ navbarTopFullWidth }) => {
     if (!searchTerm) {
       return null;
     }
-    const parts = name.split(new RegExp(`(${searchTerm})`, "gi"));
+    const regex = new RegExp(
+      `(${searchTerm.split(" ").join("|")})`,
+      "gi"
+    );
+    const parts = name.split(regex);
     console.log(parts);
     return parts.map((part, index) =>
-      part.toLowerCase() === searchTerm.toLowerCase() ? (
+      regex.test(part) ? (
         <span key={index} className="highlight">
           {part}
         </span>
@@ -81,14 +101,26 @@ const Search = ({ navbarTopFullWidth }) => {
     );
   };
 
+  //Open search bar
   const handleSearchBar = (event) => {
     event.stopPropagation(); // Stop event propagation to prevent immediate closing
-    setSearchBarOpen(true);
+    setDesktopSearchBarOpen(true);
   };
 
+  //Open search bar when user clicks on search icon and add class to display full width
+  useEffect(() => {
+    const formContainer = document.getElementById("search-form");
+    if (desktopSearchBarOpen) {
+      formContainer.classList.add("search-form-full-width");
+    } else {
+      formContainer.classList.remove("search-form-full-width");
+    }
+  }, [desktopSearchBarOpen]);
+
+  //Close search bar when user clicks on a list element and clear input field
   const handleListElementClick = () => {
     const input = document.getElementById("search-input");
-    setSearchBarOpen(false);
+    setDesktopSearchBarOpen(false);
     setMatchingProducts([]);
     input.value = null;
   };
@@ -101,11 +133,8 @@ const Search = ({ navbarTopFullWidth }) => {
   return (
     <>
       <AnimatePresence mode="wait">
-        {searchBarOpen && (
+        {desktopSearchBarOpen && (
           <motion.div
-            // className={`blur ${
-            //   mobile === false ? "desktop__blur" : ""
-            // }`}
             className="blur"
             initial="hidden"
             animate="visible"
@@ -115,13 +144,13 @@ const Search = ({ navbarTopFullWidth }) => {
         )}
       </AnimatePresence>
       <form
-        className={`search-form `}
+        className="search-form"
         id="search-form"
         onSubmit={handleFormSubmit}
         autoComplete="off"
       >
         <AnimatePresence mode="wait">
-          {searchBarOpen && (
+          {desktopSearchBarOpen && (
             <motion.ul
               key="search-bar"
               className="search-field"
@@ -130,10 +159,12 @@ const Search = ({ navbarTopFullWidth }) => {
               animate="visible"
               exit="exit"
             >
-              {matchingProducts.length < 1 && (
-                <p>Nothing here yet...</p>
+              {matchingProducts.length === 0 && searchQuery && (
+                <p>
+                  Not matching any products. Please try a different
+                  search.
+                </p>
               )}
-
               {matchingProducts.map((item) => (
                 <Link
                   href={`/product/${item.slug.current}`}
@@ -178,14 +209,18 @@ const Search = ({ navbarTopFullWidth }) => {
             style={{
               fontSize: "1.7rem",
               transition: "all 0.5s",
-              color: searchBarOpen ? "rgba(70, 7, 133, 1)" : "#333",
+              color: desktopSearchBarOpen
+                ? "rgba(70, 7, 133, 1)"
+                : "#333",
             }}
           />
           <input
             id="search-input"
             type="input"
             className={`search-form__label__input-field ${
-              !navbarTopFullWidth ? "search-input-transition" : ""
+              !navbarTopFullWidth && !desktopSearchBarOpen
+                ? "search-input-transition"
+                : ""
             }`}
             onClick={handleSearchBar}
             placeholder="Search"

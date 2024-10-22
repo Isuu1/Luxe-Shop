@@ -46,7 +46,8 @@
     position: relative;
     flex: 1 1;
     display: flex;
-    gap: 0.5rem;
+    justify-content: flex-end;
+    gap: 0.2rem;
     width: 100%;
     margin-left: auto;
     transition: all 0.3s;
@@ -87,7 +88,6 @@
 
 @media screen and (min-width: "768px") {
   .navbar-top {
-    gap: 2rem;
     &__left__menu {
       display: flex;
     }
@@ -99,19 +99,18 @@
 
 @media screen and (min-width: "1200px") {
   .navbar-top {
-    gap: 4rem;
-    padding: 1rem 6rem !important;
+    padding: 0.5rem 6rem !important;
   }
 }
 
 @media screen and (min-width: "1500px") {
   .navbar-top {
-    padding: 1rem 9rem !important;
+    padding: 0.5rem 9rem !important;
   }
 }
 
 @media screen and (min-width: "1600px") {
   .navbar-top {
-    padding: 1rem 11rem !important;
+    padding: 0.5rem 11rem !important;
   }
 }

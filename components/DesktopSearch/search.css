@@ -1,7 +1,7 @@
 .search-form {
   z-index: 99;
   position: relative;
-  width: auto;
+  max-width: 100%;
   transition: all 0.5s;
   margin: auto;
   flex-grow: 1;
@@ -72,6 +72,7 @@
 }
 
 .highlight {
-  background: #f27012;
+  font-size: 1.17rem;
+  background: #5329a3;
   color: #ffffff;
 }/*# sourceMappingURL=search.css.map */
