@@ -24,7 +24,7 @@
   position: absolute;
   transform: translate(0, -50%);
   top: 50%;
-  right: 3rem;
+  left: 0;
   z-index: 4;
   font-size: 1.2rem;
   color: #fff;
@@ -32,7 +32,7 @@
 .mobile-search__form__input {
   background: transparent;
   border: 0;
-  padding: 0.3rem;
+  padding: 0.3rem 0.3rem 0.3rem 1.4rem;
   width: 100%;
   color: #fff;
   outline: none;
@@ -49,10 +49,17 @@
   color: #fff;
   font-size: 1.1rem;
 }
+.mobile-search__results-count {
+  color: #fff;
+  margin-right: auto;
+  font-size: 1.1rem;
+  padding: 0.25rem;
+}
 .mobile-search__not-found {
   color: #fff;
   font-size: 1.1rem;
   line-height: 1.5rem;
+  padding: 0.5rem 1rem;
 }
 .mobile-search__results {
   display: flex;
@@ -98,11 +105,16 @@
 .mobile-search__results__item__details__price {
   color: #fff;
 }
-.mobile-search__results__item__details__wishlist-button {
+.mobile-search__results__item__details__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
   margin-left: auto;
 }
-.mobile-search__results__item__details__wishlist-button button {
+.mobile-search__results__item__details__buttons button {
   position: relative !important;
+}
+.mobile-search__results__item__details__buttons svg {
   color: #fff !important;
 }/*# sourceMappingURL=mobileSearch.css.map */

@@ -13,6 +13,7 @@ import "./mobileSearch.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   mobileSearchBarAnimation,
+  opacityAnimation,
   searchBlur,
 } from "@/styles/animations";
 
@@ -25,6 +26,7 @@ import WishlistButton from "../Buttons/WishlistButton/WishlistButton";
 
 //Icons
 import { RiSearchLine } from "react-icons/ri";
+import BuyNowButton from "../Buttons/BuyNowButton/BuyNowButton";
 
 const MobileSearch = () => {
   const { mobileSearchBarOpen, setMobileSearchBarOpen } =
@@ -32,7 +34,7 @@ const MobileSearch = () => {
 
   const [matchingProducts, setMatchingProducts] = useState([]);
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(null);
 
   const [products, setProducts] = useState([]);
 
@@ -49,7 +51,19 @@ const MobileSearch = () => {
   const closeSearch = (e) => {
     e.preventDefault();
     setMatchingProducts([]);
+    setSearchQuery(null);
     setMobileSearchBarOpen(false);
+  };
+
+  const clearInput = (e) => {
+    e.stopPropagation();
+    const input = document.getElementById(
+      "mobile-search__form__input"
+    );
+    input.value = null;
+    setSearchQuery(null);
+    setMatchingProducts([]);
+    input.focus();
   };
 
   //Focus on input when search bar is opened
@@ -73,6 +87,7 @@ const MobileSearch = () => {
     setMatchingProducts(productName);
     if (!inputValue) {
       setMatchingProducts([]);
+      setSearchQuery(null);
     }
   };
 
@@ -88,6 +103,7 @@ const MobileSearch = () => {
         !e.target.closest(".mobile-search")
       ) {
         setMatchingProducts([]);
+        setSearchQuery(null);
         setMobileSearchBarOpen(false);
         input.value = null;
       }
@@ -101,6 +117,10 @@ const MobileSearch = () => {
       window.removeEventListener("click", handleWindowClick);
     };
   }, [mobileSearchBarOpen, setMobileSearchBarOpen]);
+
+  console.log("searchQuery:", searchQuery);
+  console.log("matchingProducts:", matchingProducts);
+  console.log("mobileSearchBarOpen:", mobileSearchBarOpen);
 
   return (
     <>
@@ -135,30 +155,48 @@ const MobileSearch = () => {
               autoComplete="off"
             />
           </label>
-          <button
-            className="mobile-search__form__button"
-            onClick={closeSearch}
-          >
-            X
-          </button>
+          <div>
+            {searchQuery && (
+              <button onClick={clearInput}>Clear</button>
+            )}
+            <button
+              className="mobile-search__form__button"
+              onClick={closeSearch}
+            >
+              X
+            </button>
+          </div>
         </form>
-        {matchingProducts.length === 0 && searchQuery && (
-          <p className="mobile-search__not-found">
-            Could not find products matching your search criteria
+        {searchQuery && (
+          <p className="mobile-search__results-count">
+            {`${matchingProducts.length} results for `}
+            <span className="bold">{searchQuery}</span>
           </p>
+        )}
+
+        {matchingProducts.length === 0 && searchQuery && (
+          <motion.p
+            className="mobile-search__not-found"
+            variants={opacityAnimation}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            Could not find products matching your search criteria
+          </motion.p>
         )}
         {matchingProducts.length !== 0 && (
           <ul className="mobile-search__results">
             {matchingProducts.map((item) => (
               <motion.li
                 key={item._id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                variants={opacityAnimation}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
               >
                 <Link
                   href={`/product/${item.slug.current}`}
-                  // onClick={handleListElementClick}
                   className="mobile-search__results__item"
                 >
                   <Image
@@ -176,8 +214,8 @@ const MobileSearch = () => {
                       £{item.price}
                     </p>
                   </div>
-                  <div className="mobile-search__results__item__details__wishlist-button">
-                    <WishlistButton product={item} />
+                  <div className="mobile-search__results__item__details__buttons">
+                    <BuyNowButton product={item} />
                   </div>
                 </Link>
               </motion.li>

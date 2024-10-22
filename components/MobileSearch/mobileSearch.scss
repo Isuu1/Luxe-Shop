@@ -22,7 +22,7 @@
       position: absolute;
       transform: translate(0, -50%);
       top: 50%;
-      right: 3rem;
+      left: 0;
       z-index: 4;
       font-size: 1.2rem;
       color: #fff;
@@ -30,7 +30,7 @@
     &__input {
       background: transparent;
       border: 0;
-      padding: 0.3rem;
+      padding: 0.3rem 0.3rem 0.3rem 1.4rem;
       width: 100%;
       color: #fff;
       outline: none;
@@ -45,10 +45,17 @@
       font-size: 1.1rem;
     }
   }
+  &__results-count {
+    color: #fff;
+    margin-right: auto;
+    font-size: 1.1rem;
+    padding: 0.25rem;
+  }
   &__not-found {
     color: #fff;
     font-size: 1.1rem;
     line-height: 1.5rem;
+    padding: 0.5rem 1rem;
   }
 
   &__results {
@@ -95,11 +102,16 @@
         &__price {
           color: #fff;
         }
-        &__wishlist-button {
+        &__buttons {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           position: relative;
           margin-left: auto;
           & button {
             position: relative !important;
+          }
+          & svg {
             color: #fff !important;
           }
         }
