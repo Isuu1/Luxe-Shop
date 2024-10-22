@@ -95,7 +95,7 @@ export const searchBlur = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.2,
+      duration: 0.1,
     },
   },
   hidden: {
@@ -104,7 +104,7 @@ export const searchBlur = {
   exit: {
     opacity: 0,
     transition: {
-      duration: 0.2,
+      duration: 0.1,
     },
   },
 };
