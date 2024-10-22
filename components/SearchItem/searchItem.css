@@ -1,0 +1,39 @@
+.item {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.item__thumbnail {
+  position: relative !important;
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 20px;
+  background: #fff;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.item__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.item__details__title {
+  color: #fff;
+}
+.item__details__price {
+  color: #fff;
+}
+.item__details__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  margin-left: auto;
+}
+.item__details__buttons button {
+  position: relative !important;
+}
+.item__details__buttons svg {
+  color: #fff !important;
+}/*# sourceMappingURL=searchItem.css.map */

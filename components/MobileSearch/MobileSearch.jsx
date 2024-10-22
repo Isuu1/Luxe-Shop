@@ -22,7 +22,7 @@ import getProducts from "@/lib/utils";
 import { urlFor } from "@/lib/client";
 
 //Components
-import WishlistButton from "../Buttons/WishlistButton/WishlistButton";
+import SearchItem from "../SearchItem/SearchItem";
 
 //Icons
 import { RiSearchLine } from "react-icons/ri";
@@ -188,37 +188,7 @@ const MobileSearch = () => {
         {matchingProducts.length !== 0 && (
           <ul className="mobile-search__results">
             {matchingProducts.map((item) => (
-              <motion.li
-                key={item._id}
-                variants={opacityAnimation}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <Link
-                  href={`/product/${item.slug.current}`}
-                  className="mobile-search__results__item"
-                >
-                  <Image
-                    src={urlFor(item.image[0]).toString()}
-                    className="mobile-search__results__item__thumbnail"
-                    alt=""
-                    fill
-                  />
-                  <div className="mobile-search__results__item__details">
-                    <h3 className="mobile-search__results__item__details__title">
-                      {/* {highlightMatch(item.name, searchQuery)} */}
-                      {item.name}
-                    </h3>
-                    <p className="mobile-search__results__item__details__price">
-                      £{item.price}
-                    </p>
-                  </div>
-                  <div className="mobile-search__results__item__details__buttons">
-                    <BuyNowButton product={item} />
-                  </div>
-                </Link>
-              </motion.li>
+              <SearchItem key={item._id} item={item} />
             ))}
           </ul>
         )}

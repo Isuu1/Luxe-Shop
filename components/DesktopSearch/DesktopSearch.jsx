@@ -1,13 +1,10 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 //Icons
 import { RiSearchLine } from "react-icons/ri";
 
 //Functions
-import { urlFor } from "../../lib/client";
 import getProducts from "../../lib/utils";
 
 //Context
@@ -23,6 +20,9 @@ import {
 
 //Styles
 import "./desktopSearch.scss";
+
+//Components
+import SearchItem from "../SearchItem/SearchItem";
 
 const Search = ({ navbarTopFullWidth }) => {
   const [products, setProducts] = useState([]);
@@ -166,40 +166,7 @@ const Search = ({ navbarTopFullWidth }) => {
                 </p>
               )}
               {matchingProducts.map((item) => (
-                <Link
-                  href={`/product/${item.slug.current}`}
-                  onClick={handleListElementClick}
-                  key={item._id}
-                >
-                  <motion.li
-                    className="search-field__item"
-                    key={item._id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <Image
-                      src={urlFor(item.image[0]).toString()}
-                      className="search-field__item__thumbnail"
-                      alt=""
-                      fill
-                    />
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "0.5vh",
-                      }}
-                    >
-                      <h3 className="search-field__item__title">
-                        {highlightMatch(item.name, searchQuery)}
-                      </h3>
-                      <p className="search-field__item__price">
-                        £{item.price}
-                      </p>
-                    </div>
-                  </motion.li>
-                </Link>
+                <SearchItem item={item} key={item._id} />
               ))}
             </motion.ul>
           )}
