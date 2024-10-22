@@ -1,7 +1,4 @@
 .mobile-search {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr auto;
   gap: 0.5rem;
   align-items: center;
   z-index: 99;
@@ -11,16 +8,21 @@
   width: 100%;
   background: #5329a3;
   padding: 0.5rem;
-  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   &__form {
     width: 100%;
-    padding: 0 2rem;
+    min-height: 50px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     &__icon {
       position: absolute;
       transform: translate(0, -50%);
       top: 50%;
-      right: 1rem;
+      right: 3rem;
       z-index: 4;
       font-size: 1.2rem;
       color: #fff;
@@ -37,16 +39,23 @@
         color: #fff;
       }
     }
+    &__button {
+      background: transparent;
+      color: #fff;
+      font-size: 1.1rem;
+    }
   }
-  &__button {
-    background: transparent;
+  &__not-found {
     color: #fff;
     font-size: 1.1rem;
+    line-height: 1.5rem;
   }
+
   &__results {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
     list-style: none;
     & li {
       &:last-child {

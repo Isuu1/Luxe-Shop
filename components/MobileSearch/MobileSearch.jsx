@@ -42,9 +42,21 @@ const MobileSearch = () => {
     fetchProducts();
   }, []);
 
-  const closeSearch = () => {
+  //Close search bar
+  const closeSearch = (e) => {
+    e.preventDefault();
     setMobileSearchBarOpen(false);
   };
+
+  //Focus on input when search bar is opened
+  useEffect(() => {
+    const input = document.getElementById(
+      "mobile-search__form__input"
+    );
+    if (input) {
+      input.focus();
+    }
+  }, []);
 
   //Handling matching products whenever input is changed
   const handleInputChange = (e) => {
@@ -134,13 +146,18 @@ const MobileSearch = () => {
               onChange={handleInputChange}
             />
           </label>
+          <button
+            className="mobile-search__form__button"
+            onClick={closeSearch}
+          >
+            X
+          </button>
         </form>
-        <button
-          className="mobile-search__button"
-          onClick={closeSearch}
-        >
-          X
-        </button>
+        {matchingProducts.length === 0 && searchQuery && (
+          <p className="mobile-search__not-found">
+            Could not find products matching your search criteria
+          </p>
+        )}
         {matchingProducts.length !== 0 && (
           <ul className="mobile-search__results">
             {matchingProducts.map((item) => (
