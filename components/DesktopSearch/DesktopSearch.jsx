@@ -53,20 +53,32 @@ const Search = () => {
   useEffect(() => {
     const input = document.getElementById("search-input");
     //Don't close search bar if user is at the top of the page
-    if (scrollY.current < 65) {
-      return;
-    }
+
     const handleWindowClick = (event) => {
+      if (scrollY.current < 65) {
+        setMatchingProducts([]);
+        input.value = null;
+        setSearchQuery(null);
+      }
       if (
         desktopSearchBarOpen &&
-        !event.target.closest(".search-field")
+        !event.target.closest(".search-field") &&
+        scrollY.current > 65
       ) {
         setDesktopSearchBarOpen(false);
-        setMatchingProducts([]);
-        setSearchQuery(null);
-        input.value = null;
+        // setMatchingProducts([]);
+        // setSearchQuery(null);
+        // input.value = null;
       }
     };
+    if (!desktopSearchBarOpen) {
+      setMatchingProducts([]);
+      input.value = null;
+      setSearchQuery(null);
+      input.disabled = true;
+    } else {
+      input.disabled = false;
+    }
     window.addEventListener("click", handleWindowClick);
     return () => {
       window.removeEventListener("click", handleWindowClick);
@@ -78,7 +90,16 @@ const Search = () => {
     const inputValue = e.target.value.toLowerCase();
     setSearchQuery(inputValue);
     const filteredProducts = products.filter((product) => {
-      return product.name.toLowerCase().includes(inputValue);
+      const productWords = product.name.toLowerCase().split(" ");
+      console.log("Product words: ", productWords);
+      const queryWords = inputValue.split(" ");
+
+      return queryWords.every((queryWord, index) => {
+        return (
+          productWords[index] &&
+          productWords[index].startsWith(queryWord)
+        );
+      });
     });
 
     console.log("Product name: ", filteredProducts);
@@ -146,7 +167,7 @@ const Search = () => {
           ></motion.div>
         )}
       </AnimatePresence> */}
-      <div className="desktop-search">
+      <div className="desktop-search" onClick={handleSearchBar}>
         <form
           className="desktop-search__form"
           id="search-form"
@@ -168,7 +189,6 @@ const Search = () => {
               className={`desktop-search__form__label__input-field ${
                 !desktopSearchBarOpen ? "search-input-transition" : ""
               }`}
-              onClick={handleSearchBar}
               placeholder="Search"
               onChange={handleInputChange}
             />
@@ -176,7 +196,7 @@ const Search = () => {
         </form>
         <AnimatePresence mode="wait">
           {matchingProducts.length === 0 && searchQuery && (
-            <p>
+            <p className="desktop-search__results">
               Not matching any products. Please try a different
               search.
             </p>
