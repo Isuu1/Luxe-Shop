@@ -144,8 +144,8 @@ const MobileSearch = () => {
         exit="exit"
       >
         <form className="mobile-search__form">
-          <RiSearchLine className="mobile-search__form__icon" />
           <label>
+            <RiSearchLine className="mobile-search__form__icon" />
             <input
               type="text"
               placeholder="Search..."

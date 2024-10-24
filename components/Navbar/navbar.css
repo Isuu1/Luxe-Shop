@@ -8,6 +8,7 @@
   width: 100%;
   gap: 1rem;
   padding: 0.5rem;
+  transition: background 0.15s ease-in-out;
 }
 .navbar-top__left {
   display: flex;

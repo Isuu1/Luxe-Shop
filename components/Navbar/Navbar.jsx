@@ -32,37 +32,24 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
 import { HiMiniHome } from "react-icons/hi2";
+import { checkWindowWidth } from "@/lib/utils";
 
 const Navbar = ({ user }) => {
   const {
     showMenu,
     setShowMenu,
-    searchBarOpen,
     userModal,
     loginPromptOpen,
     mobileSearchBarOpen,
     desktopSearchBarOpen,
+    setDesktopSearchBarOpen,
   } = useStateContext();
-
-  const [navbarTopFullWidth, setNavbarTopFullWidth] = useState(true);
 
   const [windowWidth, setWindowWidth] = useState(0);
 
+  //Check current window width
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    //Set initial window width
-    handleResize();
-
-    //Listen for window resize
-    window.addEventListener("resize", handleResize);
-
-    //Clean up effect
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    checkWindowWidth(setWindowWidth);
   }, []);
 
   // Get current path
@@ -78,18 +65,14 @@ const Navbar = ({ user }) => {
       ".navbar-top__right"
     );
     const navbarTopLeft = document.querySelector(".navbar-top__left");
-    if (searchBarOpen) {
-      return;
-    }
-    if (latest >= 100) {
+    if (latest >= 65) {
       navbarTopRight.classList.add("navbar-top-right-transition");
       navbarTopLeft.classList.add("navbar-top-left-transition");
-      setNavbarTopFullWidth(false);
+      setDesktopSearchBarOpen(false);
     } else {
       navbarTopRight.classList.remove("navbar-top-right-transition");
       navbarTopLeft.classList.remove("navbar-top-left-transition");
-
-      setNavbarTopFullWidth(true);
+      setDesktopSearchBarOpen(true);
     }
   });
 
@@ -98,6 +81,16 @@ const Navbar = ({ user }) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
   };
+
+  //If search bar is open, add class to display white background on whole navbar
+  useEffect(() => {
+    const navbarTop = document.querySelector(".navbar-top");
+    if (desktopSearchBarOpen) {
+      navbarTop.classList.add("navbar-top-transition");
+    } else {
+      navbarTop.classList.remove("navbar-top-transition");
+    }
+  }, [desktopSearchBarOpen]);
 
   return (
     <>
@@ -134,16 +127,16 @@ const Navbar = ({ user }) => {
         </div>
         <div
           className={`navbar-top__right ${
-            desktopSearchBarOpen && "navbar-top-right-full-width"
+            desktopSearchBarOpen
+              ? "navbar-top-right-full-width"
+              : "navbar-top-right-transition"
           }`}
         >
-          {windowWidth > 768 && (
-            <DesktopSearch navbarTopFullWidth={navbarTopFullWidth} />
-          )}
+          {windowWidth > 768 && <DesktopSearch />}
           <AnimatePresence mode="wait">
             {userModal && <UserModal user={user} />}
           </AnimatePresence>
-          <SearchBarButton />
+          {windowWidth < 768 && <SearchBarButton />}
           <OpenModalButton user={user} />
           <ShoppingCartButton user={user} />
         </div>

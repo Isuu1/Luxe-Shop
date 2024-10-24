@@ -11,14 +11,20 @@
           backdrop-filter: blur(6px);
 }
 
+.navbar-top-transition {
+  background: #ffffff !important;
+}
+
 .navbar-top-right-transition {
-  width: 161px !important;
+  width: 150px !important;
   background: #ffffff !important;
   border-radius: 20px 0 0 20px;
 }
 
 .navbar-top-right-full-width {
   width: 100% !important;
+  background: #ffffff !important;
+  border-radius: 20px 0 0 20px;
 }
 
 .navbar-top-left-transition {

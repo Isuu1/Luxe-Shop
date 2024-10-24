@@ -10,15 +10,22 @@
   backdrop-filter: blur(6px);
 }
 
+//Navbar scroll transitions on Desktop
+.navbar-top-transition {
+  background: #ffffff !important;
+}
+
 //Navbar scroll transitions
 .navbar-top-right-transition {
-  width: 161px !important;
+  width: 150px !important;
   background: #ffffff !important;
   border-radius: 20px 0 0 20px;
 }
 
 .navbar-top-right-full-width {
   width: 100% !important;
+  background: #ffffff !important;
+  border-radius: 20px 0 0 20px;
 }
 
 .navbar-top-left-transition {
@@ -26,7 +33,7 @@
   border-radius: 0 20px 20px 0;
 }
 
-//Search input active transition
+//Add padding to search input when inactive to move text outside of the view
 .search-input-transition {
   padding: 11px 0 11px 43px !important;
 }

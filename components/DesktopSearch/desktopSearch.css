@@ -1,4 +1,4 @@
-.search-form {
+.desktop-search {
   z-index: 99;
   position: relative;
   max-width: 100%;
@@ -6,21 +6,22 @@
   margin: auto;
   flex-grow: 1;
 }
-.search-form__label {
+.desktop-search__form__label {
   display: flex;
   align-items: center;
   position: relative;
 }
-.search-form__label svg {
+.desktop-search__form__label__icon {
+  font-size: 1.7rem;
   position: absolute;
   right: 8px;
   z-index: 4;
 }
-.search-form__label__input-field {
+.desktop-search__form__label__input-field {
   position: relative;
   z-index: 3;
   padding: 11px 0 11px 10px;
-  border-radius: 15px;
+  border-radius: 14px;
   border: 0;
   color: #333;
   font-size: 1.1rem;
@@ -29,46 +30,23 @@
   width: 100%;
   background: #f5f5f5;
 }
-.search-form__label__input-field::-moz-placeholder {
+.desktop-search__form__label__input-field::-moz-placeholder {
   color: #000000;
 }
-.search-form__label__input-field::placeholder {
+.desktop-search__form__label__input-field::placeholder {
   color: #000000;
 }
-
-.search-field {
+.desktop-search__results {
   z-index: 2;
   width: 100%;
-  background: #f5f7fb;
-  box-shadow: 9px 9px 43px -8px rgb(95, 95, 95);
+  background: #f5f5f5;
   margin: auto;
   position: absolute;
-  top: 0;
+  top: 30px;
   list-style: none;
-  border-radius: 14px;
+  border-radius: 0 0 20px 20px;
   overflow-y: hidden;
   padding: 1vh;
-}
-.search-field__item {
-  display: flex;
-  align-items: center;
-  gap: 1.5vh;
-  margin-bottom: 1vh;
-}
-.search-field__item__thumbnail {
-  position: relative !important;
-  width: 10vh !important;
-  height: 10vh !important;
-  -o-object-fit: contain;
-     object-fit: contain;
-  background: #ffffff;
-  border-radius: 15px;
-}
-.search-field__item__price {
-  padding: 0.6vh;
-  font-size: 1rem;
-  font-weight: bold;
-  color: rgb(70, 7, 133);
 }
 
 .highlight {

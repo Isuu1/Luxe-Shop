@@ -11,7 +11,7 @@ import getProducts from "../../lib/utils";
 import { useStateContext } from "../../context/StateContext";
 
 //Animations
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 import {
   searchBlur,
@@ -24,7 +24,7 @@ import "./desktopSearch.scss";
 //Components
 import SearchItem from "../SearchItem/SearchItem";
 
-const Search = ({ navbarTopFullWidth }) => {
+const Search = () => {
   const [products, setProducts] = useState([]);
 
   const { desktopSearchBarOpen, setDesktopSearchBarOpen } =
@@ -32,7 +32,10 @@ const Search = ({ navbarTopFullWidth }) => {
 
   const [matchingProducts, setMatchingProducts] = useState([]);
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(null);
+
+  //Get scroll position
+  const { scrollY } = useScroll();
 
   //Fetch all products
   useEffect(() => {
@@ -49,6 +52,10 @@ const Search = ({ navbarTopFullWidth }) => {
   //Close searchbar when user clicks anywhere on the page
   useEffect(() => {
     const input = document.getElementById("search-input");
+    //Don't close search bar if user is at the top of the page
+    if (scrollY.current < 65) {
+      return;
+    }
     const handleWindowClick = (event) => {
       if (
         desktopSearchBarOpen &&
@@ -56,6 +63,7 @@ const Search = ({ navbarTopFullWidth }) => {
       ) {
         setDesktopSearchBarOpen(false);
         setMatchingProducts([]);
+        setSearchQuery(null);
         input.value = null;
       }
     };
@@ -63,17 +71,18 @@ const Search = ({ navbarTopFullWidth }) => {
     return () => {
       window.removeEventListener("click", handleWindowClick);
     };
-  }, [desktopSearchBarOpen, setDesktopSearchBarOpen]);
+  }, [desktopSearchBarOpen, setDesktopSearchBarOpen, scrollY]);
 
   //Handling matching products whenever input is changed
   const handleInputChange = (e) => {
     const inputValue = e.target.value.toLowerCase();
     setSearchQuery(inputValue);
-    const productName = products.filter((product) => {
+    const filteredProducts = products.filter((product) => {
       return product.name.toLowerCase().includes(inputValue);
     });
-    console.log("Product name: ", productName);
-    setMatchingProducts(productName);
+
+    console.log("Product name: ", filteredProducts);
+    setMatchingProducts(filteredProducts);
     if (!inputValue) {
       setMatchingProducts([]);
     }
@@ -102,37 +111,31 @@ const Search = ({ navbarTopFullWidth }) => {
   };
 
   //Open search bar
-  const handleSearchBar = (event) => {
-    event.stopPropagation(); // Stop event propagation to prevent immediate closing
+  const handleSearchBar = (e) => {
+    e.stopPropagation(); // Stop event propagation to prevent immediate closing
     setDesktopSearchBarOpen(true);
   };
 
   //Open search bar when user clicks on search icon and add class to display full width
-  useEffect(() => {
-    const formContainer = document.getElementById("search-form");
-    if (desktopSearchBarOpen) {
-      formContainer.classList.add("search-form-full-width");
-    } else {
-      formContainer.classList.remove("search-form-full-width");
-    }
-  }, [desktopSearchBarOpen]);
-
-  //Close search bar when user clicks on a list element and clear input field
-  const handleListElementClick = () => {
-    const input = document.getElementById("search-input");
-    setDesktopSearchBarOpen(false);
-    setMatchingProducts([]);
-    input.value = null;
-  };
+  // useEffect(() => {
+  //   const formContainer = document.getElementById("search-form");
+  //   if (desktopSearchBarOpen) {
+  //     formContainer.classList.add("search-form-full-width");
+  //   } else {
+  //     formContainer.classList.remove("search-form-full-width");
+  //   }
+  // }, [desktopSearchBarOpen]);
 
   //Prevent form submitting
   const handleFormSubmit = (e) => {
     e.preventDefault();
   };
 
+  console.log("Desktop search bar open: ", desktopSearchBarOpen);
+
   return (
     <>
-      <AnimatePresence mode="wait">
+      {/* <AnimatePresence mode="wait">
         {desktopSearchBarOpen && (
           <motion.div
             className="blur"
@@ -142,59 +145,58 @@ const Search = ({ navbarTopFullWidth }) => {
             variants={searchBlur}
           ></motion.div>
         )}
-      </AnimatePresence>
-      <form
-        className="search-form"
-        id="search-form"
-        onSubmit={handleFormSubmit}
-        autoComplete="off"
-      >
+      </AnimatePresence> */}
+      <div className="desktop-search">
+        <form
+          className="desktop-search__form"
+          id="search-form"
+          onSubmit={handleFormSubmit}
+          autoComplete="off"
+        >
+          <label className="desktop-search__form__label">
+            <RiSearchLine
+              className="desktop-search__form__label__icon"
+              style={{
+                color: desktopSearchBarOpen
+                  ? "rgba(70, 7, 133, 1)"
+                  : "#333",
+              }}
+            />
+            <input
+              id="search-input"
+              type="input"
+              className={`desktop-search__form__label__input-field ${
+                !desktopSearchBarOpen ? "search-input-transition" : ""
+              }`}
+              onClick={handleSearchBar}
+              placeholder="Search"
+              onChange={handleInputChange}
+            />
+          </label>
+        </form>
         <AnimatePresence mode="wait">
-          {desktopSearchBarOpen && (
+          {matchingProducts.length === 0 && searchQuery && (
+            <p>
+              Not matching any products. Please try a different
+              search.
+            </p>
+          )}
+          {matchingProducts.length > 0 && (
             <motion.ul
               key="search-bar"
-              className="search-field"
+              className="desktop-search__results"
               variants={searchListAppear}
               initial="hidden"
               animate="visible"
               exit="exit"
             >
-              {matchingProducts.length === 0 && searchQuery && (
-                <p>
-                  Not matching any products. Please try a different
-                  search.
-                </p>
-              )}
               {matchingProducts.map((item) => (
                 <SearchItem item={item} key={item._id} />
               ))}
             </motion.ul>
           )}
         </AnimatePresence>
-        <label className="search-form__label">
-          <RiSearchLine
-            style={{
-              fontSize: "1.7rem",
-              transition: "all 0.5s",
-              color: desktopSearchBarOpen
-                ? "rgba(70, 7, 133, 1)"
-                : "#333",
-            }}
-          />
-          <input
-            id="search-input"
-            type="input"
-            className={`search-form__label__input-field ${
-              !navbarTopFullWidth && !desktopSearchBarOpen
-                ? "search-input-transition"
-                : ""
-            }`}
-            onClick={handleSearchBar}
-            placeholder="Search"
-            onChange={handleInputChange}
-          />
-        </label>
-      </form>
+      </div>
     </>
   );
 };

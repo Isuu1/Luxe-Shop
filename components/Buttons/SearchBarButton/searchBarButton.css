@@ -5,10 +5,4 @@
 .search-button svg {
   font-size: 1.6rem;
   color: #333 !important;
-}
-
-@media screen and (min-width: 768px) {
-  .search-button {
-    display: none;
-  }
 }/*# sourceMappingURL=searchBarButton.css.map */

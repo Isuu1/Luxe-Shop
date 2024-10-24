@@ -6,7 +6,7 @@ const Context = createContext();
 export const StateContext = ({ children }) => {
   // Searchbar is used in both Search component and Navbar
   const [desktopSearchBarOpen, setDesktopSearchBarOpen] =
-    useState(false);
+    useState(true);
 
   //Mobile Searchbar is used in SearchButton and MobileSearch component
   const [mobileSearchBarOpen, setMobileSearchBarOpen] =

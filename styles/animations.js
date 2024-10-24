@@ -111,18 +111,15 @@ export const searchBlur = {
 
 export const searchListAppear = {
   visible: {
-    minHeight: "100px",
-    paddingTop: "60px",
+    maxHeight: "1000px",
     transition: { duration: 0.2 },
   },
   hidden: {
-    minHeight: 0,
-    paddingTop: 0,
+    maxHeight: 0,
   },
   exit: {
-    height: "0",
-    minHeight: "0",
-    paddingTop: 0,
+    maxHeight: "0",
+    // minHeight: "0",
     transition: { duration: 0.2 },
   },
 };
