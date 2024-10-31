@@ -112,7 +112,7 @@ export const searchBlur = {
 export const searchListAppear = {
   visible: {
     maxHeight: "1000px",
-    transition: { duration: 0.2 },
+    transition: { duration: 0.4 },
   },
   hidden: {
     maxHeight: 0,
@@ -120,7 +120,7 @@ export const searchListAppear = {
   exit: {
     maxHeight: "0",
     // minHeight: "0",
-    transition: { duration: 0.2 },
+    transition: { duration: 0.4 },
   },
 };
 

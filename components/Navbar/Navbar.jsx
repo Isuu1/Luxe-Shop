@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -18,7 +18,6 @@ import "./navbar.scss";
 
 //Components
 import Menu from "../Menu/Menu";
-import DesktopSearch from "../DesktopSearch/DesktopSearch";
 import MobileSearch from "../MobileSearch/MobileSearch";
 import ShoppingCartButton from "@/components/Buttons/ShoppingCartButton/ShoppingCartButton";
 import OpenModalButton from "@/components/Buttons/OpenModalButton/OpenModalButton";
@@ -32,7 +31,6 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
 import { HiMiniHome } from "react-icons/hi2";
-import { checkWindowWidth } from "@/lib/utils";
 
 const Navbar = ({ user }) => {
   const {
@@ -41,16 +39,7 @@ const Navbar = ({ user }) => {
     userModal,
     loginPromptOpen,
     mobileSearchBarOpen,
-    desktopSearchBarOpen,
-    setDesktopSearchBarOpen,
   } = useStateContext();
-
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  //Check current window width
-  useEffect(() => {
-    checkWindowWidth(setWindowWidth);
-  }, []);
 
   // Get current path
   const pathname = usePathname();
@@ -68,11 +57,9 @@ const Navbar = ({ user }) => {
     if (latest >= 65) {
       navbarTopRight.classList.add("navbar-top-right-transition");
       navbarTopLeft.classList.add("navbar-top-left-transition");
-      setDesktopSearchBarOpen(false);
     } else {
       navbarTopRight.classList.remove("navbar-top-right-transition");
       navbarTopLeft.classList.remove("navbar-top-left-transition");
-      setDesktopSearchBarOpen(true);
     }
   });
 
@@ -81,16 +68,6 @@ const Navbar = ({ user }) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
   };
-
-  //If search bar is open, add class to display white background on whole navbar
-  useEffect(() => {
-    const navbarTop = document.querySelector(".navbar-top");
-    if (desktopSearchBarOpen) {
-      navbarTop.classList.add("navbar-top-transition");
-    } else {
-      navbarTop.classList.remove("navbar-top-transition");
-    }
-  }, [desktopSearchBarOpen]);
 
   return (
     <>
@@ -125,18 +102,11 @@ const Navbar = ({ user }) => {
             </Link>
           </nav>
         </div>
-        <div
-          className={`navbar-top__right ${
-            desktopSearchBarOpen
-              ? "navbar-top-right-full-width"
-              : "navbar-top-right-transition"
-          }`}
-        >
-          {windowWidth > 768 && <DesktopSearch />}
+        <div className="navbar-top__right">
           <AnimatePresence mode="wait">
             {userModal && <UserModal user={user} />}
           </AnimatePresence>
-          {windowWidth < 768 && <SearchBarButton />}
+          <SearchBarButton />
           <OpenModalButton user={user} />
           <ShoppingCartButton user={user} />
         </div>

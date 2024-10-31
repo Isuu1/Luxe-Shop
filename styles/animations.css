@@ -11,18 +11,7 @@
           backdrop-filter: blur(6px);
 }
 
-.navbar-top-transition {
-  background: #ffffff !important;
-}
-
 .navbar-top-right-transition {
-  width: 150px !important;
-  background: #ffffff !important;
-  border-radius: 20px 0 0 20px;
-}
-
-.navbar-top-right-full-width {
-  width: 100% !important;
   background: #ffffff !important;
   border-radius: 20px 0 0 20px;
 }
@@ -30,8 +19,4 @@
 .navbar-top-left-transition {
   background: #ffffff !important;
   border-radius: 0 20px 20px 0;
-}
-
-.search-input-transition {
-  padding: 11px 0 11px 43px !important;
 }/*# sourceMappingURL=animations.css.map */
