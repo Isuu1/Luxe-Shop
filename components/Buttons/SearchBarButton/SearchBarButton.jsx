@@ -11,10 +11,10 @@ import { IoSearch } from "react-icons/io5";
 import { useStateContext } from "@/context/StateContext";
 
 const SearchBarButton = () => {
-  const { setMobileSearchBarOpen } = useStateContext();
+  const { setSearchOpen } = useStateContext();
 
   const openSearchBar = () => {
-    setMobileSearchBarOpen(true);
+    setSearchOpen(true);
   };
 
   return (

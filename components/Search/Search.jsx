@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useStateContext } from "@/context/StateContext";
 
 //Styles
-import "./mobileSearch.scss";
+import "./search.scss";
 
 //Animations
 import { AnimatePresence, motion } from "framer-motion";
@@ -29,8 +29,7 @@ import { RiSearchLine } from "react-icons/ri";
 import BuyNowButton from "../Buttons/BuyNowButton/BuyNowButton";
 
 const MobileSearch = () => {
-  const { mobileSearchBarOpen, setMobileSearchBarOpen } =
-    useStateContext();
+  const { searchOpen, setSearchOpen } = useStateContext();
 
   const [matchingProducts, setMatchingProducts] = useState([]);
 
@@ -52,7 +51,7 @@ const MobileSearch = () => {
     e.preventDefault();
     setMatchingProducts([]);
     setSearchQuery(null);
-    setMobileSearchBarOpen(false);
+    setSearchOpen(false);
   };
 
   const clearInput = (e) => {
@@ -99,12 +98,12 @@ const MobileSearch = () => {
     const handleWindowClick = (e) => {
       if (
         //if mobile search bar is open and user clicks outside of mobile-search
-        mobileSearchBarOpen &&
+        searchOpen &&
         !e.target.closest(".mobile-search")
       ) {
         setMatchingProducts([]);
         setSearchQuery(null);
-        setMobileSearchBarOpen(false);
+        setSearchOpen(false);
         input.value = null;
       }
     };
@@ -116,16 +115,16 @@ const MobileSearch = () => {
       clearTimeout(timeoutId);
       window.removeEventListener("click", handleWindowClick);
     };
-  }, [mobileSearchBarOpen, setMobileSearchBarOpen]);
+  }, [searchOpen, setSearchOpen]);
 
   console.log("searchQuery:", searchQuery);
   console.log("matchingProducts:", matchingProducts);
-  console.log("mobileSearchBarOpen:", mobileSearchBarOpen);
+  console.log("mobileSearchBarOpen:", searchOpen);
 
   return (
     <>
       <AnimatePresence mode="wait">
-        {mobileSearchBarOpen && (
+        {searchOpen && (
           <motion.div
             className="blur"
             initial="hidden"

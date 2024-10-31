@@ -18,7 +18,7 @@ import "./navbar.scss";
 
 //Components
 import Menu from "../Menu/Menu";
-import MobileSearch from "../MobileSearch/MobileSearch";
+import Search from "../Search/Search";
 import ShoppingCartButton from "@/components/Buttons/ShoppingCartButton/ShoppingCartButton";
 import OpenModalButton from "@/components/Buttons/OpenModalButton/OpenModalButton";
 import UserModal from "../UserModal/UserModal";
@@ -38,7 +38,7 @@ const Navbar = ({ user }) => {
     setShowMenu,
     userModal,
     loginPromptOpen,
-    mobileSearchBarOpen,
+    searchOpen,
   } = useStateContext();
 
   // Get current path
@@ -75,7 +75,7 @@ const Navbar = ({ user }) => {
         {loginPromptOpen && <LoginPrompt />}
       </AnimatePresence>
       <AnimatePresence mode="wait">
-        {mobileSearchBarOpen && <MobileSearch />}
+        {searchOpen && <Search />}
       </AnimatePresence>
       <div className="navbar-top">
         <div className="navbar-top__left">
