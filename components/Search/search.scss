@@ -42,6 +42,13 @@
         color: #fff;
       }
     }
+    &__clear-button {
+      transition: background 0.2s;
+      &:hover {
+        background: #6b37d1;
+        color: #fff;
+      }
+    }
     &__button {
       background: transparent;
       color: #fff;

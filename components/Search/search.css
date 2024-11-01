@@ -47,6 +47,13 @@
 .mobile-search__form__input::placeholder {
   color: #fff;
 }
+.mobile-search__form__clear-button {
+  transition: background 0.2s;
+}
+.mobile-search__form__clear-button:hover {
+  background: #6b37d1;
+  color: #fff;
+}
 .mobile-search__form__button {
   background: transparent;
   color: #fff;

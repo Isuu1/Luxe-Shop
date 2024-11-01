@@ -116,10 +116,6 @@ const MobileSearch = () => {
     };
   }, [searchOpen, setSearchOpen]);
 
-  console.log("searchQuery:", searchQuery);
-  console.log("matchingProducts:", matchingProducts);
-  console.log("mobileSearchBarOpen:", searchOpen);
-
   return (
     <>
       <AnimatePresence mode="wait">
@@ -154,7 +150,12 @@ const MobileSearch = () => {
           </label>
           <div className="flex-center">
             {searchQuery && (
-              <button onClick={clearInput}>Clear</button>
+              <button
+                className="mobile-search__form__clear-button"
+                onClick={clearInput}
+              >
+                Clear
+              </button>
             )}
             <button
               className="mobile-search__form__button"
@@ -166,7 +167,11 @@ const MobileSearch = () => {
         </form>
         {searchQuery && (
           <p className="mobile-search__results-count">
-            {`${matchingProducts.length} results for `}
+            {`${matchingProducts.length} ${
+              matchingProducts.length === 1
+                ? "result for"
+                : "results for"
+            } `}
             <span className="bold">{searchQuery}</span>
           </p>
         )}
