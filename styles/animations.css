@@ -7,31 +7,16 @@
   left: 0;
   right: 0;
   background: rgba(100, 100, 100, 0.6705882353);
-  -webkit-backdrop-filter: blur(30px);
-          backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
 }
 
 .navbar-top-right-transition {
-  width: 169px !important;
-  background: #6b37d1 !important;
-  border-radius: 20px;
+  background: #ffffff !important;
+  border-radius: 20px 0 0 20px;
 }
 
 .navbar-top-left-transition {
   background: #ffffff !important;
   border-radius: 0 20px 20px 0;
-}
-
-.search-input-transition {
-  padding: 11px 0 11px 43px !important;
-}
-
-.navbar-full-width {
-  width: 100%;
-}
-
-@media screen and (max-width: 768px) {
-  .navbar-top-right-transition {
-    width: 113px !important;
-  }
 }/*# sourceMappingURL=animations.css.map */

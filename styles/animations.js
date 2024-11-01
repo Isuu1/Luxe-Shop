@@ -95,7 +95,7 @@ export const searchBlur = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.1,
     },
   },
   hidden: {
@@ -104,26 +104,23 @@ export const searchBlur = {
   exit: {
     opacity: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.1,
     },
   },
 };
 
 export const searchListAppear = {
   visible: {
-    minHeight: "100px",
-    paddingTop: "60px",
-    transition: { duration: 0.3 },
+    maxHeight: "1000px",
+    transition: { duration: 0.4 },
   },
   hidden: {
-    minHeight: 0,
-    paddingTop: 0,
+    maxHeight: 0,
   },
   exit: {
-    height: "0",
-    minHeight: "0",
-    paddingTop: 0,
-    transition: { duration: 0.3 },
+    maxHeight: "0",
+    // minHeight: "0",
+    transition: { duration: 0.4 },
   },
 };
 
@@ -195,6 +192,44 @@ export const loginModalBackgroundAnimation = {
     transition: {
       duration: 0.2,
       ease: "easeOut",
+    },
+  },
+};
+
+export const mobileSearchBarAnimation = {
+  hidden: {
+    y: -100,
+  },
+  visible: {
+    y: 0,
+    transition: {
+      type: "tween",
+      duration: 0.1,
+    },
+  },
+  exit: {
+    y: -100,
+    transition: {
+      type: "tween",
+      duration: 0.1,
+    },
+  },
+};
+
+export const opacityAnimation = {
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+  hidden: {
+    opacity: 0,
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.2,
     },
   },
 };

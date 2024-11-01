@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -23,6 +23,7 @@ import ShoppingCartButton from "@/components/Buttons/ShoppingCartButton/Shopping
 import OpenModalButton from "@/components/Buttons/OpenModalButton/OpenModalButton";
 import UserModal from "../UserModal/UserModal";
 import LoginPrompt from "../LoginPrompt/LoginPrompt";
+import SearchBarButton from "../Buttons/SearchBarButton/SearchBarButton";
 
 //Icons
 import { TiThMenu } from "react-icons/ti";
@@ -35,12 +36,10 @@ const Navbar = ({ user }) => {
   const {
     showMenu,
     setShowMenu,
-    searchBarOpen,
     userModal,
     loginPromptOpen,
+    searchOpen,
   } = useStateContext();
-
-  const [navbarTopFullWidth, setNavbarTopFullWidth] = useState(true);
 
   // Get current path
   const pathname = usePathname();
@@ -48,29 +47,23 @@ const Navbar = ({ user }) => {
   // Hide navbar bottom when user is on product page
   const showNavbarBottom = !pathname.startsWith("/product/");
 
-  // Handling navbar top animation
+  // Handling navbar top animation on scroll
   const { scrollY } = useScroll();
-
   useMotionValueEvent(scrollY, "change", (latest) => {
     const navbarTopRight = document.querySelector(
       ".navbar-top__right"
     );
     const navbarTopLeft = document.querySelector(".navbar-top__left");
-    if (searchBarOpen) {
-      return;
-    }
-    if (latest >= 100) {
+    if (latest >= 65) {
       navbarTopRight.classList.add("navbar-top-right-transition");
       navbarTopLeft.classList.add("navbar-top-left-transition");
-      setNavbarTopFullWidth(false);
     } else {
       navbarTopRight.classList.remove("navbar-top-right-transition");
       navbarTopLeft.classList.remove("navbar-top-left-transition");
-
-      setNavbarTopFullWidth(true);
     }
   });
 
+  //Open menu on mobile view
   const handleMenu = (e) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
@@ -80,6 +73,9 @@ const Navbar = ({ user }) => {
     <>
       <AnimatePresence mode="wait">
         {loginPromptOpen && <LoginPrompt />}
+      </AnimatePresence>
+      <AnimatePresence mode="wait">
+        {searchOpen && <Search />}
       </AnimatePresence>
       <div className="navbar-top">
         <div className="navbar-top__left">
@@ -106,17 +102,12 @@ const Navbar = ({ user }) => {
             </Link>
           </nav>
         </div>
-        <div
-          className={`navbar-top__right ${
-            searchBarOpen ? "navbar-full-width" : ""
-          }`}
-        >
-          <Search navbarTopFullWidth={navbarTopFullWidth} />
+        <div className="navbar-top__right">
           <AnimatePresence mode="wait">
             {userModal && <UserModal user={user} />}
           </AnimatePresence>
+          <SearchBarButton />
           <OpenModalButton user={user} />
-
           <ShoppingCartButton user={user} />
         </div>
       </div>

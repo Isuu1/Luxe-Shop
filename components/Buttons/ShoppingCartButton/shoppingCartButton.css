@@ -1,0 +1,19 @@
+.shopping-cart-icon {
+  position: relative;
+  background: transparent;
+  padding: 9px;
+}
+.shopping-cart-icon svg {
+  color: #333 !important;
+  z-index: 2;
+}
+.shopping-cart-icon__qty {
+  z-index: 3;
+  position: absolute;
+  bottom: -3px;
+  right: 0;
+  background: #6b37d1;
+  color: #fff;
+  border-radius: 180px;
+  padding: 2px 5px;
+}/*# sourceMappingURL=shoppingCartButton.css.map */

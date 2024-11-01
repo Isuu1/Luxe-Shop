@@ -7,30 +7,62 @@
   left: 0;
   right: 0;
   background: #646464ab;
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(6px);
 }
 
+//Navbar scroll transitions on Desktop
+// .navbar-top-transition {
+//   background: #ffffff !important;
+// }
+
+//Navbar scroll transitions
 .navbar-top-right-transition {
-  width: 169px !important;
-  background: #6b37d1 !important;
-  border-radius: 20px;
+  // width: 150px !important;
+  background: #ffffff !important;
+  border-radius: 20px 0 0 20px;
 }
+
+// .navbar-top-right-full-width {
+//   width: 100% !important;
+//   background: #ffffff !important;
+//   border-radius: 20px 0 0 20px;
+// }
 
 .navbar-top-left-transition {
   background: #ffffff !important;
   border-radius: 0 20px 20px 0;
 }
 
-.search-input-transition {
-  padding: 11px 0 11px 43px !important;
-}
+//Add padding to search input when inactive to move text outside of the view
+// .search-input-transition {
+//   padding: 11px 0 11px 43px !important;
+// }
 
-.navbar-full-width {
-  width: 100%;
-}
+// //Class added to search form when is active
+// .search-form-full-width {
+//   //Navbar position must not be relative
+//   position: fixed;
+//   left: calc(61px + 0.5rem);
+//   right: calc(61px + 0.5rem);
+//   top: 1.2rem;
+// }
 
-@media screen and (max-width: 768px) {
-  .navbar-top-right-transition {
-    width: 113px !important;
-  }
-}
+// @media screen and (min-width: 768px) {
+//   .search-form-full-width {
+//     left: calc(115px + 0.5rem);
+//     right: calc(115px + 0.5rem);
+//   }
+// }
+
+// @media screen and (min-width: 1200px) {
+//   .search-form-full-width {
+//     left: calc(117px + 6rem);
+//     right: calc(117px + 6rem);
+//   }
+// }
+
+// @media screen and (min-width: "1500px") {
+// }
+
+// @media screen and (min-width: "1600px") {
+// }

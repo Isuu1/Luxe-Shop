@@ -4,8 +4,8 @@ import React, { createContext, useContext, useState } from "react";
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  // Searchbar is used in both Search component and Navbar
-  const [searchBarOpen, setSearchBarOpen] = useState(false);
+  //Searchbar is used in SearchButton and Navbar component
+  const [searchOpen, setSearchOpen] = useState(false);
 
   // Category is used in CategorySelector and ProductsFeed
   const [category, setCategory] = useState("All");
@@ -38,8 +38,6 @@ export const StateContext = ({ children }) => {
       value={{
         showMenu,
         setShowMenu,
-        searchBarOpen,
-        setSearchBarOpen,
         category,
         setCategory,
         userModal,
@@ -54,6 +52,8 @@ export const StateContext = ({ children }) => {
         setCurrentMinPrice,
         selectedRating,
         setSelectedRating,
+        searchOpen,
+        setSearchOpen,
       }}
     >
       {children}

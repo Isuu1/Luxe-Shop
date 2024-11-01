@@ -1,0 +1,8 @@
+.search-button {
+  padding: 9px;
+  background: transparent;
+}
+.search-button svg {
+  font-size: 1.6rem;
+  color: #333 !important;
+}/*# sourceMappingURL=searchBarButton.css.map */
