@@ -1,7 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 
 //Context
 import { useStateContext } from "@/context/StateContext";
@@ -19,14 +17,12 @@ import {
 
 //Functions
 import getProducts from "@/lib/utils";
-import { urlFor } from "@/lib/client";
 
 //Components
 import SearchItem from "../SearchItem/SearchItem";
 
 //Icons
 import { RiSearchLine } from "react-icons/ri";
-import BuyNowButton from "../Buttons/BuyNowButton/BuyNowButton";
 
 const MobileSearch = () => {
   const { searchOpen, setSearchOpen } = useStateContext();
@@ -79,10 +75,13 @@ const MobileSearch = () => {
   const handleInputChange = (e) => {
     const inputValue = e.target.value.toLowerCase();
     setSearchQuery(inputValue);
+    //Check if any word in product name starts with the input value
     const productName = products.filter((product) => {
-      return product.name.toLowerCase().includes(inputValue);
+      return product.name
+        .toLowerCase()
+        .split(" ")
+        .some((word) => word.startsWith(inputValue));
     });
-    console.log("Product name: ", productName);
     setMatchingProducts(productName);
     if (!inputValue) {
       setMatchingProducts([]);
@@ -147,14 +146,13 @@ const MobileSearch = () => {
             <RiSearchLine className="mobile-search__form__icon" />
             <input
               type="text"
-              placeholder="Search..."
               className="mobile-search__form__input"
               id="mobile-search__form__input"
               onChange={handleInputChange}
               autoComplete="off"
             />
           </label>
-          <div>
+          <div className="flex-center">
             {searchQuery && (
               <button onClick={clearInput}>Clear</button>
             )}
