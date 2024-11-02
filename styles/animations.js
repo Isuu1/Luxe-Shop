@@ -1,3 +1,5 @@
+import { delay, stagger } from "framer-motion";
+
 export const cartSlide = {
   visible: {
     x: "0",
@@ -16,21 +18,46 @@ export const cartSlide = {
   },
 };
 
-export const menuSlide = {
+export const menuContainerVariants = {
   visible: {
-    x: "0",
+    opacity: 1,
     transition: {
-      duration: 0.2,
+      staggerChildren: 0.05,
+      delayChildren: 0.05,
     },
   },
   hidden: {
-    x: "100%",
-    transition: {
-      duration: 0.2,
-    },
+    opacity: 0,
   },
   exit: {
-    x: "100%",
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.05,
+      //Delay exit animation to let all children exit first
+      delay: 0.2,
+    },
+  },
+};
+
+export const menuItemVariants = {
+  hidden: {
+    opacity: 0,
+    x: 200,
+    scale: 0,
+    transition: { duration: 0.15, ease: "easeInOut" },
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.15, ease: "easeInOut" },
+  },
+  exit: {
+    opacity: 0,
+    x: 200,
+    scale: 0,
+    transition: { duration: 0.15, ease: "easeInOut" },
   },
 };
 

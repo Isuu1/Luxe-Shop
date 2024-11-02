@@ -6,22 +6,24 @@ import Image from "next/image";
 import { HiHome } from "react-icons/hi";
 import { BiSolidCategory } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
-
+import { BsFillPeopleFill } from "react-icons/bs";
 import { FaListCheck } from "react-icons/fa6";
 import { TiHeartFullOutline } from "react-icons/ti";
+import { MdMiscellaneousServices } from "react-icons/md";
 
 //Styles
 import "./menu.scss";
 
 //Animations
 import { motion } from "framer-motion";
-import { menuSlide } from "../../styles/animations";
+import { menuContainerVariants } from "../../styles/animations";
 
 //Context
 import { useStateContext } from "../../context/StateContext";
 
 //Components
 import SignoutButton from "../Buttons/SignoutButton/SignoutButton";
+import MenuItem from "../MenuItem/MenuItem";
 
 const Menu = ({ user }) => {
   const { setShowMenu } = useStateContext();
@@ -48,15 +50,55 @@ const Menu = ({ user }) => {
   }, [menuRef, setShowMenu]);
 
   return (
-    <motion.div
+    <motion.ul
       className="menu-container"
       ref={menuRef}
       animate="visible"
       initial="hidden"
       exit="exit"
-      variants={menuSlide}
+      variants={menuContainerVariants}
     >
-      <div className="menu-container__avatar">
+      <MenuItem key="home">
+        <HiHome />
+        Home
+      </MenuItem>
+      <MenuItem key="products">
+        <BiSolidCategory />
+        Products
+      </MenuItem>
+      {/* <MenuItem key="about">
+        <BsFillPeopleFill />
+        About us
+      </MenuItem>
+      <MenuItem key="about">
+        <MdMiscellaneousServices />
+        Help
+      </MenuItem> */}
+      <MenuItem key="account">
+        <FaUser />
+        My account
+      </MenuItem>
+      <MenuItem key="wishlist">
+        <TiHeartFullOutline />
+        Wishlist
+      </MenuItem>
+      <MenuItem key="orders">
+        <FaListCheck />
+        Orders
+      </MenuItem>
+      {user && (
+        <MenuItem key="signout">
+          <SignoutButton />
+        </MenuItem>
+      )}
+    </motion.ul>
+  );
+};
+
+export default Menu;
+
+{
+  /* <div className="menu-container__avatar">
         <Image
           className="menu-container__avatar__profile-image"
           alt=""
@@ -67,7 +109,7 @@ const Menu = ({ user }) => {
           <p className="bold menu-container__avatar__credentials__user-account">
             {user ? user.email : "Guest"}
           </p>
-          {!user && (
+           {!user && (
             <p className="menu-container__avatar__credentials__login">
               <span className="bold">
                 <Link href="/user">Log in</Link>
@@ -77,41 +119,7 @@ const Menu = ({ user }) => {
                 <Link href="/auth/signup">Sign up</Link>
               </span>
             </p>
-          )}
+          )} 
         </div>
-      </div>
-
-      <ul className="menu-container__nav">
-        <Link href="/">
-          <li className="menu-container__nav__item">
-            <HiHome />
-            Home
-          </li>
-        </Link>
-        <Link href="/products">
-          <li className="menu-container__nav__item">
-            <BiSolidCategory />
-            Products
-          </li>
-        </Link>
-        <Link href="/user">
-          <li className="menu-container__nav__item">
-            <FaUser />
-            My account
-          </li>
-        </Link>
-        <li className="menu-container__nav__item">
-          <TiHeartFullOutline />
-          Wishlist
-        </li>
-        <li className="menu-container__nav__item">
-          <FaListCheck />
-          Orders
-        </li>
-        <li>{user && <SignoutButton />}</li>
-      </ul>
-    </motion.div>
-  );
-};
-
-export default Menu;
+      </div> */
+}
