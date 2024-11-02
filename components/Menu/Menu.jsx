@@ -88,7 +88,7 @@ const Menu = ({ user }) => {
         Wishlist
       </MenuItem>
       <MenuItem key="orders">
-        <Link href="/users/orders"></Link>
+        <Link href="/user/orders"></Link>
         <FaListCheck />
         Orders
       </MenuItem>
