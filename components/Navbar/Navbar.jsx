@@ -11,6 +11,7 @@ import {
   AnimatePresence,
   useMotionValueEvent,
   useScroll,
+  motion,
 } from "framer-motion";
 
 //Styles
@@ -70,6 +71,21 @@ const Navbar = ({ user }) => {
     setShowMenu(!showMenu);
   };
 
+  const menuButton = {
+    open: {
+      rotate: 90,
+      transition: {
+        duration: 0.1,
+      },
+    },
+    close: {
+      rotate: 0,
+      transition: {
+        duration: 0.1,
+      },
+    },
+  };
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -125,12 +141,14 @@ const Navbar = ({ user }) => {
               <HiMiniHome style={{ fontSize: "2rem" }} />
             </button>
           </Link> */}
-          <button
+          <motion.button
             className="navbar-bottom__icon"
             onClick={handleMenu}
+            animate={showMenu ? "open" : "close"}
+            variants={menuButton}
           >
             {showMenu ? <IoClose /> : <TiThMenu />}
-          </button>
+          </motion.button>
 
           <AnimatePresence mode="wait">
             {showMenu && <Menu key="menu" user={user} />}
