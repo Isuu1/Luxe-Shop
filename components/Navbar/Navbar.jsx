@@ -31,6 +31,7 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
 import { HiMiniHome } from "react-icons/hi2";
+import { IoClose } from "react-icons/io5";
 
 const Navbar = ({ user }) => {
   const {
@@ -113,7 +114,7 @@ const Navbar = ({ user }) => {
       </div>
       {showNavbarBottom && (
         <div className="navbar-bottom">
-          <Link href="/user">
+          {/* <Link href="/user">
             <button className="navbar-bottom__icon">
               <FaUser />
             </button>
@@ -123,16 +124,16 @@ const Navbar = ({ user }) => {
             <button className="navbar-bottom__icon menu-item-active">
               <HiMiniHome style={{ fontSize: "2rem" }} />
             </button>
-          </Link>
+          </Link> */}
           <button
             className="navbar-bottom__icon"
             onClick={handleMenu}
           >
-            <TiThMenu />
+            {showMenu ? <IoClose /> : <TiThMenu />}
           </button>
 
           <AnimatePresence mode="wait">
-            {showMenu && <Menu key={"menu"} user={user} />}
+            {showMenu && <Menu key="menu" user={user} />}
           </AnimatePresence>
         </div>
       )}

@@ -52,7 +52,7 @@
 }
 
 .navbar-bottom {
-  padding: 0.3rem;
+  padding: 0.4rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -60,19 +60,18 @@
   position: fixed;
   bottom: 1.1rem;
   z-index: 97;
-  width: 96%;
-  left: 50%;
-  transform: translate(-50%);
-  border-radius: 25px;
-  background: #6b37d1;
+  width: auto;
+  right: 0.4rem;
+  border-radius: 14px;
+  background: #5329a3;
 }
 .navbar-bottom__icon {
-  padding: 0;
+  padding: 0.1rem 0 0 0;
   background: transparent;
 }
 .navbar-bottom__icon svg {
   color: #fff !important;
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 
 .menu-item-active {
