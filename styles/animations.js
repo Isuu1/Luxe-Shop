@@ -61,6 +61,21 @@ export const menuItemVariants = {
   },
 };
 
+export const menuButtonVariants = {
+  open: {
+    rotate: 90,
+    transition: {
+      duration: 0.1,
+    },
+  },
+  close: {
+    rotate: 0,
+    transition: {
+      duration: 0.1,
+    },
+  },
+};
+
 export const cartProductAnimation = {
   visible: {
     scale: 1,

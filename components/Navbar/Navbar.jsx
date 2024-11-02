@@ -13,6 +13,7 @@ import {
   useScroll,
   motion,
 } from "framer-motion";
+import { menuButtonVariants } from "../../styles/animations";
 
 //Styles
 import "./navbar.scss";
@@ -71,21 +72,6 @@ const Navbar = ({ user }) => {
     setShowMenu(!showMenu);
   };
 
-  const menuButton = {
-    open: {
-      rotate: 90,
-      transition: {
-        duration: 0.1,
-      },
-    },
-    close: {
-      rotate: 0,
-      transition: {
-        duration: 0.1,
-      },
-    },
-  };
-
   return (
     <>
       <AnimatePresence mode="wait">
@@ -130,22 +116,11 @@ const Navbar = ({ user }) => {
       </div>
       {showNavbarBottom && (
         <div className="navbar-bottom">
-          {/* <Link href="/user">
-            <button className="navbar-bottom__icon">
-              <FaUser />
-            </button>
-          </Link>
-
-          <Link href="/">
-            <button className="navbar-bottom__icon menu-item-active">
-              <HiMiniHome style={{ fontSize: "2rem" }} />
-            </button>
-          </Link> */}
           <motion.button
             className="navbar-bottom__icon"
             onClick={handleMenu}
             animate={showMenu ? "open" : "close"}
-            variants={menuButton}
+            variants={menuButtonVariants}
           >
             {showMenu ? <IoClose /> : <TiThMenu />}
           </motion.button>
