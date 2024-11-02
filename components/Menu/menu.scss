@@ -12,43 +12,4 @@
   padding: 1rem 0.4rem 0.4rem 0.4rem;
   font-size: 1.2rem;
   border-radius: 0 0 0 12px;
-  // &__avatar {
-  //   width: 100%;
-  //   border-radius: 12px 0 0 0;
-  //   background: $menuAvatarBg;
-  //   width: 100%;
-  //   display: flex;
-  //   align-items: center;
-  //   gap: 0.2rem;
-  //   line-height: 1.5rem;
-  //   margin-right: 0.3rem;
-  //   &__credentials {
-  //     &__user-account {
-  //       color: #fff;
-  //       font-size: 1.1rem;
-  //     }
-  //     &__login,
-  //     a {
-  //       color: #fff;
-  //     }
-  //   }
-  //   &__profile-image {
-  //     position: relative !important;
-  //     height: 50px !important;
-  //     width: auto !important;
-  //     border-radius: 50%;
-  //     margin: 0.3rem;
-  //   }
-  // }
-
-  &__item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #ffffff;
-    font-size: 1.15rem;
-    background: #5329a3;
-    border-radius: 14px;
-    padding: 0.6rem;
-  }
 }

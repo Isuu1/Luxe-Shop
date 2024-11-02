@@ -59,10 +59,13 @@ const Menu = ({ user }) => {
       variants={menuContainerVariants}
     >
       <MenuItem key="home">
+        <Link href="/"></Link>
         <HiHome />
         Home
       </MenuItem>
+
       <MenuItem key="products">
+        <Link href="/products"></Link>
         <BiSolidCategory />
         Products
       </MenuItem>
@@ -75,14 +78,17 @@ const Menu = ({ user }) => {
         Help
       </MenuItem> */}
       <MenuItem key="account">
+        <Link href="/user"></Link>
         <FaUser />
         My account
       </MenuItem>
       <MenuItem key="wishlist">
+        <Link href="/user/wishlist"></Link>
         <TiHeartFullOutline />
         Wishlist
       </MenuItem>
       <MenuItem key="orders">
+        <Link href="/users/orders"></Link>
         <FaListCheck />
         Orders
       </MenuItem>
