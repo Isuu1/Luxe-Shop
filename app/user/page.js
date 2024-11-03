@@ -7,7 +7,6 @@ import SignoutButton from "../../components/Buttons/SignoutButton/SignoutButton"
 
 //Icons
 import { IoIosArrowForward } from "react-icons/io";
-import { MdEditDocument } from "react-icons/md";
 import { FaList } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
@@ -26,18 +25,13 @@ export default async function ProfileClient() {
       <div className="user-page-bg"></div>
       <BackButton>Profile</BackButton>
       <div className="user-page__header">
-        <div style={{ position: "relative" }}>
-          <Image
-            className="user-page__header__image"
-            src="/images/user-avatar.jpg"
-            alt=""
-            width={120}
-            height={120}
-          />
-          <button className="user-page__header__edit-button">
-            <MdEditDocument style={{ color: "white" }} />
-          </button>
-        </div>
+        <Image
+          className="user-page__header__image"
+          src="/images/user-avatar.jpg"
+          alt=""
+          width={120}
+          height={120}
+        />
 
         <p className="user-page__header__name">
           {session?.user.name}
@@ -46,9 +40,9 @@ export default async function ProfileClient() {
       </div>
       <nav className="user-page__menu">
         <div className="user-page__menu__item">
-          <Link href="/">
+          <Link href="/user/account">
             <FaUserAlt className="icon" />
-            <h4>Edit account</h4>
+            <h4>Account details</h4>
             <IoIosArrowForward
               className="icon"
               style={{ marginLeft: "auto" }}

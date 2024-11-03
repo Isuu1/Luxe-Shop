@@ -83,10 +83,10 @@ const UserModal = ({ user }) => {
       <nav className="user-modal__menu">
         {user ? (
           <>
-            <Link href="/">
+            <Link href="/user/account">
               <div className="user-modal__menu__item">
                 <FaUser className="user-modal__menu__item__icon" />
-                <p>Edit account</p>
+                <p>Account details</p>
                 <IoIosArrowForward className="user-modal__menu__item__icon" />
               </div>
             </Link>
