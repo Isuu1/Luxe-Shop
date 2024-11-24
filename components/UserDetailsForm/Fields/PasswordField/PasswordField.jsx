@@ -77,6 +77,7 @@ const NameField = ({ id, label, field, session }) => {
               id={id}
               key={id}
               name={id}
+              required
             />
             <label
               className="user-details-form-item__edit-password__label"
@@ -87,6 +88,7 @@ const NameField = ({ id, label, field, session }) => {
             <input
               className="user-details-form-item__input"
               name="confirmPassword"
+              required
             />
           </div>
         )}
@@ -97,6 +99,9 @@ const NameField = ({ id, label, field, session }) => {
           {isEditing[id] === true ? <SaveButton /> : <EditButton id={id} />}
         </div>
       </form>
+      {state.errors.passwordsMatching && (
+        <p>{state.errors.passwordsMatching}</p>
+      )}
       {state.errors.password &&
         state.errors.password.map((err) => <p key={err.password}>{err}</p>)}
     </>

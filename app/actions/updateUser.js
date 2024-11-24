@@ -18,6 +18,7 @@ export async function updateUser(prev, formData) {
     email: z.string().email(),
     confirmEmail: z.string().email(),
     password: z.string(),
+    confirmPassword: z.string(),
   });
   try {
     // Fetch the original user data
@@ -41,6 +42,7 @@ export async function updateUser(prev, formData) {
     const email = formData.get("email") || user.email;
     const confirmEmail = formData.get("confirmEmail") || user.email;
     const password = formData.get("password") || user.password;
+    const confirmPassword = formData.get("confirmPassword") || user.password;
 
     if (email !== confirmEmail) {
       return {
@@ -51,12 +53,22 @@ export async function updateUser(prev, formData) {
       };
     }
 
+    if (password !== confirmPassword) {
+      return {
+        success: false,
+        errors: {
+          passwordsMatching: "Passwords do not match",
+        },
+      };
+    }
+
     // Validate the form data
     const validateData = schema.safeParse({
       name,
       email,
       confirmEmail,
       password,
+      confirmPassword,
     });
 
     console.log("Validation data: ", validateData);
