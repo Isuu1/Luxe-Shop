@@ -62,12 +62,9 @@ const NameField = ({ id, label, field, session }) => {
           </p>
         ) : null}
         {isEditing.password && (
-          <div
-            key="edit-password"
-            className="user-details-form-item__edit-password"
-          >
+          <div key="edit-password" className="user-details-form-item__extended">
             <label
-              className="user-details-form-item__edit-password__label"
+              className="user-details-form-item__extended__label"
               htmlFor="password"
             >
               New password
@@ -81,8 +78,8 @@ const NameField = ({ id, label, field, session }) => {
               required
             />
             <label
-              className="user-details-form-item__edit-password__label"
-              htmlFor="confirm"
+              className="user-details-form-item__extended__label"
+              htmlFor="confirmPassword"
             >
               Confirm password
             </label>

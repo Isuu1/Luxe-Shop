@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 
 const ImageField = () => {
+  const inputRef = useRef(null);
+
   return (
     <div className="user-details-form__image-container">
       <Image
@@ -11,9 +15,13 @@ const ImageField = () => {
         width={120}
         height={120}
       />
-      <button className="user-details-form__image-container__edit-button">
+      <button
+        className="user-details-form__image-container__edit-button"
+        onClick={() => inputRef.current.click()}
+      >
         Edit
       </button>
+      <input type="file" hidden ref={inputRef} />
     </div>
   );
 };

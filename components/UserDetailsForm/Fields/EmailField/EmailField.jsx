@@ -62,12 +62,9 @@ const NameField = ({ id, label, field, session }) => {
           </p>
         ) : null}
         {isEditing.email && id === "email" && (
-          <div
-            key="edit-password"
-            className="user-details-form-item__edit-password"
-          >
+          <div key="edit-password" className="user-details-form-item__extended">
             <label
-              className="user-details-form-item__edit-password__label"
+              className="user-details-form-item__extended__label"
               htmlFor="password"
             >
               New email
@@ -81,7 +78,7 @@ const NameField = ({ id, label, field, session }) => {
               required
             />
             <label
-              className="user-details-form-item__edit-password__label"
+              className="user-details-form-item__extended__label"
               htmlFor="confirm"
             >
               Confirm email

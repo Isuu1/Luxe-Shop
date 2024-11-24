@@ -1,0 +1,39 @@
+.user-details-form-item {
+  align-items: center;
+  display: flex;
+  padding: 0.2rem;
+  gap: 0.3rem;
+  width: 100%;
+}
+.user-details-form-item__label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.user-details-form-item__extended {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.user-details-form-item__extended__label {
+  font-size: 1rem;
+}
+.user-details-form-item__input {
+  border: 0;
+  background: #f0f0f0;
+  padding: 0.5rem;
+  border-radius: 14px;
+  width: 100%;
+  margin-right: auto;
+}
+.user-details-form-item__input:focus {
+  outline: none;
+  border: 0;
+}
+.user-details-form-item__field {
+  margin-right: auto;
+}
+.user-details-form-item__cancel-button {
+  margin-left: auto;
+}/*# sourceMappingURL=userDetailsFormItem.css.map */
