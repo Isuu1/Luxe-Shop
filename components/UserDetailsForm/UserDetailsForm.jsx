@@ -56,7 +56,7 @@ const UserDetailsForm = () => {
             session={session}
           />
           <PasswordField
-            id="email"
+            id="password"
             field={session.user?.password}
             label="Password: "
             session={session}

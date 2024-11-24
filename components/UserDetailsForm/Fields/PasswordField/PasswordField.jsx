@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 //Context
 import { useFormContext } from "@/context/FormContext";
@@ -7,23 +7,48 @@ import EditButton from "../../Buttons/EditButton/EditButton";
 import SaveButton from "../../Buttons/SaveButton/SaveButton";
 import { useFormState } from "react-dom";
 import { updateUser } from "@/app/actions/updateUser";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const NameField = ({ id, label, field }) => {
-  const { isEditing, handleInputChange } = useFormContext();
+const NameField = ({ id, label, field, session }) => {
+  const { isEditing } = useFormContext();
 
   const [state, formAction] = useFormState(updateUser, {
     message: "Initial state",
     errors: "",
-    isEditing: false,
   });
+
+  const router = useRouter();
+  const { update } = useSession();
+
+  useEffect(() => {
+    async function handleSessionUpdate() {
+      if (state.success) {
+        console.log("State in form: ", state);
+        await update({
+          ...session,
+          user: {
+            ...session.user,
+            name: state.data.name,
+            email: state.data.email,
+          },
+        });
+        // Refresh the page to close editing mode
+        router.refresh();
+        //Display notification to user
+        toast.success("User updated successfully", {
+          style: { marginTop: "50px" },
+        });
+      }
+    }
+    handleSessionUpdate();
+  }, [session, state, update, router]);
 
   return (
     <>
       <form
         className={`user-details-form-item ${
-          isEditing.password || (isEditing.email && id !== "name")
-            ? "flex-center-column"
-            : ""
+          isEditing.password ? "flex-center-column" : ""
         }`}
         action={formAction}
       >
@@ -51,8 +76,6 @@ const NameField = ({ id, label, field }) => {
               type="password"
               id={id}
               key={id}
-              onChange={handleInputChange}
-              // value={inputValue}
               name={id}
             />
             <label
@@ -63,28 +86,19 @@ const NameField = ({ id, label, field }) => {
             </label>
             <input
               className="user-details-form-item__input"
-              onChange={handleInputChange}
+              name="confirmPassword"
             />
           </div>
         )}
-        <div
-          key="buttons"
-          className={
-            isEditing.password || isEditing.email
-              ? "flex-center-column"
-              : "flex-center"
-          }
-        >
+        <div key="buttons" className="flex-center">
           {isEditing[id] === true ? (
-            <CancelButton id={id} field={field} />
+            <CancelButton id={id} formAction={formAction} />
           ) : null}
           {isEditing[id] === true ? <SaveButton /> : <EditButton id={id} />}
         </div>
-        {state.errors.name &&
-          state.errors.name.map((err) => <p key={err.name}>{err}</p>)}
       </form>
-      {state.errors.name &&
-        state.errors.name.map((err) => <p key={err.name}>{err}</p>)}
+      {state.errors.password &&
+        state.errors.password.map((err) => <p key={err.password}>{err}</p>)}
     </>
   );
 };

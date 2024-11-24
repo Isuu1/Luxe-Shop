@@ -48,9 +48,7 @@ const NameField = ({ id, label, field, session }) => {
     <>
       <form
         className={`user-details-form-item ${
-          isEditing.password || (isEditing.email && id !== "name")
-            ? "flex-center-column"
-            : ""
+          isEditing.email ? "flex-center-column" : ""
         }`}
         action={formAction}
       >
@@ -97,14 +95,7 @@ const NameField = ({ id, label, field, session }) => {
             />
           </div>
         )}
-        <div
-          key="buttons"
-          className={
-            isEditing.password || isEditing.email
-              ? "flex-center-column"
-              : "flex-center"
-          }
-        >
+        <div key="buttons" className="flex-center">
           {isEditing[id] === true ? (
             <CancelButton id={id} formAction={formAction} />
           ) : null}
