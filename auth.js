@@ -55,16 +55,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: "/auth",
   },
   callbacks: {
-    // async redirect({ url, baseUrl }) {
-    //   // Allows relative callback URLs
-    //   if (url.startsWith("/")) return `${baseUrl}${url}`;
-    //   // Allows callback URLs on the same origin
-    //   else if (new URL(url).origin === baseUrl) return url;
-    //   return baseUrl;
-    // },
     session: ({ token, session }) => {
       session.user.id = token.id;
-      // console.log("Session Callback: ", token, session);
       return {
         ...session,
         user: {
@@ -74,7 +66,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         },
       };
     },
-    jwt: ({ token, user }) => {
+    jwt: ({ token, user, trigger, session }) => {
       if (user) {
         const u = user;
         return {
@@ -83,7 +75,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           userImage: u.userImage,
         };
       }
-      // console.log("JWT Callback: ", token, "User: ", user);
+      //When session update is triggered in action refresh session
+      if (trigger === "update") {
+        return { ...token, ...session.user };
+      }
       return token;
     },
   },

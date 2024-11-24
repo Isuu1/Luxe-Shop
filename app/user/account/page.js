@@ -1,5 +1,6 @@
 //Authentication
 import { auth } from "@/auth";
+import { FormContext } from "@/context/FormContext";
 
 //Components
 import UserDetailsForm from "@/components/UserDetailsForm/UserDetailsForm";
@@ -12,8 +13,10 @@ export default async function Page() {
 
   return (
     <div className="page">
-      <BackButton>Account details</BackButton>
-      <UserDetailsForm session={session} />
+      <FormContext>
+        <BackButton>Account details</BackButton>
+        <UserDetailsForm session={session} />
+      </FormContext>
     </div>
   );
 }

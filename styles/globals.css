@@ -149,6 +149,7 @@ li {
   display: inline-block;
   width: 60px;
   aspect-ratio: 1/1;
+  margin: auto;
 }
 .loading-page__spin::after {
   content: "";
