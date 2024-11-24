@@ -11,17 +11,8 @@ export const FormContext = ({ children }) => {
     password: false,
   });
 
-  const [inputValue, setInputValue] = useState({
-    name: "",
-    email: "",
-    confirmEmail: "",
-    password: "",
-  });
-
   return (
-    <Context.Provider
-      value={{ isEditing, setIsEditing, inputValue, setInputValue }}
-    >
+    <Context.Provider value={{ isEditing, setIsEditing }}>
       {children}
     </Context.Provider>
   );

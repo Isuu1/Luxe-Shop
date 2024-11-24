@@ -1,5 +1,6 @@
 "use server";
 import { auth } from "@/auth";
+import { revalidatePath } from "next/cache";
 import z from "zod";
 
 export async function updateUser(prev, formData) {
@@ -26,8 +27,14 @@ export async function updateUser(prev, formData) {
       },
     });
 
-    console.log("User found:", user);
-    console.log("Form data: ", formData);
+    // If the user cancels the update, return early to get rid of errors
+    if (formData.cancelled) {
+      return {
+        success: false,
+        errors: "",
+        message: "User update cancelled",
+      };
+    }
 
     // Get the form data
     const name = formData.get("name") || user.name;
@@ -60,7 +67,7 @@ export async function updateUser(prev, formData) {
       return {
         success: false,
         errors: validateData.error.flatten().fieldErrors,
-        resetKey: Date.now().toString(),
+        key: Date.now().toString(),
       };
     }
 
@@ -81,6 +88,7 @@ export async function updateUser(prev, formData) {
     return {
       message: "Profile updated successfully",
       success: true,
+      key: Date.now().toString(),
       data: updatedUser,
       errors: "",
     };

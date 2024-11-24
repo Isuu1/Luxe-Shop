@@ -1,27 +1,24 @@
 "use client";
 
 import React from "react";
+import toast from "react-hot-toast";
 
 //Context
 import { useFormContext } from "@/context/FormContext";
-import { useRouter } from "next/navigation";
 
-const CancelButton = ({ id, field, state, formRef }) => {
-  const { setIsEditing, setInputValue } = useFormContext();
-
-  const router = useRouter();
+const CancelButton = ({ id, formAction }) => {
+  const { setIsEditing } = useFormContext();
 
   const handleCancel = (e) => {
     e.preventDefault();
     setIsEditing((prevState) => ({ ...prevState, [id]: false }));
-    setInputValue((prevState) => ({ ...prevState, [id]: field }));
-
-    // router.refresh();
-    // if (!state.success) {
-    //   console.log(formRef);
-    //   console.log(Date.now().toString());
-    //   formRef.current.reset();
-    // }
+    //Change form state to cancelled
+    formAction({ cancelled: true });
+    //Display notification to user
+    toast("User update cancelled", {
+      icon: "🚫",
+      style: { marginTop: "50px" },
+    });
   };
 
   return (
