@@ -54,7 +54,7 @@ const NameField = ({ id, label, field, session }) => {
         action={formAction}
       >
         <label className="user-details-form-item__label" htmlFor="name">
-          {label}
+          {isEditing[id] ? "Edit password" : label}
         </label>
         {!isEditing[id] ? (
           <p className="user-details-form-item__field" key="field">
