@@ -77,9 +77,8 @@ const NameField = ({ id, label, field, session }) => {
             className="user-details-form-item__input"
             id={id}
             key={id}
-            // onChange={handleInputChange}
-            // value={inputValue}
             name={id}
+            required
           />
         )}
         <div
@@ -98,7 +97,6 @@ const NameField = ({ id, label, field, session }) => {
       </form>
       {state.errors.name &&
         state.errors.name.map((err) => <p key={err.name}>{err}</p>)}
-      {/* {errors.name && errors.name.map((err) => <p key={err.name}>{err}</p>)} */}
     </>
   );
 };

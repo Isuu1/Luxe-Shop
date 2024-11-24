@@ -46,7 +46,7 @@ export async function updateUser(prev, formData) {
       return {
         success: false,
         errors: {
-          confirmEmail: "Emails do not match",
+          emailsMatching: "Emails do not match",
         },
       };
     }

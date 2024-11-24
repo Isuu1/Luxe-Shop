@@ -11,12 +11,11 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const NameField = ({ id, label, field, session }) => {
-  const { isEditing, handleInputChange } = useFormContext();
+  const { isEditing } = useFormContext();
 
   const [state, formAction] = useFormState(updateUser, {
     message: "Initial state",
     errors: "",
-    isEditing: false,
   });
 
   const router = useRouter();
@@ -36,6 +35,10 @@ const NameField = ({ id, label, field, session }) => {
         });
         // Refresh the page to close editing mode
         router.refresh();
+        //Display notification to user
+        toast.success("User updated successfully", {
+          style: { marginTop: "50px" },
+        });
       }
     }
     handleSessionUpdate();
@@ -52,7 +55,7 @@ const NameField = ({ id, label, field, session }) => {
         action={formAction}
       >
         <label className="user-details-form-item__label" htmlFor="name">
-          {label}
+          {isEditing[id] ? "Edit email" : label}
         </label>
         {!isEditing[id] ? (
           <p className="user-details-form-item__field" key="field">
@@ -75,9 +78,8 @@ const NameField = ({ id, label, field, session }) => {
               type="email"
               id={id}
               key={id}
-              onChange={handleInputChange}
-              // value={inputValue}
               name={id}
+              required
             />
             <label
               className="user-details-form-item__edit-password__label"
@@ -90,9 +92,8 @@ const NameField = ({ id, label, field, session }) => {
               type="email"
               id="confirmEmail"
               key="confirmEmail"
-              onChange={handleInputChange}
-              // value={inputValue}
               name="confirmEmail"
+              required
             />
           </div>
         )}
@@ -105,15 +106,14 @@ const NameField = ({ id, label, field, session }) => {
           }
         >
           {isEditing[id] === true ? (
-            <CancelButton id={id} field={field} />
+            <CancelButton id={id} formAction={formAction} />
           ) : null}
           {isEditing[id] === true ? <SaveButton /> : <EditButton id={id} />}
         </div>
-        {state.errors.name &&
-          state.errors.name.map((err) => <p key={err.name}>{err}</p>)}
       </form>
-      {state.errors.name &&
-        state.errors.name.map((err) => <p key={err.name}>{err}</p>)}
+      {state.errors.emailsMatching && <p>{state.errors.emailsMatching}</p>}
+      {state.errors.email &&
+        state.errors.email.map((err) => <p key={err.email}>{err}</p>)}
     </>
   );
 };
