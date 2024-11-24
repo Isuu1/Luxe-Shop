@@ -9,6 +9,7 @@ import { useFormState } from "react-dom";
 import { updateUser } from "@/app/actions/updateUser";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const NameField = ({ id, label, field, session }) => {
   const { isEditing } = useFormContext();
@@ -36,7 +37,7 @@ const NameField = ({ id, label, field, session }) => {
         // Refresh the page to close editing mode
         router.refresh();
         //Display notification to user
-        toast.success("User updated successfully", {
+        toast.success("Email updated successfully", {
           style: { marginTop: "50px" },
         });
       }

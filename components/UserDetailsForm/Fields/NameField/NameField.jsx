@@ -46,7 +46,7 @@ const NameField = ({ id, label, field, session }) => {
         // Refresh the page to close editing mode
         router.refresh();
         //Display notification to user
-        toast.success("User updated successfully", {
+        toast.success("Name updated successfully", {
           style: { marginTop: "50px" },
         });
       }
