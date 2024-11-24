@@ -7,6 +7,7 @@ import React from "react";
 import NameField from "./Fields/NameField/NameField";
 import EmailField from "./Fields/EmailField/EmailField";
 import PasswordField from "./Fields/PasswordField/PasswordField";
+import ImageField from "./Fields/ImageField/ImageField";
 
 //Styles
 import "./userDetailsForm.scss";
@@ -29,18 +30,7 @@ const UserDetailsForm = () => {
 
   return (
     <div className="user-details-form">
-      <div className="user-details-form__image-container">
-        <Image
-          className="user-details-form__image-container__image"
-          src="/images/user-avatar.jpg"
-          alt=""
-          width={120}
-          height={120}
-        />
-        <button className="user-details-form__image-container__edit-button">
-          Edit
-        </button>
-      </div>
+      <ImageField id="image" />
       <div className="user-details-form__details">
         <>
           <NameField
