@@ -43,6 +43,8 @@ const NameField = ({ id, label, field, session }) => {
             email: state.data.email,
           },
         });
+        //Refresh the page to display updated data
+        router.refresh();
         //Set isEditing to false to close editing mode
         setIsEditing((prevState) => ({ ...prevState, [id]: false }));
         //Display notification to user

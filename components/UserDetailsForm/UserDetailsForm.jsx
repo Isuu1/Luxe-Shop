@@ -18,6 +18,8 @@ import { useSession } from "next-auth/react";
 const UserDetailsForm = ({ session }) => {
   const { status, data } = useSession();
 
+  // const session = data;
+
   if (status === "loading") {
     return (
       <div style={{ minHeight: "400px" }} className="flex-center ">
@@ -25,10 +27,6 @@ const UserDetailsForm = ({ session }) => {
       </div>
     );
   }
-
-  // const session = data;
-
-  console.log("Session in NameField: ", session);
 
   return (
     <div className="user-details-form">
