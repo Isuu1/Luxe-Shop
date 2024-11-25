@@ -1,4 +1,6 @@
-import React, { createRef, useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 //Context
 import { useFormContext } from "@/context/FormContext";
@@ -7,16 +9,16 @@ import { useFormContext } from "@/context/FormContext";
 import CancelButton from "../../Buttons/CancelButton/CancelButton";
 import EditButton from "../../Buttons/EditButton/EditButton";
 import SaveButton from "../../Buttons/SaveButton/SaveButton";
-import { useFormState } from "react-dom";
-import { updateUser } from "@/lib/actions/updateUser";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
-import { useActionState } from "react";
+//Form hooks
+import { useFormState } from "react-dom";
+
+//Authentication
+import { updateUser } from "@/lib/actions/updateUser";
+import { useSession } from "next-auth/react";
 
 //Styles
 import "../userDetailsFormItem.scss";
-import toast from "react-hot-toast";
 
 const NameField = ({ id, label, field, session }) => {
   const { isEditing, setIsEditing } = useFormContext();
@@ -25,8 +27,6 @@ const NameField = ({ id, label, field, session }) => {
     message: "Initial state",
     errors: "",
   });
-
-  console.log("State in name field: ", state);
 
   const router = useRouter();
   const { update } = useSession();
@@ -43,8 +43,7 @@ const NameField = ({ id, label, field, session }) => {
             email: state.data.email,
           },
         });
-        // Refresh the page to close editing mode
-        // router.refresh();
+        //Set isEditing to false to close editing mode
         setIsEditing((prevState) => ({ ...prevState, [id]: false }));
         //Display notification to user
         toast.success("Name updated successfully", {
@@ -53,7 +52,7 @@ const NameField = ({ id, label, field, session }) => {
       }
     }
     handleSessionUpdate();
-  }, [session, state, update, router]);
+  }, [session, state, update, router, id, setIsEditing]);
 
   return (
     <>

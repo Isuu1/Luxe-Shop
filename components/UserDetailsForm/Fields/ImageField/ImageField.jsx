@@ -18,6 +18,7 @@ const ImageField = () => {
       <button
         className="user-details-form__image-container__edit-button"
         onClick={() => inputRef.current.click()}
+        disabled
       >
         Edit
       </button>

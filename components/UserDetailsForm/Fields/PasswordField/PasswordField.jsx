@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 //Context
 import { useFormContext } from "@/context/FormContext";
+
+//Components
 import CancelButton from "../../Buttons/CancelButton/CancelButton";
 import EditButton from "../../Buttons/EditButton/EditButton";
 import SaveButton from "../../Buttons/SaveButton/SaveButton";
+
+//Form hooks
 import { useFormState } from "react-dom";
+
+//Authentication
 import { updateUser } from "@/lib/actions/updateUser";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
 const NameField = ({ id, label, field, session }) => {
   const { isEditing, setIsEditing } = useFormContext();
@@ -19,6 +25,7 @@ const NameField = ({ id, label, field, session }) => {
     errors: "",
   });
 
+  //Control password visibility
   const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
@@ -36,9 +43,8 @@ const NameField = ({ id, label, field, session }) => {
             email: state.data.email,
           },
         });
+        //Set isEditing to false to close editing mode
         setIsEditing((prevState) => ({ ...prevState, [id]: false }));
-        // Refresh the page to close editing mode
-        // router.refresh();
         //Display notification to user
         toast.success("Password updated successfully", {
           style: { marginTop: "50px" },
@@ -46,7 +52,7 @@ const NameField = ({ id, label, field, session }) => {
       }
     }
     handleSessionUpdate();
-  }, [session, state, update, router]);
+  }, [session, state, update, router, id, setIsEditing]);
 
   const handlePasswordReveal = (e) => {
     e.preventDefault();

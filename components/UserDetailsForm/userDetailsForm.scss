@@ -17,6 +17,9 @@
       right: 0;
       background: #5329a3;
       color: #fff;
+      &:disabled {
+        cursor: not-allowed;
+      }
     }
     &__image {
       border-radius: 50%;
