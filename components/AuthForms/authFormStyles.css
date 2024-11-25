@@ -85,7 +85,7 @@
 
 @media screen and (min-width: 768px) {
   .auth-form {
-    width: 768px;
+    max-width: 768px;
   }
   .auth-form__providers__github-button {
     width: 768px;
