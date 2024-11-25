@@ -6,7 +6,7 @@ import CancelButton from "../../Buttons/CancelButton/CancelButton";
 import EditButton from "../../Buttons/EditButton/EditButton";
 import SaveButton from "../../Buttons/SaveButton/SaveButton";
 import { useFormState } from "react-dom";
-import { updateUser } from "@/app/actions/updateUser";
+import { updateUser } from "@/lib/actions/updateUser";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
@@ -100,9 +100,15 @@ const NameField = ({ id, label, field, session }) => {
           {isEditing[id] === true ? <SaveButton /> : <EditButton id={id} />}
         </div>
       </form>
-      {state.errors.emailsMatching && <p>{state.errors.emailsMatching}</p>}
+      {state.errors.emailsMatching && (
+        <p className="error">{state.errors.emailsMatching}</p>
+      )}
       {state.errors.email &&
-        state.errors.email.map((err) => <p key={err.email}>{err}</p>)}
+        state.errors.email.map((err) => (
+          <p key={err.email} className="error">
+            {err}
+          </p>
+        ))}
     </>
   );
 };

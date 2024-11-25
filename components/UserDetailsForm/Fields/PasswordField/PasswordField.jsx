@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 //Context
 import { useFormContext } from "@/context/FormContext";
@@ -6,7 +6,7 @@ import CancelButton from "../../Buttons/CancelButton/CancelButton";
 import EditButton from "../../Buttons/EditButton/EditButton";
 import SaveButton from "../../Buttons/SaveButton/SaveButton";
 import { useFormState } from "react-dom";
-import { updateUser } from "@/app/actions/updateUser";
+import { updateUser } from "@/lib/actions/updateUser";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -18,6 +18,8 @@ const NameField = ({ id, label, field, session }) => {
     message: "Initial state",
     errors: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
   const { update } = useSession();
@@ -45,6 +47,11 @@ const NameField = ({ id, label, field, session }) => {
     handleSessionUpdate();
   }, [session, state, update, router]);
 
+  const handlePasswordReveal = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <form
@@ -69,14 +76,23 @@ const NameField = ({ id, label, field, session }) => {
             >
               New password
             </label>
-            <input
-              className="user-details-form-item__input"
-              type="password"
-              id={id}
-              key={id}
-              name={id}
-              required
-            />
+            <div style={{ position: "relative" }}>
+              <input
+                className="user-details-form-item__input"
+                type={showPassword ? "text" : "password"}
+                id={id}
+                key={id}
+                name={id}
+                required
+              />
+              <button
+                className="user-details-form-item__extended__reveal-password-button"
+                onClick={handlePasswordReveal}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+
             <label
               className="user-details-form-item__extended__label"
               htmlFor="confirmPassword"
@@ -86,7 +102,7 @@ const NameField = ({ id, label, field, session }) => {
             <input
               className="user-details-form-item__input"
               name="confirmPassword"
-              type="password"
+              type={showPassword ? "text" : "password"}
               required
             />
           </div>
@@ -99,10 +115,14 @@ const NameField = ({ id, label, field, session }) => {
         </div>
       </form>
       {state.errors.passwordsMatching && (
-        <p>{state.errors.passwordsMatching}</p>
+        <p className="error">{state.errors.passwordsMatching}</p>
       )}
       {state.errors.password &&
-        state.errors.password.map((err) => <p key={err.password}>{err}</p>)}
+        state.errors.password.map((err) => (
+          <p key={err.password} className="error">
+            {err}
+          </p>
+        ))}
     </>
   );
 };

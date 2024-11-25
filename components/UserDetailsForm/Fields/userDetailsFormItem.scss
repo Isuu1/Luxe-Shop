@@ -17,8 +17,13 @@
     &__label {
       font-size: 1rem;
     }
+    &__reveal-password-button {
+      background: #5329a3;
+      color: #fff;
+      position: absolute;
+      right: 0;
+    }
   }
-
   &__input {
     border: 0;
     background: #f0f0f0;

@@ -8,7 +8,7 @@ import CancelButton from "../../Buttons/CancelButton/CancelButton";
 import EditButton from "../../Buttons/EditButton/EditButton";
 import SaveButton from "../../Buttons/SaveButton/SaveButton";
 import { useFormState } from "react-dom";
-import { updateUser } from "@/app/actions/updateUser";
+import { updateUser } from "@/lib/actions/updateUser";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
@@ -82,7 +82,11 @@ const NameField = ({ id, label, field, session }) => {
         </div>
       </form>
       {state.errors.name &&
-        state.errors.name.map((err) => <p key={err.name}>{err}</p>)}
+        state.errors.name.map((err) => (
+          <p key={err.name} className="error">
+            {err}
+          </p>
+        ))}
     </>
   );
 };

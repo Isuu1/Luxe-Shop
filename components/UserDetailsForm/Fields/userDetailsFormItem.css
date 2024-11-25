@@ -19,6 +19,12 @@
 .user-details-form-item__extended__label {
   font-size: 1rem;
 }
+.user-details-form-item__extended__reveal-password-button {
+  background: #5329a3;
+  color: #fff;
+  position: absolute;
+  right: 0;
+}
 .user-details-form-item__input {
   border: 0;
   background: #f0f0f0;
