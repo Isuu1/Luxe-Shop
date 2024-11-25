@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
 const NameField = ({ id, label, field, session }) => {
-  const { isEditing } = useFormContext();
+  const { isEditing, setIsEditing } = useFormContext();
 
   const [state, formAction] = useFormState(updateUser, {
     message: "Initial state",
@@ -34,8 +34,9 @@ const NameField = ({ id, label, field, session }) => {
             email: state.data.email,
           },
         });
+        setIsEditing((prevState) => ({ ...prevState, [id]: false }));
         // Refresh the page to close editing mode
-        router.refresh();
+        // router.refresh();
         //Display notification to user
         toast.success("Email updated successfully", {
           style: { marginTop: "50px" },
