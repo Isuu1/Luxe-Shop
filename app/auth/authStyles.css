@@ -1,4 +1,4 @@
-.login-container {
+.auth-form-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -9,12 +9,12 @@
   background: rgba(255, 255, 255, 0.4117647059);
   padding-bottom: 3rem;
 }
-.login-container__logo {
+.auth-form-container__logo {
   color: #5329a3;
   font-size: 2.2rem;
   margin: 1rem 0;
 }
-.login-container__headline {
+.auth-form-container__headline {
   color: #000000;
   margin-bottom: 1rem;
 }
@@ -24,4 +24,4 @@
     max-width: 500px;
     margin: auto;
   }
-}/*# sourceMappingURL=signin.css.map */
+}/*# sourceMappingURL=authStyles.css.map */

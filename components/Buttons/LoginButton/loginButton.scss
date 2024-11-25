@@ -12,6 +12,9 @@
   &__icon {
     font-size: 1.2rem;
   }
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 // @media screen and (min-width: "768px") {

@@ -12,4 +12,7 @@
 }
 .login-button__icon {
   font-size: 1.2rem;
+}
+.login-button:disabled {
+  cursor: not-allowed;
 }/*# sourceMappingURL=loginButton.css.map */

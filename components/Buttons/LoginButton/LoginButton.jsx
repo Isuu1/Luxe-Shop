@@ -4,7 +4,7 @@ import { useFormStatus } from "react-dom";
 import { IoSend } from "react-icons/io5";
 import "./loginButton.scss";
 
-const LoginButton = () => {
+const LoginButton = ({ children }) => {
   const status = useFormStatus();
   console.log(status);
   return (
@@ -14,7 +14,7 @@ const LoginButton = () => {
       aria-disabled={status.pending}
       disabled={status.pending}
     >
-      {status.pending ? "Submitting" : "Log in"}
+      {status.pending ? "Submitting" : `${children}`}
 
       <IoSend className="login-button__icon" />
     </button>

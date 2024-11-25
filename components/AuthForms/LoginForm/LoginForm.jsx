@@ -4,10 +4,10 @@ import { useFormState } from "react-dom";
 import Link from "next/link";
 
 //Styles
-import "./loginForm.scss";
+import "../authFormStyles.scss";
 
 //Utils
-import { signin } from "@/app/actions/auth";
+import { signin } from "@/lib/actions/auth";
 
 //Components
 import LoginButton from "@/components/Buttons/LoginButton/LoginButton";
@@ -22,13 +22,15 @@ export default function LoginForm() {
     errors: null,
   });
 
+  console.log("State", state);
+
   return (
     <>
-      <form className="login-form" action={formAction}>
-        <label className="login-form__item">
-          <FaUser className="login-form__item__icon" />
+      <form className="auth-form" action={formAction}>
+        <label className="auth-form__item">
+          <FaUser className="auth-form__item__icon" />
           <input
-            className="login-form__item__input"
+            className="auth-form__item__input"
             placeholder="Email"
             name="email"
             id="email"
@@ -37,10 +39,10 @@ export default function LoginForm() {
         {state?.errors?.email && (
           <p style={{ color: "red" }}>{state.errors.email}</p>
         )}
-        <label className="login-form__item">
-          <FaUnlock className="login-form__item__icon" />
+        <label className="auth-form__item">
+          <FaUnlock className="auth-form__item__icon" />
           <input
-            className="login-form__item__input"
+            className="auth-form__item__input"
             placeholder="Password"
             name="password"
             id="password"
@@ -50,22 +52,20 @@ export default function LoginForm() {
         {state?.errors?.password && (
           <p style={{ color: "red" }}>{state.errors.password}</p>
         )}
-        <p className="login-form__forgot-password bold">
-          Forgot your password?
-        </p>
-        <LoginButton />
+        <p className="auth-form__forgot-password bold">Forgot your password?</p>
+        <LoginButton>Sign in</LoginButton>
       </form>
-      <div className="login-form__providers">
+      <div className="auth-form__providers">
         <p>or</p>
         <button
-          className="login-form__providers__github-button"
+          className="auth-form__providers__github-button"
           // onClick={() => signIn("github")}
         >
           <span>Login with GitHub</span>
-          <FaGithub className="login-form__providers__github-button__icon" />
+          <FaGithub className="auth-form__providers__github-button__icon" />
         </button>
       </div>
-      <p className="login-form__signup">
+      <p className="auth-form__signup">
         Dont have an account?{" "}
         <strong>
           <Link href="/auth/signup">Sign up</Link>

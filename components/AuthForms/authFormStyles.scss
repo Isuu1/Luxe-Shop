@@ -5,7 +5,7 @@
   margin-bottom: 1rem;
 }
 
-.login-form {
+.auth-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,7 +81,7 @@
 }
 
 @media screen and (min-width: "768px") {
-  .login-form {
+  .auth-form {
     &__providers {
       &__github-button {
         width: 60%;

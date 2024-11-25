@@ -1,19 +1,19 @@
 import React from "react";
 
 //Components
-import LoginForm from "@/components/LoginForm/LoginForm";
+import LoginForm from "@/components/AuthForms/LoginForm/LoginForm";
 import BackButton from "@/components/Buttons/BackButton/BackButton";
 
 //Styles
-import "./signin.scss";
+import "../authStyles.scss";
 
 function SigninPage() {
   return (
     <>
       <BackButton>Login</BackButton>
-      <div className="login-container" id="login-container">
-        <h1 className="login-container__logo">luxe.</h1>
-        <p className="login-container__headline">
+      <div className="auth-form-container" id="login-container">
+        <h1 className="auth-form-container__logo">luxe.</h1>
+        <p className="auth-form-container__headline">
           Please log in to continue
         </p>
         <LoginForm />

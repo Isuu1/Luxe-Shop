@@ -5,7 +5,7 @@ import { signIn } from "@/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
-import bcrypt from "bcryptjs";
+const bcrypt = require("bcrypt");
 
 // Prev state checks latest input value before sending form
 export async function signin(prevState, formData) {
@@ -61,17 +61,14 @@ export async function signin(prevState, formData) {
 
 export async function signup(prevState, formData) {
   const password = formData.get("password");
-
-  const hashedPassword = bcrypt.hashSync(password, 12);
+  const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+  console.log("Testing");
   console.log(
     "This is how password looks like before sending it to db: ",
     hashedPassword
   );
+
   try {
-    console.log(
-      "This is how password looks like before sending it to db: ",
-      hashedPassword
-    );
     // const user = await prisma.user.create({
     //   data: {
     //     email: formData.get("email"),
