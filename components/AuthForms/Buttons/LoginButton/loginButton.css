@@ -15,4 +15,5 @@
 }
 .login-button:disabled {
   cursor: not-allowed;
+  background: #5329a3;
 }/*# sourceMappingURL=loginButton.css.map */

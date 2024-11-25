@@ -10,7 +10,7 @@ import { signup } from "@/lib/actions/auth";
 import "../authFormStyles.scss";
 
 //Components
-import LoginButton from "../../Buttons/LoginButton/LoginButton";
+import LoginButton from "../Buttons/LoginButton/LoginButton";
 
 //Icons
 import { FaUser } from "react-icons/fa";

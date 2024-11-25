@@ -10,7 +10,7 @@ import "../authFormStyles.scss";
 import { signin } from "@/lib/actions/auth";
 
 //Components
-import LoginButton from "@/components/Buttons/LoginButton/LoginButton";
+import LoginButton from "@/components/AuthForms/Buttons/LoginButton/LoginButton";
 
 //Icons
 import { FaGithub } from "react-icons/fa";
@@ -21,8 +21,6 @@ export default function LoginForm() {
   const [state, formAction] = useFormState(signin, {
     errors: null,
   });
-
-  console.log("State", state);
 
   return (
     <>

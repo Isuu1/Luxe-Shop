@@ -14,11 +14,6 @@
   }
   &:disabled {
     cursor: not-allowed;
+    background: #5329a3;
   }
 }
-
-// @media screen and (min-width: "768px") {
-//   .login-button {
-//     width: 60%;
-//   }
-// }
