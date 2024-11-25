@@ -1,5 +1,5 @@
 // route.js
-import { updateUser } from "../../../lib/actions/updateUser";
+import { updateUser } from "@/lib/actions/updateUser";
 
 export async function PUT(request) {
   try {
