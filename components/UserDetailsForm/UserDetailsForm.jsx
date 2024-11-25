@@ -15,7 +15,7 @@ import "./userDetailsForm.scss";
 //Authentication
 import { useSession } from "next-auth/react";
 
-const UserDetailsForm = () => {
+const UserDetailsForm = ({ session }) => {
   const { status, data } = useSession();
 
   if (status === "loading") {
@@ -26,7 +26,9 @@ const UserDetailsForm = () => {
     );
   }
 
-  const session = data;
+  // const session = data;
+
+  console.log("Session in NameField: ", session);
 
   return (
     <div className="user-details-form">
