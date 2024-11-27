@@ -28,6 +28,12 @@ const NameField = ({ id, label, field, session }) => {
     errors: "",
   });
 
+  // console.log("State in NameField: ", state);
+
+  console.log("Is editing in name field: ", isEditing);
+
+  console.log("Session in name field: ", session);
+
   const router = useRouter();
   const { update } = useSession();
 
@@ -43,18 +49,42 @@ const NameField = ({ id, label, field, session }) => {
             email: state.data.email,
           },
         });
-        //Refresh the page to display updated data
-        router.refresh();
-        //Set isEditing to false to close editing mode
-        setIsEditing((prevState) => ({ ...prevState, [id]: false }));
         //Display notification to user
         toast.success("Name updated successfully", {
           style: { marginTop: "50px" },
         });
+        //Refresh the page to display updated data
+        // router.refresh();
       }
     }
     handleSessionUpdate();
-  }, [session, state, update, router, id, setIsEditing]);
+  }, [session, state, update]);
+
+  // useEffect(() => {
+  //   if (state.success) {
+  //     console.log("State in form: ", state);
+  //     update({
+  //       ...session,
+  //       user: {
+  //         ...session.user,
+  //         name: state.data.name,
+  //         email: state.data.email,
+  //       },
+  //     });
+  //     //Display notification to user
+  //     toast.success("Name updated successfully", {
+  //       style: { marginTop: "50px" },
+  //     });
+  //     //Refresh the page to display updated data
+  //     // router.refresh();
+  //   }
+  // }, [session, state, update]);
+
+  useEffect(() => {
+    if (state.success) {
+      setIsEditing((prevState) => ({ ...prevState, [id]: false }));
+    }
+  }, [state.success, setIsEditing, id]);
 
   return (
     <>

@@ -41,6 +41,7 @@ const NameField = ({ id, label, field, session }) => {
             ...session.user,
             name: state.data.name,
             email: state.data.email,
+            password: state.data.password,
           },
         });
         //Refresh the page to display updated data

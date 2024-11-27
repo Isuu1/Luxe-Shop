@@ -2,8 +2,6 @@ import { auth } from "@/auth";
 
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
-  console.log("ROUTE", req.nextUrl.pathname);
-  console.log("Is logged in", isLoggedIn);
   if (!req.auth && req.nextUrl.pathname.startsWith("/user")) {
     const newUrl = new URL("/auth/signin", req.nextUrl.origin);
     return Response.redirect(newUrl);

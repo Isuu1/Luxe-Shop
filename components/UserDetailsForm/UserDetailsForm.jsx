@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React from "react";
 
 //Components
@@ -14,11 +13,23 @@ import "./userDetailsForm.scss";
 
 //Authentication
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const UserDetailsForm = ({ session }) => {
+const UserDetailsForm = () => {
+  //Get user session
   const { status, data } = useSession();
 
-  // const session = data;
+  const router = useRouter();
+
+  //Session is null on initial load so need to refresh the page
+  if (!data) {
+    console.log(data);
+    router.refresh();
+  }
+
+  const session = data;
+
+  console.log("Session in UserDetailsForm: ", session);
 
   if (status === "loading") {
     return (
@@ -35,13 +46,13 @@ const UserDetailsForm = ({ session }) => {
         <>
           <NameField
             id="name"
-            field={session.user?.name}
+            field={session?.user?.name}
             label="Name: "
             session={session}
           />
           <EmailField
             id="email"
-            field={session.user?.email}
+            field={session?.user?.email}
             label="Email: "
             session={session}
           />

@@ -29,16 +29,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
         // const isPasswordValid =
         //   credentials.password === user.password;
-        const isPasswordValid = bcrypt.compare(
-          credentials.password,
-          user.password
-        );
+        // const isPasswordValid = bcrypt.compare(
+        //   credentials.password,
+        //   user.password
+        // );
 
-        console.log("Password valid? ", isPasswordValid);
+        // console.log("Password valid? ", isPasswordValid);
 
-        if (!isPasswordValid) {
-          return null;
-        }
+        // if (!isPasswordValid) {
+        //   return null;
+        // }
         return {
           id: user.id + "",
           email: user.email,
@@ -67,6 +67,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       };
     },
     jwt: ({ token, user, trigger, session }) => {
+      console.log("JWT Callback:", { trigger, session });
       if (user) {
         const u = user;
         return {
@@ -77,6 +78,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       //When session update is triggered in action refresh session
       if (trigger === "update") {
+        console.log("Trigger is update");
         return { ...token, ...session.user };
       }
       return token;
