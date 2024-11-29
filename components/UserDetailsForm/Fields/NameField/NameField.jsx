@@ -19,6 +19,7 @@ import { useSession } from "next-auth/react";
 
 //Styles
 import "../userDetailsFormItem.scss";
+import { handleSessionUpdate } from "@/lib/utils";
 
 const NameField = ({ id, label, field, session }) => {
   const { isEditing, setIsEditing } = useFormContext();
@@ -34,51 +35,16 @@ const NameField = ({ id, label, field, session }) => {
 
   console.log("Session in name field: ", session);
 
-  const router = useRouter();
   const { update } = useSession();
 
   useEffect(() => {
-    async function handleSessionUpdate() {
-      if (state.success) {
-        console.log("State in form: ", state);
-        await update({
-          ...session,
-          user: {
-            ...session.user,
-            name: state.data.name,
-            email: state.data.email,
-          },
-        });
-        //Display notification to user
-        toast.success("Name updated successfully", {
-          style: { marginTop: "50px" },
-        });
-        //Refresh the page to display updated data
-        // router.refresh();
-      }
+    handleSessionUpdate(state, update, session);
+    if (state.success) {
+      toast.success("Name updated successfully", {
+        style: { marginTop: "50px" },
+      });
     }
-    handleSessionUpdate();
-  }, [session, state, update]);
-
-  // useEffect(() => {
-  //   if (state.success) {
-  //     console.log("State in form: ", state);
-  //     update({
-  //       ...session,
-  //       user: {
-  //         ...session.user,
-  //         name: state.data.name,
-  //         email: state.data.email,
-  //       },
-  //     });
-  //     //Display notification to user
-  //     toast.success("Name updated successfully", {
-  //       style: { marginTop: "50px" },
-  //     });
-  //     //Refresh the page to display updated data
-  //     // router.refresh();
-  //   }
-  // }, [session, state, update]);
+  }, [state, update, session]);
 
   useEffect(() => {
     if (state.success) {
