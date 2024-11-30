@@ -82,9 +82,12 @@
 .auth-form__providers__github-button__icon {
   font-size: 1.2rem;
 }
-.auth-form__signup {
+.auth-form__signup-msg {
   margin: 2rem 0 0.5rem 0;
   text-align: center;
+}
+.auth-form__signin-msg {
+  margin-top: 2rem;
 }
 
 @media screen and (min-width: 768px) {

@@ -67,7 +67,7 @@ const SignupForm = () => {
 
       <LoginButton>Register</LoginButton>
       {state?.errors?.email === "Email already exists in database" && (
-        <p>
+        <p className="auth-form__signin-msg">
           Looks like you already have an account.{" "}
           <Link href="/auth/signin">
             <strong>Sign in</strong>

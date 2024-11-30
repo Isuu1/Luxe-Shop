@@ -25,7 +25,10 @@ export default function LoginForm() {
   return (
     <>
       <form className="auth-form" action={formAction}>
-        <label className="auth-form__item">
+        <div className="auth-form__item">
+          <label className="auth-form__item__hidden" htmlFor="email">
+            Email
+          </label>
           <FaUser className="auth-form__item__icon" />
           <input
             className="auth-form__item__input"
@@ -34,11 +37,14 @@ export default function LoginForm() {
             id="email"
             required
           />
-        </label>
+        </div>
         {state?.errors?.email && (
           <p style={{ color: "red" }}>{state.errors.email}</p>
         )}
-        <label className="auth-form__item">
+        <div className="auth-form__item">
+          <label className="auth-form__item__hidden" htmlFor="email">
+            Password
+          </label>
           <FaUnlock className="auth-form__item__icon" />
           <input
             className="auth-form__item__input"
@@ -48,7 +54,7 @@ export default function LoginForm() {
             type="password"
             required
           />
-        </label>
+        </div>
         {state?.errors?.password && (
           <p style={{ color: "red" }}>{state.errors.password}</p>
         )}
@@ -65,7 +71,7 @@ export default function LoginForm() {
           <FaGithub className="auth-form__providers__github-button__icon" />
         </button>
       </div>
-      <p className="auth-form__signup">
+      <p className="auth-form__signup-msg">
         Dont have an account?{" "}
         <strong>
           <Link href="/auth/signup">Sign up</Link>

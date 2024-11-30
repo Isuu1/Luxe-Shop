@@ -78,9 +78,12 @@
       }
     }
   }
-  &__signup {
+  &__signup-msg {
     margin: 2rem 0 0.5rem 0;
     text-align: center;
+  }
+  &__signin-msg {
+    margin-top: 2rem;
   }
 }
 
