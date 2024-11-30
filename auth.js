@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
-import bcrypt from "bcryptjs";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -27,18 +26,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!user) {
           return null;
         }
-        // const isPasswordValid =
-        //   credentials.password === user.password;
-        // const isPasswordValid = bcrypt.compare(
-        //   credentials.password,
-        //   user.password
-        // );
-
-        // console.log("Password valid? ", isPasswordValid);
-
-        // if (!isPasswordValid) {
-        //   return null;
-        // }
         return {
           id: user.id + "",
           email: user.email,

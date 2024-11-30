@@ -32,6 +32,7 @@ export default function LoginForm() {
             placeholder="Email"
             name="email"
             id="email"
+            required
           />
         </label>
         {state?.errors?.email && (
@@ -45,6 +46,7 @@ export default function LoginForm() {
             name="password"
             id="password"
             type="password"
+            required
           />
         </label>
         {state?.errors?.password && (
