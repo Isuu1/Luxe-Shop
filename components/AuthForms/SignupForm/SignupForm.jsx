@@ -41,7 +41,7 @@ const SignupForm = () => {
   //   }
   // }, [state.success, router]);
 
-  return state.message ? (
+  return !state.success ? (
     <form className="auth-form" action={formAction}>
       <div className="auth-form__item">
         <label className="auth-form__item__hidden" htmlFor="email">
@@ -74,6 +74,23 @@ const SignupForm = () => {
           required
         />
       </div>
+      <div className="auth-form__item">
+        <label className="auth-form__item__hidden" htmlFor="email">
+          Confirm password
+        </label>
+        <FaUnlock className="auth-form__item__icon" />
+        <input
+          className="auth-form__item__input"
+          placeholder="Confirm password"
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          required
+        />
+      </div>
+      {state?.errors?.confirmPassword && (
+        <p style={{ color: "red" }}>{state.errors.confirmPassword}</p>
+      )}
       {state?.errors?.password && (
         <div style={{ display: "flex", flexDirection: "column" }}>
           {state.errors.password.map((item) => (
