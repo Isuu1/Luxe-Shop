@@ -16,6 +16,7 @@ import LoginButton from "@/components/AuthForms/Buttons/LoginButton/LoginButton"
 import { FaGithub } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
+import { signIn } from "next-auth/react";
 
 export default function LoginForm() {
   const [state, formAction] = useFormState(signin, {
@@ -65,7 +66,7 @@ export default function LoginForm() {
         <p>or</p>
         <button
           className="auth-form__providers__github-button"
-          // onClick={() => signIn("github")}
+          onClick={() => signIn("github")}
         >
           <span>Login with GitHub</span>
           <FaGithub className="auth-form__providers__github-button__icon" />
