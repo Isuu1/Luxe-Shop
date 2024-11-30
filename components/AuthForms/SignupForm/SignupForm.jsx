@@ -37,6 +37,7 @@ const SignupForm = () => {
           type="email"
           name="email"
           id="email"
+          required
         />
       </div>
       {state?.errors?.email && (
@@ -53,6 +54,7 @@ const SignupForm = () => {
           type="password"
           name="password"
           id="password"
+          required
         />
       </div>
       {state?.errors?.password && (
