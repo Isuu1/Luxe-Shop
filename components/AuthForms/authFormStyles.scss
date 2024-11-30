@@ -5,6 +5,22 @@
   margin-bottom: 1rem;
 }
 
+.signup-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  &__buttons {
+    gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+    &--purple {
+      background: #6b37d1;
+      color: #fff;
+    }
+  }
+}
+
 .auth-form {
   display: flex;
   flex-direction: column;

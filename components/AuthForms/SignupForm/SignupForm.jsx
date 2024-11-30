@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useTransition, useState, useEffect, use } from "react";
 import { useFormState } from "react-dom";
 
 //Authentication
@@ -16,15 +16,32 @@ import LoginButton from "../Buttons/LoginButton/LoginButton";
 import { FaUser } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const SignupForm = () => {
   const [state, formAction] = useFormState(signup, {
+    message: "Initial state",
     errors: null,
   });
 
-  console.log("State", state);
+  const router = useRouter();
 
-  return (
+  console.log("State in SignupForm: ", state);
+
+  // useEffect(() => {
+  //   if (state.success) {
+  //     toast.success("Account created successfully", {
+  //       style: { marginTop: "50px" },
+  //     });
+  //     setTimeout(() => {
+  //       router.push("/");
+  //     }, 1000);
+  //   }
+  // }, [state.success, router]);
+
+  return state.message ? (
     <form className="auth-form" action={formAction}>
       <div className="auth-form__item">
         <label className="auth-form__item__hidden" htmlFor="email">
@@ -67,7 +84,7 @@ const SignupForm = () => {
         </div>
       )}
 
-      <LoginButton>Register</LoginButton>
+      <LoginButton state={state}>Register</LoginButton>
       {!state.errors && (
         <p className="auth-form__signin-msg">
           Have an account?{" "}
@@ -85,6 +102,26 @@ const SignupForm = () => {
         </p>
       )}
     </form>
+  ) : (
+    <div className="signup-success">
+      <Image
+        className="signup-success__image"
+        src="/images/success.png"
+        alt="checked"
+        width={90}
+        height={90}
+      ></Image>
+      <p>Your account has been created.</p>
+      <p>Check your email to verify your account.</p>
+      <div className="signup-success__buttons">
+        <button>Resend email</button>
+        <button className="signup-success__buttons--purple">
+          <Link href="https://mail.google.com/mail/u/0/#inbox">
+            Go to mailbox
+          </Link>
+        </button>
+      </div>
+    </div>
   );
 };
 
