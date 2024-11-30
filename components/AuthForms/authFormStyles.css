@@ -25,6 +25,10 @@
   position: relative;
   width: 100%;
 }
+.auth-form__item__hidden {
+  position: absolute;
+  top: -9999px;
+}
 .auth-form__item__icon {
   position: absolute;
   right: 10px;

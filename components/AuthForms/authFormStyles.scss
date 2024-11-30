@@ -23,6 +23,10 @@
   &__item {
     position: relative;
     width: 100%;
+    &__hidden {
+      position: absolute;
+      top: -9999px;
+    }
     &__icon {
       position: absolute;
       right: 10px;
