@@ -26,20 +26,15 @@ const SignupForm = () => {
     errors: null,
   });
 
-  const router = useRouter();
-
   console.log("State in SignupForm: ", state);
 
-  // useEffect(() => {
-  //   if (state.success) {
-  //     toast.success("Account created successfully", {
-  //       style: { marginTop: "50px" },
-  //     });
-  //     setTimeout(() => {
-  //       router.push("/");
-  //     }, 1000);
-  //   }
-  // }, [state.success, router]);
+  useEffect(() => {
+    if (state.success) {
+      toast.success("Account created successfully", {
+        style: { marginTop: "50px" },
+      });
+    }
+  }, [state.success]);
 
   return !state.success ? (
     <form className="auth-form" action={formAction}>
