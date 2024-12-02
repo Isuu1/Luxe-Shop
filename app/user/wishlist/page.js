@@ -20,17 +20,14 @@ import { urlFor } from "@/lib/client";
 import "./wishlist.scss";
 
 export default async function page() {
-  const mobile = isMobileDevice(headers());
-
   const session = await auth();
 
   const wishlistData = await fetchWishlist(session.user.id);
+
   const wishlist = wishlistData.wishlist || [];
 
   return (
-    <div
-      className={`page user-page ${!mobile && "desktop__user-page"}`}
-    >
+    <div className="page user-page">
       <BackButton>Wishlist</BackButton>
 
       <div className="wishlist-container">

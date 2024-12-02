@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 export async function POST(req) {
   try {
     const {
-      id,
+      userId,
       sanityId,
       productName,
       productImage,
@@ -19,7 +20,7 @@ export async function POST(req) {
     const wishlistItem = await prisma.wishlist.create({
       data: {
         // Parsing userId to number
-        id: parseInt(id),
+        userId: parseInt(userId),
         sanityId,
         productName,
         productImage,

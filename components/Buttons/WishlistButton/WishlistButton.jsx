@@ -1,7 +1,8 @@
 "use client";
-import { addToWishList, removeFromWishlist } from "@/lib/utils";
+
 import { useRouter } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 
 //Icons
 import { FaRegHeart } from "react-icons/fa";
@@ -13,12 +14,10 @@ import { useStateContext } from "@/context/StateContext";
 //Styles
 import "./wishListButton.scss";
 
-const WishlistButton = ({
-  product,
-  itemWishlisted,
-  onProductPage,
-  userId,
-}) => {
+//Functions
+import { addToWishList, removeFromWishlist } from "@/lib/utils";
+
+const WishlistButton = ({ product, itemWishlisted, onProductPage, userId }) => {
   const router = useRouter();
 
   const { setLoginPropmptOpen } = useStateContext();
@@ -32,9 +31,17 @@ const WishlistButton = ({
       return;
     }
     if (itemWishlisted) {
-      await removeFromWishlist(product._id, router);
+      await removeFromWishlist(userId, product._id, router).then(() => {
+        toast.error(`${product.name} removed from wishlist`, {
+          style: { marginTop: "50px" },
+        });
+      });
     } else {
-      await addToWishList(userId, product, router);
+      await addToWishList(userId, product, router).then(() => {
+        toast.success(`${product.name} added to wishlist`, {
+          style: { marginTop: "50px" },
+        });
+      });
     }
   };
 
@@ -42,9 +49,7 @@ const WishlistButton = ({
     <>
       <button
         className={`add-to-wishlist ${
-          onProductPage
-            ? "product-detail-container__wishlist-button"
-            : ""
+          onProductPage ? "product-detail-container__wishlist-button" : ""
         }`}
         onClick={handleWishList}
       >

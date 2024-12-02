@@ -31,11 +31,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!user) {
           return null;
         }
+        //If user exists return it with all properties
         return {
           id: user.id + "",
           email: user.email,
           name: user.name,
-          userImage: user.userImage,
+          image: user.image,
         };
       },
     }),
@@ -48,9 +49,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   callbacks: {
     signIn: async (user, account, profile) => {
-      console.log("Sign In Callback user:", user);
-      console.log("Sign In Callback account:", account, profile);
-      console.log("Sign In Callback profile:", profile);
+      // console.log("Sign In Callback user:", user);
+      // console.log("Sign In Callback account:", account, profile);
+      // console.log("Sign In Callback profile:", profile);
+      //Find user in database
       const u = await prisma.user.findUnique({
         where: {
           email: user.user.email,
@@ -70,15 +72,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return true;
     },
     session: async ({ token, session }) => {
-      console.log("Session Callback:", { token, session });
+      // console.log("Session Callback:", { token, session });
       const u = await prisma.user.findUnique({
         where: {
           email: session.user.email,
         },
         cacheStrategy: { ttl: 60 },
       });
-      session.user.id = token.id;
-      console.log("Session Callback user in db:", u);
+      // console.log("Session Callback user in db:", u);
       return {
         ...session,
         user: {

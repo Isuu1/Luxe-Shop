@@ -1,22 +1,26 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 export async function DELETE(req, { params }) {
   try {
-    // Get current product id from search params for testing
-    const { id } = params;
-    console.log("Product id remove handler: ", id);
+    // Get current product id from search params
+    const { product_id } = params;
+    // Get current user ID from search params
+    const url = new URL(req.url);
+    const userId = url.searchParams.get("userId");
 
-    if (!id) {
+    if (!product_id) {
       return NextResponse.json(
         { error: "Wishlist item ID is required" },
         { status: 400 }
       );
     }
-    await prisma.wishlist.delete({
-      where: { sanityId: id },
+    //Delete wishlist item
+    await prisma.wishlist.deleteMany({
+      where: {
+        sanityId: product_id,
+        userId: parseInt(userId),
+      },
     });
     return NextResponse.json({ message: "Wishlist item removed" });
   } catch (error) {
