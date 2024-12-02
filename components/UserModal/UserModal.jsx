@@ -71,7 +71,7 @@ const UserModal = ({ user }) => {
       <div className="user-modal__header">
         <Image
           className="user-modal__header__avatar-img"
-          src={`${user ? user.userImage : "/images/user2.png"}`}
+          src={`${user ? user.image : "/images/user2.png"}`}
           alt=""
           width={60}
           height={60}

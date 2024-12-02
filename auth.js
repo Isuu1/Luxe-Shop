@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 
@@ -8,6 +9,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     Credentials({
       credentials: {
@@ -42,14 +47,43 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: "/auth",
   },
   callbacks: {
-    session: ({ token, session }) => {
+    signIn: async (user, account, profile) => {
+      console.log("Sign In Callback user:", user);
+      console.log("Sign In Callback account:", account, profile);
+      console.log("Sign In Callback profile:", profile);
+      const u = await prisma.user.findUnique({
+        where: {
+          email: user.user.email,
+        },
+      });
+
+      if (!u) {
+        await prisma.user.create({
+          data: {
+            email: user.user.email,
+            name: user.user.name,
+            image: user.user.image,
+            password: "test",
+          },
+        });
+      }
+      return true;
+    },
+    session: async ({ token, session }) => {
+      console.log("Session Callback:", { token, session });
+      const u = await prisma.user.findUnique({
+        where: {
+          email: session.user.email,
+        },
+      });
       session.user.id = token.id;
+      console.log("Session Callback user in db:", u);
       return {
         ...session,
         user: {
           ...session.user,
-          id: token.id,
-          userImage: token.userImage,
+          id: u.id,
+          image: token.image,
         },
       };
     },
@@ -60,7 +94,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return {
           ...token,
           id: u.id,
-          userImage: u.userImage,
+          image: u.image,
         };
       }
       //When session update is triggered in action refresh session

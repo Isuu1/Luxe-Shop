@@ -32,6 +32,8 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const session = await auth();
 
+  console.log("Session", session);
+
   return (
     <html lang="en" className={rubik.className}>
       <body suppressHydrationWarning={true}>

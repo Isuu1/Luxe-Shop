@@ -16,6 +16,9 @@ import LoginButton from "@/components/AuthForms/Buttons/LoginButton/LoginButton"
 import { FaGithub } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+
+//Authentication
 import { signIn } from "next-auth/react";
 
 export default function LoginForm() {
@@ -65,11 +68,18 @@ export default function LoginForm() {
       <div className="auth-form__providers">
         <p>or</p>
         <button
-          className="auth-form__providers__github-button"
+          className="auth-form__providers__button"
           onClick={() => signIn("github")}
         >
           <span>Login with GitHub</span>
-          <FaGithub className="auth-form__providers__github-button__icon" />
+          <FaGithub className="auth-form__providers__button__icon" />
+        </button>
+        <button
+          className="auth-form__providers__button"
+          onClick={() => signIn("google")}
+        >
+          <span>Login with Google</span>
+          <FcGoogle className="auth-form__providers__button__icon" />
         </button>
       </div>
       <p className="auth-form__signup-msg">
