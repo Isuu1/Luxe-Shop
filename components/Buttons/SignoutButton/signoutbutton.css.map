@@ -1,1 +1,1 @@
-{"version":3,"sources":["signoutButton.scss","signoutButton.css"],"names":[],"mappings":"AAAA;EACE,mBAAA;EACA,mBAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,WAAA;EACA,kBAAA;EACA,oCAAA;EACA,gBAAA;ACCF;ADAE;EACE,cAAA;ACEJ","file":"signoutButton.css"}
+{"version":3,"sources":["signoutButton.scss","signoutButton.css"],"names":[],"mappings":"AAAA;EACE,mBAAA;EACA,mBAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,WAAA;EACA,kBAAA;EACA,oCAAA;EACA,gBAAA;ACCF;ADAE;EACE,iBAAA;EACA,WAAA;ACEJ;ADAE;EACE,WAAA;ACEJ;ADAE;EACE,mBAAA;EACA,mBAAA;ACEJ","file":"signoutButton.css"}
