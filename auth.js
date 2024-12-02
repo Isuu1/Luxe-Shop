@@ -75,6 +75,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         where: {
           email: session.user.email,
         },
+        cacheStrategy: { ttl: 60 },
       });
       session.user.id = token.id;
       console.log("Session Callback user in db:", u);

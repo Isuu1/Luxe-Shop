@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export async function POST(req) {
   try {
     const {
-      userId,
+      id,
       sanityId,
       productName,
       productImage,
@@ -19,7 +19,7 @@ export async function POST(req) {
     const wishlistItem = await prisma.wishlist.create({
       data: {
         // Parsing userId to number
-        userId: parseInt(userId),
+        id: parseInt(id),
         sanityId,
         productName,
         productImage,
