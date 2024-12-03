@@ -23,6 +23,8 @@ model User {
   provider String? @default("credentials")
   orders    Order[]
   wishlist  Wishlist[]
+  emailVerified Boolean @default(false)
+  verificationToken String?
 }
 
 model Order {

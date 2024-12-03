@@ -17,6 +17,16 @@
     color: #000000;
     margin-bottom: 1rem;
   }
+  &__verification-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    &__purple {
+      background: #5329a3;
+      color: #fff;
+    }
+  }
 }
 
 @media screen and (min-width: "768px") {
