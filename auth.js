@@ -49,9 +49,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   callbacks: {
     signIn: async (user, account, profile) => {
-      // console.log("Sign In Callback user:", user);
-      // console.log("Sign In Callback account:", account, profile);
-      // console.log("Sign In Callback profile:", profile);
+      console.log("Sign In Callback user:", user);
+      console.log("Sign In Callback account:", account, profile);
+      console.log("Sign In Callback profile:", profile);
       //Find user in database
       const u = await prisma.user.findUnique({
         where: {
@@ -66,6 +66,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             name: user.user.name,
             image: user.user.image,
             password: "test",
+            provider: user.account.provider,
           },
         });
       }
