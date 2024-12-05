@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useTransition, useState, useEffect, use } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
+import Link from "next/link";
+import toast from "react-hot-toast";
 
 //Authentication
 import { signup } from "@/lib/actions/auth";
@@ -11,14 +13,8 @@ import "../authFormStyles.scss";
 
 //Components
 import LoginButton from "../Buttons/LoginButton/LoginButton";
-
-//Icons
-import { FaUser } from "react-icons/fa";
-import { FaUnlock } from "react-icons/fa";
-import Link from "next/link";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
+import FormItem from "@/components/AuthForms/FormElements/FormItem";
+import FormSuccess from "@/components/AuthForms/FormElements/FormSuccess";
 
 const SignupForm = () => {
   const [state, formAction] = useFormState(signup, {
@@ -26,7 +22,7 @@ const SignupForm = () => {
     errors: null,
   });
 
-  console.log("State in SignupForm: ", state);
+  const [formPending, setFormPending] = useState(false);
 
   useEffect(() => {
     if (state.success) {
@@ -36,77 +32,36 @@ const SignupForm = () => {
     }
   }, [state.success]);
 
-  const getMailboxUrl = () => {
-    if (state.success) {
-      const userEmail = state.user.email;
-      const domain = userEmail.split("@")[1].toLowerCase();
-      const mailboxUrls = {
-        "gmail.com": "https://mail.google.com",
-        "outlook.com": "https://outlook.live.com",
-        "hotmail.com": "https://outlook.live.com",
-        "yahoo.com": "https://mail.yahoo.com",
-      };
-      console.log("Mailbox URL: ", mailboxUrls[domain]);
-      return mailboxUrls[domain] || "#";
-    }
-  };
-
-  const router = useRouter();
-
-  const handleRedirectToMailbox = () => {
-    const mailboxUrl = getMailboxUrl();
-    if (mailboxUrl) {
-      router.push(mailboxUrl);
-    }
-  };
-
   return !state.success ? (
     <form className="auth-form" action={formAction}>
-      <div className="auth-form__item">
-        <label className="auth-form__item__hidden" htmlFor="email">
-          Email
-        </label>
-        <FaUser className="auth-form__item__icon" />
-        <input
-          className="auth-form__item__input"
-          placeholder="Email"
-          type="email"
-          name="email"
-          id="email"
-          required
-        />
-      </div>
+      <FormItem
+        placeholder="Email"
+        name="email"
+        type="email"
+        label="Email"
+        id="email"
+        required={true}
+      />
       {state?.errors?.email && (
         <p style={{ color: "red" }}>{state.errors.email}</p>
       )}
-      <div className="auth-form__item">
-        <label className="auth-form__item__hidden" htmlFor="email">
-          Password
-        </label>
-        <FaUnlock className="auth-form__item__icon" />
-        <input
-          className="auth-form__item__input"
-          placeholder="Password"
-          type="password"
-          name="password"
-          id="password"
-          required
-        />
-      </div>
-      <div className="auth-form__item">
-        <label className="auth-form__item__hidden" htmlFor="email">
-          Confirm password
-        </label>
-        <FaUnlock className="auth-form__item__icon" />
-        <input
-          className="auth-form__item__input"
-          placeholder="Confirm password"
-          type="password"
-          name="confirmPassword"
-          id="confirmPassword"
-          required
-        />
-      </div>
+
+      <FormItem
+        placeholder="Password"
+        name="password"
+        type="password"
+        label="Password"
+        id="password"
+        required={true}
+      />
+      <FormItem
+        placeholder="Confirm password"
+        name="confirmPassword"
+        type="password"
+        label="Confirm password"
+        id="confirmPassword"
+        required={true}
+      />
       {state?.errors?.confirmPassword && (
         <p style={{ color: "red" }}>{state.errors.confirmPassword}</p>
       )}
@@ -120,7 +75,7 @@ const SignupForm = () => {
         </div>
       )}
 
-      <LoginButton state={state}>Register</LoginButton>
+      <LoginButton setFormPending={setFormPending}>Register</LoginButton>
       {!state.errors && (
         <p className="auth-form__signin-msg">
           Have an account?{" "}
@@ -139,27 +94,7 @@ const SignupForm = () => {
       )}
     </form>
   ) : (
-    <div className="signup-success">
-      <Image
-        className="signup-success__image"
-        src="/images/success.png"
-        alt="checked"
-        width={90}
-        height={90}
-      ></Image>
-      <p>Your account has been created.</p>
-      <p>Check your email to verify your account.</p>
-      <div className="signup-success__buttons">
-        <button>Resend email</button>
-
-        <button
-          onClick={handleRedirectToMailbox}
-          className="signup-success__buttons--purple"
-        >
-          Go to mailbox
-        </button>
-      </div>
-    </div>
+    <FormSuccess state={state} />
   );
 };
 
