@@ -48,6 +48,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: "/auth",
   },
   callbacks: {
+    //Providers sign in callback
     signIn: async (user, account, profile) => {
       console.log("Sign In Callback user:", user);
       console.log("Sign In Callback account:", account, profile);

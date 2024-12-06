@@ -17,61 +17,47 @@ import { signin } from "@/lib/actions/auth";
 
 //Context
 import { useAuthFormContext } from "@/context/AuthFormContext";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [state, formAction] = useFormState(signin, {
+    message: "Initial state",
     errors: null,
   });
 
-  const { formPending, setFormPending, formErrors, setFormErrors } =
-    useAuthFormContext();
+  const { formErrors, setFormErrors } = useAuthFormContext();
+
+  const router = useRouter();
 
   useEffect(() => {
-    if (state.errors) {
-      setFormErrors(state.errors);
-    }
-  }, [state.errors, setFormErrors]);
+    const handleFormState = async () => {
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+      if (state.errors !== null) {
+        await delay(1000);
+        setFormErrors((prev) => ({ ...prev, login: state.errors }));
+      }
+    };
+    handleFormState();
+    return () => {
+      setFormErrors({ login: null, signup: null }); // Runs when component unmounts
+    };
+  }, [setFormErrors, state.errors]);
 
-  console.log("Form errors:", formErrors);
+  useEffect(() => {
+    const handleFormRedirect = async () => {
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+      if (state.success) {
+        toast.success("Logged in successfully! Redirecting...", {
+          style: { marginTop: "50px" },
+        });
+        await delay(3000);
+        router.push("/");
+      }
+    };
+    handleFormRedirect();
+  }, [state.success, router]);
 
-  // console.log("State:", state);
-
-  // const [formPending, setFormPending] = useState(false);
-
-  // const [errors, setErrors] = useState(null);
-
-  // useEffect(() => {
-  //   if (state.errors) {
-  //     setTimeout(() => {
-  //       setErrors(state.errors);
-  //     }, 5000);
-  //   }
-  // }, [state.errors]);
-
-  // console.log("Errors:", errors);
-
-  // useEffect(() => {
-  //   //Set delay between toasters to make it look like a loading process
-  //   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  //   const handleFormState = async () => {
-  //     if (formPending) {
-  //       const loadingToast = toast.loading("Please wait. Logging in...", {
-  //         style: { marginTop: "50px" },
-  //       });
-  //       await delay(1000);
-  //       toast.dismiss(loadingToast);
-  //     }
-  //     if (state.success) {
-  //       toast.success("Logged in successfully. Redirecting...", {
-  //         style: { marginTop: "50px" },
-  //       });
-  //       await delay(2000);
-  //     }
-  //   };
-  //   handleFormState();
-  // }, [formPending, state.success]);
-
-  console.log("Form pending:", formPending);
+  console.log("Form state: ", state);
 
   return (
     <>
@@ -84,8 +70,8 @@ export default function LoginForm() {
           id="email"
           required={true}
         />
-        {state?.errors?.email && (
-          <p style={{ color: "red" }}>{state.errors.email}</p>
+        {formErrors?.login?.email && (
+          <p style={{ color: "red" }}>{formErrors.login.email}</p>
         )}
         <FormItem
           placeholder="Password"
@@ -95,8 +81,8 @@ export default function LoginForm() {
           id="password"
           required={true}
         />
-        {state?.errors?.password && (
-          <p style={{ color: "red" }}>{state.errors.password}</p>
+        {formErrors?.login?.password && (
+          <p style={{ color: "red" }}>{formErrors.login.password}</p>
         )}
         <p className="auth-form__forgot-password bold">Forgot your password?</p>
         <LoginButton state={state}>Sign in</LoginButton>

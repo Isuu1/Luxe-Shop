@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useFormState } from "react-dom";
 import Link from "next/link";
-import toast from "react-hot-toast";
 
 //Authentication
 import { signup } from "@/lib/actions/auth";
@@ -25,15 +24,24 @@ const SignupForm = () => {
     errors: null,
   });
 
-  const { formPending, setFormPending } = useAuthFormContext();
+  const { formPending, setFormPending, formErrors, setFormErrors } =
+    useAuthFormContext();
 
-  // useEffect(() => {
-  //   if (state.success) {
-  //     toast.success("Account created successfully", {
-  //       style: { marginTop: "50px" },
-  //     });
-  //   }
-  // }, [state.success]);
+  useEffect(() => {
+    const handleFormState = async () => {
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+      if (state.errors !== null) {
+        await delay(1000);
+        setFormErrors((prev) => ({ ...prev, signup: state.errors }));
+      }
+    };
+    handleFormState();
+    return () => {
+      setFormErrors({ login: null, signup: null }); // Runs when component unmounts
+    };
+  }, [setFormErrors, state.errors]);
+
+  console.log("Form errors: ", formErrors);
 
   return !state.success ? (
     <form className="auth-form" action={formAction}>
@@ -45,8 +53,8 @@ const SignupForm = () => {
         id="email"
         required={true}
       />
-      {state?.errors?.email && (
-        <p style={{ color: "red" }}>{state.errors.email}</p>
+      {formErrors?.signup?.email && (
+        <p style={{ color: "red" }}>{formErrors.signup.email}</p>
       )}
 
       <FormItem
@@ -65,12 +73,12 @@ const SignupForm = () => {
         id="confirmPassword"
         required={true}
       />
-      {state?.errors?.confirmPassword && (
-        <p style={{ color: "red" }}>{state.errors.confirmPassword}</p>
+      {formErrors?.signup?.confirmPassword && (
+        <p style={{ color: "red" }}>{formErrors.signup.confirmPassword}</p>
       )}
-      {state?.errors?.password && (
+      {formErrors?.signup?.password && (
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {state.errors.password.map((item) => (
+          {formErrors.signup.password.map((item) => (
             <p key={item.length} style={{ color: "red" }}>
               {item}
             </p>
@@ -79,19 +87,19 @@ const SignupForm = () => {
       )}
 
       <LoginButton state={state}>Register</LoginButton>
-      {!state.errors && (
-        <p className="auth-form__signin-msg">
-          Have an account?{" "}
-          <Link href="/auth/signin">
-            <strong> Sign in</strong>
-          </Link>
-        </p>
-      )}
-      {state?.errors?.email === "Email already exists in database" && (
+
+      {formErrors?.signup?.email === "Email already exists in database" ? (
         <p className="auth-form__signin-msg">
           Looks like you already have an account.{" "}
           <Link href="/auth/signin">
             <strong>Sign in</strong>
+          </Link>
+        </p>
+      ) : (
+        <p className="auth-form__signin-msg">
+          Have an account?{" "}
+          <Link href="/auth/signin">
+            <strong> Sign in</strong>
           </Link>
         </p>
       )}

@@ -140,6 +140,21 @@ li {
   height: 100%;
 }
 
+.loading-button-icon {
+  display: inline-block;
+  aspect-ratio: 1/1;
+}
+.loading-button-icon::after {
+  content: "";
+  display: block;
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 5px solid #ffffff;
+  border-radius: 50%;
+  border-color: #ffffff transparent #ffffff transparent;
+  animation: rotateSpin 1s linear infinite;
+}
+
 .loading-page {
   background: #ffffff;
   height: 100vh;
