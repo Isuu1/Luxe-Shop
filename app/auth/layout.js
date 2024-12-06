@@ -1,6 +1,9 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
+//Context
+import { AuthFormContext } from "@/context/AuthFormContext";
+
 export default async function RootLayout({ children }) {
   const session = await auth();
 
@@ -8,5 +11,9 @@ export default async function RootLayout({ children }) {
     redirect("/");
   }
 
-  return <div className="page">{children}</div>;
+  return (
+    <AuthFormContext>
+      <div className="page">{children}</div>
+    </AuthFormContext>
+  );
 }

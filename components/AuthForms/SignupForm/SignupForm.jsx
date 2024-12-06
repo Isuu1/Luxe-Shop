@@ -16,21 +16,24 @@ import LoginButton from "../Buttons/LoginButton/LoginButton";
 import FormItem from "@/components/AuthForms/FormElements/FormItem";
 import FormSuccess from "@/components/AuthForms/FormElements/FormSuccess";
 
+//Context
+import { useAuthFormContext } from "@/context/AuthFormContext";
+
 const SignupForm = () => {
   const [state, formAction] = useFormState(signup, {
     message: "Initial state",
     errors: null,
   });
 
-  const [formPending, setFormPending] = useState(false);
+  const { formPending, setFormPending } = useAuthFormContext();
 
-  useEffect(() => {
-    if (state.success) {
-      toast.success("Account created successfully", {
-        style: { marginTop: "50px" },
-      });
-    }
-  }, [state.success]);
+  // useEffect(() => {
+  //   if (state.success) {
+  //     toast.success("Account created successfully", {
+  //       style: { marginTop: "50px" },
+  //     });
+  //   }
+  // }, [state.success]);
 
   return !state.success ? (
     <form className="auth-form" action={formAction}>
@@ -75,7 +78,7 @@ const SignupForm = () => {
         </div>
       )}
 
-      <LoginButton setFormPending={setFormPending}>Register</LoginButton>
+      <LoginButton state={state}>Register</LoginButton>
       {!state.errors && (
         <p className="auth-form__signin-msg">
           Have an account?{" "}

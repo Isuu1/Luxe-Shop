@@ -4,15 +4,12 @@ import React from "react";
 import { FaUser } from "react-icons/fa";
 import { FaUnlock } from "react-icons/fa";
 
-const FormItem = ({
-  placeholder,
-  type,
-  name,
-  id,
-  required,
-  label,
-  formPending,
-}) => {
+//Context
+import { useAuthFormContext } from "@/context/AuthFormContext";
+
+const FormItem = ({ placeholder, type, name, id, required, label }) => {
+  const { formPending } = useAuthFormContext();
+
   const generateIcon = (type) => {
     switch (type) {
       case "email":

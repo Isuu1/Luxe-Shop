@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -15,10 +15,24 @@ import FormProviders from "@/components/AuthForms/FormElements/FormProviders";
 //Authentication
 import { signin } from "@/lib/actions/auth";
 
+//Context
+import { useAuthFormContext } from "@/context/AuthFormContext";
+
 export default function LoginForm() {
   const [state, formAction] = useFormState(signin, {
     errors: null,
   });
+
+  const { formPending, setFormPending, formErrors, setFormErrors } =
+    useAuthFormContext();
+
+  useEffect(() => {
+    if (state.errors) {
+      setFormErrors(state.errors);
+    }
+  }, [state.errors, setFormErrors]);
+
+  console.log("Form errors:", formErrors);
 
   // console.log("State:", state);
 
@@ -69,7 +83,6 @@ export default function LoginForm() {
           label="Email"
           id="email"
           required={true}
-          formPending={formPending}
         />
         {state?.errors?.email && (
           <p style={{ color: "red" }}>{state.errors.email}</p>
@@ -81,19 +94,12 @@ export default function LoginForm() {
           label="Password"
           id="password"
           required={true}
-          formPending={formPending}
         />
         {state?.errors?.password && (
           <p style={{ color: "red" }}>{state.errors.password}</p>
         )}
         <p className="auth-form__forgot-password bold">Forgot your password?</p>
-        <LoginButton
-          formPending={formPending}
-          setFormPending={setFormPending}
-          state={state}
-        >
-          Sign in
-        </LoginButton>
+        <LoginButton state={state}>Sign in</LoginButton>
       </form>
       <FormProviders />
       <p className="auth-form__signup-msg">
