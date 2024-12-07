@@ -7,7 +7,10 @@ const Context = createContext();
 export const AuthFormContext = ({ children }) => {
   const [formPending, setFormPending] = useState(false);
 
-  const [formErrors, setFormErrors] = useState(null);
+  const [formErrors, setFormErrors] = useState({
+    login: null,
+    signup: null,
+  });
 
   return (
     <Context.Provider

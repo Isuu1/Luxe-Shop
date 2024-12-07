@@ -47,6 +47,7 @@
   top: -9999px;
 }
 .auth-form__item__icon {
+  z-index: 2;
   position: absolute;
   right: 10px;
   top: 20px;
@@ -54,6 +55,8 @@
   font-size: 1.2rem;
 }
 .auth-form__item__input {
+  z-index: 1;
+  position: relative;
   width: 100%;
   margin: 0.5rem 0 0.5rem 0;
   border-radius: 14px;
@@ -98,6 +101,9 @@
   justify-content: center;
   font-size: 1.1rem;
   padding: 0.9rem 0;
+}
+.auth-form__providers__button:disabled {
+  cursor: not-allowed;
 }
 .auth-form__providers__button__icon {
   font-size: 1.3rem;

@@ -6,42 +6,25 @@ import "../../authFormStyles.scss";
 import toast from "react-hot-toast";
 import { useAuthFormContext } from "@/context/AuthFormContext";
 
-const LoginButton = ({ children, state }) => {
+const LoginButton = ({ children }) => {
   const status = useFormStatus();
 
   const { formPending, setFormPending, formErrors, setFormErrors } =
     useAuthFormContext();
 
+  //Handling form status
   useEffect(() => {
     const handleFormState = async () => {
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
       if (status.pending) {
         setFormPending(true);
+      } else {
+        await delay(1000);
+        setFormPending(false);
       }
-      await delay(5000);
-      setFormPending(false);
     };
     handleFormState();
   }, [status.pending, setFormPending]);
-
-  //Set form pending state
-  // useEffect(() => {
-  //   if (status.pending) {
-  //     setFormPending(true);
-  //     const loadingToaster = toast.loading("Please wait. Logging in...", {
-  //       style: { marginTop: "50px" },
-  //     });
-  //     setTimeout(() => {
-  //       toast.dismiss(loadingToaster);
-  //       setFormPending(false);
-  //     }, 5000);
-  //     if (state.success) {
-  //       toast.success("Logged in successfully. Redirecting...", {
-  //         style: { marginTop: "50px" },
-  //       });
-  //     }
-  //   }
-  // }, [status.pending, setFormPending, state.success]);
 
   return (
     <button
@@ -52,7 +35,11 @@ const LoginButton = ({ children, state }) => {
     >
       {formPending ? "Submitting" : `${children}`}
 
-      <IoSend className="login-button__icon" />
+      {formPending ? (
+        <div className="loading-button-icon"></div>
+      ) : (
+        <IoSend className="login-button__icon" />
+      )}
     </button>
   );
 };
