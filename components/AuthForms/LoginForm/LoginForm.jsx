@@ -29,6 +29,7 @@ export default function LoginForm() {
 
   const router = useRouter();
 
+  //Handling form status
   useEffect(() => {
     const handleFormState = async () => {
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -44,17 +45,12 @@ export default function LoginForm() {
   }, [setFormErrors, state.errors]);
 
   useEffect(() => {
-    const handleFormRedirect = async () => {
-      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-      if (state.success) {
-        toast.success("Logged in successfully! Redirecting...", {
-          style: { marginTop: "50px" },
-        });
-        await delay(3000);
+    if (state.success) {
+      toast.success("Login successful", { style: { marginTop: "50px" } });
+      setTimeout(() => {
         router.push("/");
-      }
-    };
-    handleFormRedirect();
+      }, 2000);
+    }
   }, [state.success, router]);
 
   console.log("Form state: ", state);
@@ -62,29 +58,34 @@ export default function LoginForm() {
   return (
     <>
       <form className="auth-form" action={formAction}>
-        <FormItem
-          placeholder="Email"
-          name="email"
-          type="email"
-          label="Email"
-          id="email"
-          required={true}
-        />
-        {formErrors?.login?.email && (
-          <p style={{ color: "red" }}>{formErrors.login.email}</p>
-        )}
-        <FormItem
-          placeholder="Password"
-          name="password"
-          type="password"
-          label="Password"
-          id="password"
-          required={true}
-        />
-        {formErrors?.login?.password && (
-          <p style={{ color: "red" }}>{formErrors.login.password}</p>
-        )}
-        <p className="auth-form__forgot-password bold">Forgot your password?</p>
+        <>
+          <FormItem
+            placeholder="Email"
+            name="email"
+            type="email"
+            label="Email"
+            id="email"
+            required={true}
+          />
+          {formErrors?.login?.email && (
+            <p style={{ color: "red" }}>{formErrors.login.email}</p>
+          )}
+          <FormItem
+            placeholder="Password"
+            name="password"
+            type="password"
+            label="Password"
+            id="password"
+            required={true}
+          />
+          {formErrors?.login?.password && (
+            <p style={{ color: "red" }}>{formErrors.login.password}</p>
+          )}
+          <p className="auth-form__forgot-password bold">
+            Forgot your password?
+          </p>
+        </>
+
         <LoginButton state={state}>Sign in</LoginButton>
       </form>
       <FormProviders />

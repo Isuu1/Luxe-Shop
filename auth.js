@@ -50,9 +50,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     //Providers sign in callback
     signIn: async (user, account, profile) => {
-      console.log("Sign In Callback user:", user);
-      console.log("Sign In Callback account:", account, profile);
-      console.log("Sign In Callback profile:", profile);
       //Find user in database
       const u = await prisma.user.findUnique({
         where: {
@@ -92,7 +89,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       };
     },
     jwt: ({ token, user, trigger, session }) => {
-      console.log("JWT Callback:", { trigger, session });
       if (user) {
         const u = user;
         return {
@@ -103,7 +99,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       //When session update is triggered in action refresh session
       if (trigger === "update") {
-        console.log("Trigger is update");
         return { ...token, ...session.user };
       }
       return token;

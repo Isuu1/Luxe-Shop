@@ -6,12 +6,13 @@ import "../../authFormStyles.scss";
 import toast from "react-hot-toast";
 import { useAuthFormContext } from "@/context/AuthFormContext";
 
-const LoginButton = ({ children, state }) => {
+const LoginButton = ({ children }) => {
   const status = useFormStatus();
 
   const { formPending, setFormPending, formErrors, setFormErrors } =
     useAuthFormContext();
 
+  //Handling form status
   useEffect(() => {
     const handleFormState = async () => {
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

@@ -96,6 +96,9 @@
       justify-content: center;
       font-size: 1.1rem;
       padding: 0.9rem 0;
+      &:disabled {
+        cursor: not-allowed;
+      }
       &__icon {
         font-size: 1.3rem;
       }

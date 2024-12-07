@@ -102,6 +102,9 @@
   font-size: 1.1rem;
   padding: 0.9rem 0;
 }
+.auth-form__providers__button:disabled {
+  cursor: not-allowed;
+}
 .auth-form__providers__button__icon {
   font-size: 1.3rem;
 }

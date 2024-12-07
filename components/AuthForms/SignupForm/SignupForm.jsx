@@ -24,9 +24,9 @@ const SignupForm = () => {
     errors: null,
   });
 
-  const { formPending, setFormPending, formErrors, setFormErrors } =
-    useAuthFormContext();
+  const { formErrors, setFormErrors } = useAuthFormContext();
 
+  //Handling form status
   useEffect(() => {
     const handleFormState = async () => {
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -40,8 +40,6 @@ const SignupForm = () => {
       setFormErrors({ login: null, signup: null }); // Runs when component unmounts
     };
   }, [setFormErrors, state.errors]);
-
-  console.log("Form errors: ", formErrors);
 
   return !state.success ? (
     <form className="auth-form" action={formAction}>
