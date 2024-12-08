@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"removeFromWishlistButton.css"}
+{"version":3,"sources":["removeFromWishlistButton.scss","removeFromWishlistButton.css"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,UAAA;ACCF","file":"removeFromWishlistButton.css"}

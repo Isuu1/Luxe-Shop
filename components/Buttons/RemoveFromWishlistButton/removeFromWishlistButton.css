@@ -1,1 +1,4 @@
-/*# sourceMappingURL=removeFromWishlistButton.css.map */
+.wishlist-container__item__remove-button {
+  position: relative;
+  z-index: 2;
+}/*# sourceMappingURL=removeFromWishlistButton.css.map */

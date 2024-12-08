@@ -67,7 +67,10 @@ export default async function page() {
                       </div>
                     </div>
                   </div>
-                  <RemoveFromWishlistButton itemId={item.sanityId} />
+                  <RemoveFromWishlistButton
+                    userId={session.user.id}
+                    itemId={item.sanityId}
+                  />
                 </div>
               </Link>
             );
