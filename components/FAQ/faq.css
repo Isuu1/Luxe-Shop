@@ -1,0 +1,26 @@
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+.faq-container__headline {
+  margin-bottom: 1rem;
+}
+.faq-container__item {
+  cursor: pointer;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+.faq-container__item__question {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.faq-container__item__question__icon {
+  font-size: 1.2rem;
+}
+.faq-container__item__answer {
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
+}/*# sourceMappingURL=faq.css.map */

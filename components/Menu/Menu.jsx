@@ -10,6 +10,7 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { FaListCheck } from "react-icons/fa6";
 import { TiHeartFullOutline } from "react-icons/ti";
 import { MdMiscellaneousServices } from "react-icons/md";
+import { BiSupport } from "react-icons/bi";
 
 //Styles
 import "./menu.scss";
@@ -69,14 +70,16 @@ const Menu = ({ user }) => {
         <BiSolidCategory />
         Products
       </MenuItem>
-      {/* <MenuItem key="about">
+      <MenuItem key="about">
+        <Link href="/about"></Link>
         <BsFillPeopleFill />
         About us
       </MenuItem>
       <MenuItem key="about">
-        <MdMiscellaneousServices />
-        Help
-      </MenuItem> */}
+        <Link href="/support"></Link>
+        <BiSupport />
+        Support
+      </MenuItem>
       <MenuItem key="account">
         <Link href="/user"></Link>
         <FaUser />

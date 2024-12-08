@@ -1,0 +1,39 @@
+.about-page-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  line-height: 1.4rem;
+  &__image {
+    position: relative !important;
+    width: 80% !important;
+    height: auto !important;
+    border-radius: 14px;
+    margin: auto;
+  }
+  &__section {
+    line-height: 1.7rem;
+    &__title {
+      margin: 1rem 0;
+      text-align: center;
+    }
+    &__list {
+      list-style-position: inside;
+    }
+    &__team-members {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 1.3rem;
+      &__member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+        &__image {
+          border-radius: 14px;
+        }
+      }
+    }
+  }
+}
