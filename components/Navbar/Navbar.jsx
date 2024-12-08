@@ -30,19 +30,14 @@ import SearchBarButton from "../Buttons/SearchBarButton/SearchBarButton";
 //Icons
 import { TiThMenu } from "react-icons/ti";
 import { BiSolidCategoryAlt } from "react-icons/bi";
-import { FaUser } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
-import { HiMiniHome } from "react-icons/hi2";
 import { IoClose } from "react-icons/io5";
+import { BsPeopleFill } from "react-icons/bs";
+import { BiSupport } from "react-icons/bi";
 
 const Navbar = ({ user }) => {
-  const {
-    showMenu,
-    setShowMenu,
-    userModal,
-    loginPromptOpen,
-    searchOpen,
-  } = useStateContext();
+  const { showMenu, setShowMenu, userModal, loginPromptOpen, searchOpen } =
+    useStateContext();
 
   // Get current path
   const pathname = usePathname();
@@ -53,9 +48,7 @@ const Navbar = ({ user }) => {
   // Handling navbar top animation on scroll
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const navbarTopRight = document.querySelector(
-      ".navbar-top__right"
-    );
+    const navbarTopRight = document.querySelector(".navbar-top__right");
     const navbarTopLeft = document.querySelector(".navbar-top__left");
     if (latest >= 65) {
       navbarTopRight.classList.add("navbar-top-right-transition");
@@ -77,9 +70,7 @@ const Navbar = ({ user }) => {
       <AnimatePresence mode="wait">
         {loginPromptOpen && <LoginPrompt />}
       </AnimatePresence>
-      <AnimatePresence mode="wait">
-        {searchOpen && <Search />}
-      </AnimatePresence>
+      <AnimatePresence mode="wait">{searchOpen && <Search />}</AnimatePresence>
       <div className="navbar-top">
         <div className="navbar-top__left">
           <h1 className="navbar-top__left__logo">luxe.</h1>
@@ -102,6 +93,24 @@ const Navbar = ({ user }) => {
             >
               <BiSolidCategoryAlt />
               Products
+            </Link>
+            <Link
+              className={`navbar-top__left__menu__item link ${
+                pathname === "/about" ? "active" : ""
+              }`}
+              href="/about"
+            >
+              <BsPeopleFill />
+              About
+            </Link>
+            <Link
+              className={`navbar-top__left__menu__item link ${
+                pathname === "/support" ? "active" : ""
+              }`}
+              href="/support"
+            >
+              <BiSupport />
+              Support
             </Link>
           </nav>
         </div>
