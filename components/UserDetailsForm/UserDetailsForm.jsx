@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 //Components
 import NameField from "./Fields/NameField/NameField";
@@ -13,25 +13,21 @@ import "./userDetailsForm.scss";
 
 //Authentication
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 const UserDetailsForm = () => {
   //Get user session
   const { status, data } = useSession();
 
-  const router = useRouter();
-
   //Session is null on initial load so need to refresh the page
-  if (!data) {
-    console.log(data);
-    router.refresh();
-  }
+  useEffect(() => {
+    if (data === null) {
+      window.location.reload();
+    }
+  });
 
   const session = data;
 
-  console.log("Session in UserDetailsForm: ", session);
-
-  if (status === "loading") {
+  if (status === "loading" || !session) {
     return (
       <div style={{ minHeight: "400px" }} className="flex-center ">
         <div className="loading-page__spin"></div>
