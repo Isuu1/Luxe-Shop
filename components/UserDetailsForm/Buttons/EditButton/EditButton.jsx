@@ -10,6 +10,11 @@ const EditButton = ({ id }) => {
 
   const handleEdit = (e) => {
     e.preventDefault();
+    if (id === "password") {
+      return alert(
+        "Password cannot be edited right now. Please contact support for assistance"
+      );
+    }
     if (Object.values(isEditing).some((obj) => obj === true)) {
       return alert("Please save or cancel the current edit before proceeding");
     }

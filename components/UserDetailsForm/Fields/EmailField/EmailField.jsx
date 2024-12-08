@@ -16,6 +16,7 @@ import { useFormState } from "react-dom";
 //Authentication
 import { updateUser } from "@/lib/actions/updateUser";
 import { useSession } from "next-auth/react";
+import { handleSessionUpdate } from "@/lib/utils";
 
 const NameField = ({ id, label, field, session }) => {
   const { isEditing, setIsEditing } = useFormContext();
@@ -25,33 +26,22 @@ const NameField = ({ id, label, field, session }) => {
     errors: "",
   });
 
-  const router = useRouter();
   const { update } = useSession();
 
   useEffect(() => {
-    async function handleSessionUpdate() {
-      if (state.success) {
-        console.log("State in form: ", state);
-        await update({
-          ...session,
-          user: {
-            ...session.user,
-            name: state.data.name,
-            email: state.data.email,
-          },
-        });
-        //Refresh the page to display updated data
-        router.refresh();
-        //Set isEditing to false to close editing mode
-        setIsEditing((prevState) => ({ ...prevState, [id]: false }));
-        //Display notification to user
-        toast.success("Email updated successfully", {
-          style: { marginTop: "50px" },
-        });
-      }
+    handleSessionUpdate(state, update, session);
+    if (state.success) {
+      toast.success("Email updated successfully", {
+        style: { marginTop: "50px" },
+      });
     }
-    handleSessionUpdate();
-  }, [session, state, update, router, id, setIsEditing]);
+  }, [state, update, session]);
+
+  useEffect(() => {
+    if (state.success) {
+      setIsEditing((prevState) => ({ ...prevState, [id]: false }));
+    }
+  }, [state.success, setIsEditing, id]);
 
   return (
     <>
