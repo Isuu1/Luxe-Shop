@@ -53,7 +53,11 @@ export default function LoginForm() {
     }
   }, [state.success, router]);
 
-  console.log("Form state: ", state);
+  const handleForgotPassword = () => {
+    return alert(
+      "This feature is not available right now. Please contact support for assistance."
+    );
+  };
 
   return (
     <>
@@ -81,7 +85,10 @@ export default function LoginForm() {
           {formErrors?.login?.password && (
             <p style={{ color: "red" }}>{formErrors.login.password}</p>
           )}
-          <p className="auth-form__forgot-password bold">
+          <p
+            className="auth-form__forgot-password bold"
+            onClick={handleForgotPassword}
+          >
             Forgot your password?
           </p>
         </>

@@ -83,6 +83,7 @@
 }
 .auth-form__forgot-password {
   margin: 1rem;
+  cursor: pointer;
 }
 .auth-form__providers {
   display: flex;
