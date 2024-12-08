@@ -95,7 +95,11 @@ const NameField = ({ id, label, field, session }) => {
           {isEditing[id] === true ? (
             <CancelButton id={id} formAction={formAction} />
           ) : null}
-          {isEditing[id] === true ? <SaveButton /> : <EditButton id={id} />}
+          {isEditing[id] === true ? (
+            <SaveButton />
+          ) : (
+            <EditButton id={id} userId={session.user.id} />
+          )}
         </div>
       </form>
       {state.errors.emailsMatching && (

@@ -40,6 +40,13 @@ const UserDetailsForm = () => {
       <ImageField id="image" />
       <div className="user-details-form__details">
         <>
+          {session.user.id === 105 && (
+            <div className="user-details-form__admin">
+              <h1>This is testing account</h1>
+              <p>Editing details is disabled.</p>
+              <p>Use your own account to edit details.</p>
+            </div>
+          )}
           <NameField
             id="name"
             field={session?.user?.name}

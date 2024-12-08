@@ -5,11 +5,16 @@ import React from "react";
 //Context
 import { useFormContext } from "@/context/FormContext";
 
-const EditButton = ({ id }) => {
+const EditButton = ({ id, userId }) => {
   const { isEditing, setIsEditing } = useFormContext();
 
   const handleEdit = (e) => {
     e.preventDefault();
+    if (userId === 105) {
+      return alert(
+        "Editing details is disabled. Use your own account to edit details."
+      );
+    }
     if (id === "password") {
       return alert(
         "Password cannot be edited right now. Please contact support for assistance"

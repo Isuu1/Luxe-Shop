@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -39,8 +40,9 @@ const FormSuccess = ({ state }) => {
       <p>Your account has been created.</p>
       <p>Check your email to verify your account.</p>
       <div className="signup-success__buttons">
-        <button>Resend email</button>
-
+        <Link href="/">
+          <button>Home</button>
+        </Link>
         <button
           onClick={handleRedirectToMailbox}
           className="signup-success__buttons--purple"
