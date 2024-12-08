@@ -1,5 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 
+//Database
+import prisma from "@/lib/prisma";
+
 //Components
 import BackButton from "@/components/Buttons/BackButton/BackButton";
 
@@ -8,6 +11,7 @@ import { auth } from "@/auth";
 
 //Styles
 import "./orders.scss";
+import Image from "next/image";
 
 export default async function ProfileClient() {
   const prisma = new PrismaClient();
@@ -36,34 +40,57 @@ export default async function ProfileClient() {
   );
 
   return (
-    <div className="page orders">
+    <div className="page orders-container">
       <BackButton>Orders</BackButton>
-      {/* <UserOrders orders={orders} /> */}
-      {orders.map((order) => (
-        <div className="orders__item" key={order.id}>
-          <p className="orders__item__date">
-            {new Date(order.createdAt).toLocaleString()}
-          </p>
-
-          {order.items.map((orderItem) => (
-            <div key={orderItem.id}>
-              <p>{orderItem.productName}</p>
-              {/* <Image
-                src={orderItem.productImage}
-                alt=""
-                width={140}
-                height={140}
-              /> */}
-              <img
-                src={orderItem.productImage}
-                width="140"
-                height="140"
-              />
-            </div>
-          ))}
-          <p>Total: £{order.amount / 100}</p>
+      {orders.length === 0 ? (
+        <div className="orders-container__empty">
+          <p>You don`t have any orders yet.</p>
         </div>
-      ))}
+      ) : (
+        orders.map((order) => (
+          <div className="orders-container__order" key={order.id}>
+            <p className="orders-container__order__date">
+              <strong>Order placed: </strong>
+              {new Date(order.createdAt).toLocaleString()}
+            </p>
+
+            {order.items.map((orderItem) => (
+              <div key={orderItem.id} className="orders-container__order__item">
+                <Image
+                  className="orders-container__order__item__image"
+                  src={orderItem.productImage}
+                  alt=""
+                  width={140}
+                  height={140}
+                />
+                <div
+                  className="flex-center-column"
+                  style={{ justifyContent: "center", alignItems: "flex-start" }}
+                >
+                  <p>
+                    <strong>Product name: </strong>
+                    {orderItem.productName}
+                  </p>
+                  <p>
+                    <strong>Ordered quantity: </strong>
+                    {orderItem.quantity}
+                  </p>
+                  <p>
+                    <strong>Price: </strong>£{orderItem.unitAmount / 100}
+                  </p>
+                </div>
+                <button className="orders-container__order__item__button">
+                  View item
+                </button>
+              </div>
+            ))}
+
+            <p className="orders-container__order__total-price">
+              <strong>Total: </strong>£{order.amount / 100}
+            </p>
+          </div>
+        ))
+      )}
     </div>
   );
 }
