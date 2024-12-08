@@ -13,14 +13,14 @@ const Succsess = () => {
 
   useEffect(() => {
     localStorage.clear();
-    setCartItems([]);
+    // setCartItems([]);
     setTotalPrice(0);
     setTotalQuantities(0);
   });
 
   return (
-    <div className="success-page">
-      <h3>Payment successful</h3>
+    <div className="page success-page">
+      <h1>Payment successful</h1>
       <p>Check your email for the receipt.</p>
       <Link href="/">
         <button className="success-page__button">Continue shopping</button>
